@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Grid Listview - jQuery Mobile Demos</title>
+	<link rel="stylesheet"  href="../demos/css/themes/default/jquery.mobile-1.3.1.min.css">
+	<link rel="stylesheet" href="../demos/_assets/css/jqm-demos.css">
+	<link rel="shortcut icon" href="../demos/favicon.ico">
+	<link rel="stylesheet" href="t1-welcome.css">
+	<script src="../demos/js/jquery.js"></script>
+	<script src="../demos/_assets/js/index.js"></script>
+	<script src="../demos/js/jquery.mobile-1.3.1.min.js"></script>
+	<script src="../demos/js/carousel.js"></script>
+	
+	
+	<style>
+		/* Stack all blocks to start */
+.main .ui-block-a,
+.main .ui-block-b
+ {
+    width: 100%;
+    float: none;
+}
+
+/* 2rd breakpoint - Bump up font size at very wide screens */
+@media all and (min-width: 55em) {
+    .main .ui-block-a,
+    .main .ui-block-b {
+      float: left;
+      width: 49.95%;
+    }
+}
+
+
+.metrouicss .span8 {
+width: 99%;
+}
+.metrouicss .carousel {
+display: block;
+position: relative;
+margin-bottom: 20px;
+
+}
+	
+.metrouicss .carousel .slides {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.metrouicss .carousel .slides .slide {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.metrouicss .carousel .slides .slide.image img {
+  width: 100%;
+  height: 100%;
+}
+.metrouicss .carousel .slides .slide .description {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+}
+.metrouicss .carousel .control {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  width: 40px;
+  height: 45px;
+  margin-top: -20px;
+  font-size: 48pt;
+  font-weight: 100;
+  line-height: 30px;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  opacity: .75;
+}
+.metrouicss .carousel .control.right {
+  left: auto;
+  right: 15px;
+}
+.metrouicss .carousel .control:hover {
+  opacity: 1;
+}
+.metrouicss .carousel .markers > ul {
+  margin-left: 0;
+  list-style: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding-top: 10px;
+}
+.metrouicss .carousel .markers li {
+  display: block;
+  float: left;
+  margin-right: 5px;
+}
+.metrouicss .carousel .markers li a {
+  width: 32px;
+  height: 6px;
+  background-color: white;
+  display: block;
+  float: left;
+}
+.metrouicss .carousel .markers li.active a {
+  background-color: #2d89ef;
+}
+</style>
+</head>
+<body>
+<div data-role="page" data-theme="a" id="demo-page" class="my-page">
+
+	<div data-role="header">
+		<a href="#" data-icon="home">当前状态：在线</a>
+		<h1>移动征管</h1>
+
+		<a href="grid-listview.html" data-shadow="false" data-iconshadow="false" data-icon="back" data-iconpos="right" data-rel="back" data-ajax="false">张三(99090)</a>
+	</div><!-- /header -->
+	
+<!--main-->
+<div id="main" class="main metrouicss">
+	<div class="ui-block-a">
+	<div data-role="content">
+	
+        <ul data-role="listview" data-inset="true">
+        	<li><a href="t2-search.htm">
+            	<img src="../images/btn-query.jpg">
+                <p class="ui-li-aside">一户式查询</p>
+            </a></li>
+        	<li><a href="#">
+            	<img src="../images/btn-query.jpg">
+            	<h2>BlackBerry 10</h2>
+                <p>BlackBerry launched the Z10 and Q10 with the new BB10 OS</p>
+                <p class="ui-li-aside">BlackBerry</p>
+            </a></li>
+        	<li><a href="#">
+            	<img src="../images/btn-query.jpg">
+            	<h2>WP 7.8</h2>
+                <p>Nokia rolls out WP 7.8 to Lumia 800</p>
+                <p class="ui-li-aside">Windows Phone</p>
+            </a></li>
+        	<li><a href="#">
+            	<img src="../images/btn-query.jpg">
+            	<h2>Galaxy</h2>
+                <p>New Samsung Galaxy Express</p>
+                <p class="ui-li-aside">Samsung</p>
+            </a></li>
+        	<li><a href="#">
+            	<img src="../images/btn-query.jpg">
+            	<h2>Nexus 7</h2>
+                <p>Rumours about new full HD Nexus 7</p>
+                <p class="ui-li-aside">Android</p>
+            </a></li>
+        	<li><a href="#">
+            	<img src="../images/btn-query.jpg">
+            	<h2>系统设置</h2>
+                <p>设置系统运行的各项参数</p>
+            </a></li>
+        </ul>
+                
+    </div><!-- /content -->
+ </div>
+ <div class="ui-block-b">
+ 	<h3>欢迎使用移动征管系统</h3>
+ 	                    	<!--slide image-->
+                        <div class="span8">
+                            <div class="carousel span8" style="height: 340px;" data-role="carousel" data-param-effect="slide" data-param-direction="left" data-param-duration="2000" data-param-period="4000">
+                                <div class="slides">
+                                    <div class="slide image" id="slide1">
+                                        <img src="../images/tax4.jpg" />
+                                             <div class="description">
+														                    
+														                </div>
+                                    </div>
+                                    <div class="slide image" id="slide2">
+                                        <img src="../images/tax2.jpg" />
+                                             <div class="description">
+														                    
+														                </div>
+                                    </div>
+                                    <div class="slide image" id="slide3">
+                                        <img src="../images/tax3.jpg" />
+                                             <div class="description">
+														                    
+														                </div>
+                                    </div>
+                                </div>
+
+
+                                <span class="control left bg-color-blue">&#8249;</span>
+                                <span class="control right bg-color-blue">&#8250;</span>
+
+                            </div>
+              			</div>
+             			 <!--end slide image-->
+</div>  
+</div>
+<!--end main--> 
+    <div data-role="footer" data-theme="none">
+        <h3>2013, Takeshower & Gobed &copy; by <a class="fg-color-white" href="mailto:nobody@163.com">nobody</a>| 版本:1.0.0（build no:1)</h3>
+    </div>
+    <!-- /footer -->
+
+</div><!-- /page -->
+</body>
+</html>
+ 
