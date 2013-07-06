@@ -10,9 +10,7 @@
 .my-page .ui-header {
 	color: #ccc;
 }
-.my-page .ui-footer {
-	color: #666;
-}
+
 .my-page .ui-li-desc {
 	color: #c0c0c0;
 }
@@ -107,11 +105,11 @@
 	}
 	.ui-listview .ui-li-has-thumb .ui-li-heading {
 		padding: 10px;
-		bottom: 20%;
+		bottom: 15%;/*注释位置留少一些*/
 	}
 	.ui-listview .ui-li-has-thumb .ui-li-desc {
 		padding: 0 10px;
-		min-height: 20%;
+		min-height: 15%;
 		-webkit-border-bottom-left-radius: inherit;
 		border-bottom-left-radius: inherit;
 		-webkit-border-bottom-right-radius: inherit;
