@@ -22,13 +22,18 @@
     width: 100%;
     float: none;
 }
+.main .ui-block-b{display:none;}
+
+@media all and (min-width: 448px){
+	.main .ui-block-b {display:block;}
+}
 
 /* 2rd breakpoint - Bump up font size at very wide screens */
 @media all and (min-width: 55em) {
     .main .ui-block-a,
     .main .ui-block-b {
       float: left;
-      width: 49.95%;
+      width: 49.95%;      
     }
 }
 
