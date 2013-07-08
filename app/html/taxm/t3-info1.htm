@@ -12,26 +12,52 @@
 	<script src="../demos/js/jquery.js"></script>
 	<script src="../demos/_assets/js/index.js"></script>
 	<script src="../demos/js/jquery.mobile-1.3.1.min.js"></script>
+	
+	<script>
+		var _lastd;
+		
+		function tv(n){
+			$(n).toggle();
+			$(_lastd).toggle();
+			_lastd = n;
+		}
+		$(document).ready(function(){
+			$(".datanode").hide();
+			$("#d1").show();
+			_lastd = "#d1";
+			$("#left-panel a").click(function(){
+				tv($(this).attr("rel-dn"));
+					
+			});
+		});
+	</script>
 </head>
 <body>
 <div data-role="page" data-theme="c" id="demo-page" class="my-page2">
 
-	<div data-role="header" data-position="fixed">
-		<a href="#" data-icon="home" data-rel="back" >当前状态：在线</a>
-		<h1>XX系统</h1>
-		<a href="grid-listview.html" data-shadow="false" data-iconshadow="false" data-icon="back" data-iconpos="right" data-rel="back" data-ajax="false">张三(99090)</a>
+	<div data-role="header" data-position="fixed" data-tap-toggle="false"> 
+<style>
+	.my-page2 #mytitle{margin-top:-30px;}
+	</style>
+		<div data-role="controlgroup" data-type="horizontal">
+				<a href="t1-welcome.htm" data-role="button" data-icon="home" >当前状态：在线</a>
+        <a href="#left-panel" data-role="button" data-ajax="false" data-icon="bars" data-iconpos="right">基本资料</a>
+
+		</div>
+		<h1 id="mytitle">广东互维科技有限公司</h1>
+		<a href="t2-search.htm" class="ui-btn-right" data-shadow="false" data-iconshadow="false" data-icon="back" data-iconpos="right" data-rel="t2-search.htm" data-ajax="false">张三(99090)</a>
 
 	</div><!-- /header -->
 	
-    <div data-role="panel" id="left-panel" data-theme="c"  data-position-fixed="true" >
+    <div data-role="panel" id="left-panel" data-theme="c"  data-position-fixed="true">
         <ul data-role="listview" data-theme="d">
             <li data-role="list-divider" data-icon="delete" data-rel="close">选项</li>
-            <li data-icon="arrow-r"><a href="#base" data-ajax="false" >基本资料</a></li>
-            <li data-icon="arrow-r"><a href="#d2" data-ajax="false" >核定信息</a></li>
-            <li data-icon="arrow-r"><a href="#d3" href="#">申报情况</a></li>
-            <li data-icon="arrow-r"><a href="#d4" href="#">缴税情况</a></li>
-            <li data-icon="arrow-r"><a href="#d5" href="#">发票购置</a></li>
-            <li data-icon="arrow-r"><a href="#d6" href="#">社保缴纳</a></li>
+            <li data-icon="arrow-r"><a href="#d1" rel-dn="#d1">基本资料</a></li>
+            <li data-icon="arrow-r"><a href="#d2" rel-dn="#d2">核定信息</a></li>
+            <li data-icon="arrow-r"><a href="#d3" rel-dn="#d3">申报情况</a></li>
+            <li data-icon="arrow-r"><a href="#d4" rel-dn="#d4">缴税情况</a></li>
+            <li data-icon="arrow-r"><a href="#d5" rel-dn="#d5">发票购置</a></li>
+            <li data-icon="arrow-r"><a href="#d6" rel-dn="#d6">社保缴纳</a></li>
         </ul>
     </div><!-- /panel -->
 
@@ -51,11 +77,9 @@
 	</style>	
 <div data-role="content">
 
- <div id="base">
+ <div id="d1" class="datanode">
  <ul data-role="listview" data-inset="true" >
-		<li data-role="list-divider"><a href="#left-panel" data-ajax="false" class="ui-link option">基本信息
-	<span class="ui-icon ui-icon-bars">&nbsp;</span>
-	</a></li>
+		<li data-role="list-divider">基本信息></li>
     <li data-role="fieldcontain"><label for="name2">纳税人名称:</label><span type=text name="name2" id="name2">广东互维科技有限公司</span></li>
     <li data-role="fieldcontain"><label for="name2">纳税人编码:</label><span type=text name="name2" id="name2" >>某公司35345354354"</span></li>
     <li data-role="fieldcontain"><label for="name2">注册地址   :</label><span type=text name="name2" id="name2"  >某公司3534535435</span></li>
@@ -87,14 +111,14 @@
 <!-- /base -->
 
 <style>
-	#d2 fieldset{
+	.datanode fieldset{
 		font-weight:400;
 	}
-	#d2 fieldset div span{
+	.datanode fieldset div span{
 		font-weight:800;
 	}
 </style>
-<div id="d2">
+<div id="d2" class="datanode">
  <ul data-role="listview" data-inset="true">
  		<li data-role="list-divider">核定信息</li>
         <li class="ui-body ui-body-b">
@@ -158,7 +182,7 @@
 </div>
 <!-- /d2 hd -->
 
-<div id="d3">
+<div id="d3" class="datanode">
  <ul data-role="listview" data-inset="true">
  		<li data-role="list-divider">申报情况</li>
        <li>
@@ -189,12 +213,10 @@
             </fieldset>         
 				</li><!--/one item-->
 
-征收项目：                                                 税费所属期起：                          税费所属期止：
-缴款期限：                                                 应征税费金额：
  </ul>
 </div>
 <!-- /d3 sb -->
-<div id="d4">
+<div id="d4" class="datanode">
  <ul data-role="listview" data-inset="true">
  		<li data-role="list-divider">缴税情况</li>
        <li>
@@ -218,17 +240,84 @@
  </ul>
 </div>
 <!-- /d4 js -->
-<div id="d5">
+<div id="d5" class="datanode">
  <ul data-role="listview" data-inset="true">
  		<li data-role="list-divider">发票购置情况</li>
-    <li data-role="fieldcontain"><label for="name2">纳税人名称:</label><span type=text name="name2" id="name2">广东互维科技有限公司</span></li>
+       <li>
+       	   <fieldset class="ui-grid-b ui-responsive">     
+                    <div class="ui-block-a">发票种类：<span type=text name="name21" id="name21"  >普通税票</span></div>
+                    <div class="ui-block-b">发票批次：<span type=text name="name22" id="name22"  >20100101</span></div>
+                    <div class="ui-block-a">发票号码起:<span type=text name="name21" id="name21"  >201023231</span></div>
+                    <div class="ui-block-b">发票号码止		:		<span type=text name="name22" id="name22"  >20123331</span></div>
+                    <div class="ui-block-a">计量单位	:<span type=text name="name22" id="name22"  >200</span></div>
+                    <div class="ui-block-b">数量:<span type=text name="name21" id="name21"  >201</span></div>
+                    <div class="ui-block-c">销售日期		:		<span type=text name="name22" id="name22"  >2011-12-31</span></div>
+             </fieldset>         
+				</li><!--/one item-->
+       <li>
+       	   <fieldset class="ui-grid-b ui-responsive">     
+                    <div class="ui-block-a">发票种类：<span type=text name="name21" id="name21"  >普通税票</span></div>
+                    <div class="ui-block-b">发票批次：<span type=text name="name22" id="name22"  >20100101</span></div>
+                    <div class="ui-block-a">发票号码起:<span type=text name="name21" id="name21"  >201023231</span></div>
+                    <div class="ui-block-b">发票号码止		:		<span type=text name="name22" id="name22"  >20123331</span></div>
+                    <div class="ui-block-a">计量单位	:<span type=text name="name22" id="name22"  >200</span></div>
+                    <div class="ui-block-b">数量:<span type=text name="name21" id="name21"  >201</span></div>
+                    <div class="ui-block-c">销售日期		:		<span type=text name="name22" id="name22"  >2011-12-31</span></div>
+             </fieldset>         
+				</li><!--/one item-->
+       <li>
+       	   <fieldset class="ui-grid-b ui-responsive">     
+                    <div class="ui-block-a">发票种类：<span type=text name="name21" id="name21"  >普通税票</span></div>
+                    <div class="ui-block-b">发票批次：<span type=text name="name22" id="name22"  >20100101</span></div>
+                    <div class="ui-block-a">发票号码起:<span type=text name="name21" id="name21"  >201023231</span></div>
+                    <div class="ui-block-b">发票号码止		:		<span type=text name="name22" id="name22"  >20123331</span></div>
+                    <div class="ui-block-a">计量单位	:<span type=text name="name22" id="name22"  >200</span></div>
+                    <div class="ui-block-b">数量:<span type=text name="name21" id="name21"  >201</span></div>
+                    <div class="ui-block-c">销售日期		:		<span type=text name="name22" id="name22"  >2011-12-31</span></div>
+             </fieldset>         
+				</li><!--/one item-->
  </ul>
 </div>
 <!-- /d5 fp -->
-<div id="d6">
+<div id="d6" class="datanode">
  <ul data-role="listview" data-inset="true">
  		<li data-role="list-divider">社保缴纳情况</li>
-    <li data-role="fieldcontain"><label for="name2">纳税人名称:</label><span type=text name="name2" id="name2">广东互维科技有限公司</span></li>
+       <li>
+       	   <fieldset class="ui-grid-b ui-responsive">     
+                    <div class="ui-block-a">征收项目：<span type=text name="name21" id="name21"  >养老保险</span></div>
+                    <div class="ui-block-b">征收品目：<span type=text name="name22" id="name22"  >20100101</span></div>
+                    <div class="ui-block-c">申报方式:<span type=text name="name21" id="name21"  >按季申报</span></div>
+                    <div class="ui-block-a">税款属性1		:		<span type=text name="name22" id="name22"  >20123331</span></div>
+                    <div class="ui-block-b">税款属性2	:<span type=text name="name22" id="name22"  >200</span></div>
+                    <div class="ui-block-c">税费属性:<span type=text name="name21" id="name21"  >201</span></div>
+                    <div class="ui-block-a">所属期:		<span type=text name="name22" id="name22"  >2011-12-31</span></div>
+                    <div class="ui-block-a">总金额		:		<span type=text name="name22" id="name22"  >2011.00</span></div>
+             </fieldset>         
+				</li><!--/one item-->
+       <li>
+       	   <fieldset class="ui-grid-b ui-responsive">     
+                    <div class="ui-block-a">征收项目：<span type=text name="name21" id="name21"  >养老保险</span></div>
+                    <div class="ui-block-b">征收品目：<span type=text name="name22" id="name22"  >20100101</span></div>
+                    <div class="ui-block-c">申报方式:<span type=text name="name21" id="name21"  >按季申报</span></div>
+                    <div class="ui-block-a">税款属性1		:		<span type=text name="name22" id="name22"  >20123331</span></div>
+                    <div class="ui-block-b">税款属性2	:<span type=text name="name22" id="name22"  >200</span></div>
+                    <div class="ui-block-c">税费属性:<span type=text name="name21" id="name21"  >201</span></div>
+                    <div class="ui-block-a">所属期:		<span type=text name="name22" id="name22"  >2011-12-31</span></div>
+                    <div class="ui-block-b">总金额		:		<span type=text name="name22" id="name22"  >2011.00</span></div>
+             </fieldset>         
+				</li><!--/one item-->
+       <li>
+       	   <fieldset class="ui-grid-b ui-responsive">     
+                    <div class="ui-block-a">征收项目：<span type=text name="name21" id="name21"  >养老保险</span></div>
+                    <div class="ui-block-b">征收品目：<span type=text name="name22" id="name22"  >20100101</span></div>
+                    <div class="ui-block-c">申报方式:<span type=text name="name21" id="name21"  >按季申报</span></div>
+                    <div class="ui-block-a">税款属性1		:		<span type=text name="name22" id="name22"  >20123331</span></div>
+                    <div class="ui-block-b">税款属性2	:<span type=text name="name22" id="name22"  >200</span></div>
+                    <div class="ui-block-c">税费属性:<span type=text name="name21" id="name21"  >201</span></div>
+                    <div class="ui-block-a">所属期:		<span type=text name="name22" id="name22"  >2011-12-31</span></div>
+                    <div class="ui-block-b">总金额		:		<span type=text name="name22" id="name22"  >2011.00</span></div>
+             </fieldset>         
+				</li><!--/one item-->
  </ul>
 </div>
 <!-- /d6 sb -->
