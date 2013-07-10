@@ -22,26 +22,27 @@
 <div data-role="page" data-theme="c" id="demo-page" class="my-page2">
 
 	<div data-role="header">
-		<a href="t1-welcome.htm" data-role="button" data-icon="home" >当前状态：在线</a>
+		<a href="t1-welcome.htm" data-role="button" data-icon="home"  data-ajax="false">当前状态：在线</a>
 		<h1>一户式查询</h1>
 
-	<a href="t1-welcome.htm" class="ui-btn-right" data-shadow="false" data-iconshadow="false" data-icon="back" data-iconpos="right" data-rel="t2-search.htm" data-ajax="false">张三(99090)</a>
+	<a href="t1-welcome.htm" rel="external" class="ui-btn-right" data-shadow="false" data-iconshadow="false" data-icon="back" data-iconpos="right" data-ajax="false">张三(99090)</a>
 </div><!-- /header -->
 	
 	<div data-role="content">
 		<style>
 			/*空出位置放按钮【联网】*/
 			#online{
-				float:right;margin-bottom:-45px;width:130px;
+				float:right;width:130px;
 			}
 			.ui-listview-filter .ui-input-search{
-				margin-right:140px;
+				margin-right:150px;
+				float:left;
 			}
 		</style>
-	<a href="javascript:alert('Here we go tomorrow...')" data-role="button" data-icon="grid" data-iconpos="right" id="online">联网搜索</a>
+	<a href="javascript:alert('Here we go tomorrow...')" data-role="button" data-icon="grid" data-iconpos="right" id="online" data-ajax="false">联网搜索</a>
  <ul data-role="listview" data-filter="true" data-filter-placeholder="搜索..." data-inset="true" >
  	<li data-role="list-divider" >搜索结果</li>
-<li>	<a	href="t3-info1.htm">	太原理工天成电子信息技术有限公司<span>	<i>	纳税人编号：</i>	Z14400200702401</span>	</a>	</li>	
+<li>	<a	href="./t3-info1.htm" rel="external">	太原理工天成电子信息技术有限公司<span>	<i>	纳税人编号：</i>	Z14400200702401</span>	</a>	</li>	
 <li>	<a	href="#">	广东互维科技有限公司<span>	<i>	纳税人编号：</i>	Z14400200702402</span>	</a>	</li>
 <li>	<a	href="#">	广东省信息工程有限公司<span>	<i>	纳税人编号：</i>	Z14400200702403</span>	</a>	</li>
 <li>	<a	href="#">	银江股份有限公司<span>	<i>	纳税人编号：</i>	Z14400200702404</span>	</a>	</li>

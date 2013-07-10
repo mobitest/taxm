@@ -23,7 +23,7 @@
 			_lastd = n;
 		}
 		$(document).ready(function(){
-			$(".datanode").hide();
+			$(".datanode").hide().attr("href","javascript:void(0)");
 			$("#d1").show();
 			_lastd = "#d1";
 			$("#left-panel a").click(function(){
@@ -41,7 +41,7 @@
 	.my-page2 #mytitle{margin-top:-30px;}
 	</style>
 		<div data-role="controlgroup" data-type="horizontal">
-				<a href="t1-welcome.htm" data-role="button" data-icon="home" >当前状态：在线</a>
+				<a href="t1-welcome.htm" data-role="button" data-icon="home"  data-ajax="false">当前状态：在线</a>
         <a href="#left-panel" data-role="button" data-ajax="false" data-icon="bars" data-iconpos="right">基本资料</a>
 
 		</div>
@@ -53,12 +53,12 @@
     <div data-role="panel" id="left-panel" data-theme="c"  data-position-fixed="true">
         <ul data-role="listview" data-theme="d">
             <li data-role="list-divider" data-icon="delete" data-rel="close">切换</li>
-            <li data-icon="arrow-r"><a href="#d1" rel-dn="#d1">基本资料</a></li>
-            <li data-icon="arrow-r"><a href="#d2" rel-dn="#d2">核定信息</a></li>
-            <li data-icon="arrow-r"><a href="#d3" rel-dn="#d3">申报情况</a></li>
-            <li data-icon="arrow-r"><a href="#d4" rel-dn="#d4">缴税情况</a></li>
-            <li data-icon="arrow-r"><a href="#d5" rel-dn="#d5">发票购置</a></li>
-            <li data-icon="arrow-r"><a href="#d6" rel-dn="#d6">社保缴纳</a></li>
+            <li data-icon="arrow-r"><a href="#" rel-dn="#d1">基本资料</a></li>
+            <li data-icon="arrow-r"><a href="#" rel-dn="#d2">核定信息</a></li>
+            <li data-icon="arrow-r"><a href="#" rel-dn="#d3">申报情况</a></li>
+            <li data-icon="arrow-r"><a href="#" rel-dn="#d4">缴税情况</a></li>
+            <li data-icon="arrow-r"><a href="#" rel-dn="#d5">发票购置</a></li>
+            <li data-icon="arrow-r"><a href="#" rel-dn="#d6">社保缴纳</a></li>
         </ul>
     </div><!-- /panel -->
 
