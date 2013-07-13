@@ -126,15 +126,48 @@ margin-bottom: 20px;
   background-color: #2d89ef;
 }
 </style>
-</head>
+
+	<script>
+		function querystring(key) {
+		   var re=new RegExp('(?:\\?|&)'+key+'=(.*?)(?=&|$)','gi');
+		   var r=[], m;
+		   while ((m=re.exec(document.location.search)) != null) r.push(m[1]);
+		   return r;
+		}
+		$(document).ready(function(){
+			var user = querystring("user");
+			if(user==""){
+					$("#pop_login").attr("href","#popupLogin");
+					$("#pop_login .ui-btn-text").text("请登录");
+				}else{
+					$("#pop_login").attr("href","javascript:{alert('bye');document.location='t1-welcome.htm'}");
+					$("#pop_login .ui-btn-text").text(user);
+				}
+		});
+	</script>
+	</head>
 <body>
 <div data-role="page" data-theme="a" id="demo-page" class="my-page">
 
 	<div data-role="header">
-		<a href="#" data-icon="home">当前状态：在线</a>
+		<a href="#" data-icon="logo-taxm" data-iconpos="notext">离线</a>
 		<h1>移动征管</h1>
+		<a id="pop_login" href="#popupLogin" data-rel="popup" data-position-to="origin" data-role="button" data-inline="true" data-icon="check" data-theme="a" data-transition="pop">登录</a>
+<div data-role="popup" id="popupMenu" data-theme="c" >
+    <div data-role="popup" id="popupLogin" data-theme="c" class="ui-corner-all" >
+        <form>
+            <div style="padding:10px 20px;width:300px">
+              <h3>请登录</h3>
+              <label for="un" >用户名:</label>
+              <input type="text" name="user" id="un" value="someone" placeholder="请输入用户名" data-theme="c">
+              <label for="pw">密码:</label>
+              <input type="password" name="pass" id="pw" value="" placeholder="请输入密码" data-theme="c">
+              <button id="submit_login" type="submit" data-theme="b" data-icon="check">登录</button>
+            </div>
+        </form>
+    </div>
+</div>
 
-		<a href="javascript:alert('bye-bye')" data-shadow="false" data-iconshadow="false" data-icon="back" data-iconpos="right" data-ajax="false">张三(99090)</a>
 	</div><!-- /header -->
 	
 <!--main-->

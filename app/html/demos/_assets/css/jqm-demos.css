@@ -1063,3 +1063,7 @@ h2.jqm-home-widget {
 	color: #fff;
 	text-shadow: none;
 }
+
+.ui-icon-logo-taxm {
+	background-image: url("ic_launcher_18.png");
+}
