@@ -1,10 +1,9 @@
-/* A bit custom styling */
+ï»¿/* A bit custom styling */
 .my-page {
 	background: #222;
 }
 /* Link to the Google webfont is in the head */
 .my-page .ui-title, .my-page .ui-li-aside {
-	font-family: 'ËÎÌå', sans-serif;
 	font-weight: 400;
 }
 .my-page .ui-header {
@@ -105,7 +104,7 @@
 	}
 	.ui-listview .ui-li-has-thumb .ui-li-heading {
 		padding: 10px;
-		bottom: 15%;/*×¢ÊÍÎ»ÖÃÁôÉÙÒ»Ğ©*/
+		bottom: 15%;/*æ³¨é‡Šä½ç½®ç•™å°‘ä¸€äº›*/
 	}
 	.ui-listview .ui-li-has-thumb .ui-li-desc {
 		padding: 0 10px;
@@ -176,3 +175,4 @@
 }
 
 /* For this demo we used images with a size of 310x310 pixels. Just before the second breakpoint the images reach their max width: 1019px - 2 x 9px padding = 1001px x 30.9333% = ~310px */
+ 
