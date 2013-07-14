@@ -84,7 +84,7 @@
 			$("#connect").click(function(){
 				var kw= $('input[data-type="search"]').val();				
 				
-				$.ajax({url: "../../../protocol/sample-serc/sample-queryRet.json",					
+				$.ajax({url: "sample-queryRet.json",					
 					dataType:"json",
 					data:{"kw":kw},
 					success:function(data){
