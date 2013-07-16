@@ -1,0 +1,61 @@
+/*详情页样式的修正
+by takeashower
+2013/7/17 1:19:54
+*/
+
+	/*头部放工具条即多个按钮，立即有问题，shit jqm*/
+	.my-page2 #mytitle{margin-top:-30px;}
+	.my-page2 a.ui-btn-right{margin-top:0.5em;top:0px;}
+	#username{top:0;}
+	/*字少，所以缩小宽度；同时不挤开导航头*/
+	.ui-panel{width:8em;top:15px;}
+	/*导航部分不右移*/
+	.ui-panel-animate.ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-reveal{-webkit-transform: translate3d(0,0,0);
+		-moz-transform: translate3d(0,0,0);
+		transform: translate3d(0,0,0);}
+	/*修正内容右移距离*/
+	.ui-panel-animate.ui-panel-content-wrap-position-left.ui-panel-content-wrap-open.ui-panel-content-wrap-display-reveal{
+		-webkit-transform: translate3d(8em,0,0);
+		-moz-transform: translate3d(8em,0,0);
+		transform: translate3d(8em,0,0);}
+		
+
+/* disable "dismiss" on wide viewports */
+.ui-panel-dismiss {
+    display: none;
+}
+
+
+.ui-content{
+	width:80%;
+	margin:0em 2% 0em 2%;
+}
+.ui-content .option{	
+	margin-bottom: 1em;
+	margin-right: .6em;
+	text-decoration: none;
+	padding-right: 2em;
+	width: 18px;
+}
+.ui-link span{
+	display: inline-block;
+	margin-top: 1px;
+	margin-left: 10px;
+}
+#info{
+	font-size:14px;
+	margin:-10px 0;
+	color:gray;
+	text-align:right;
+	}
+#info span{color:black}
+
+	.datanode fieldset{
+		font-weight:400;
+	}
+	.datanode fieldset div span{
+		font-weight:800;
+	}
+	
+.ui-grid-b.ui-responsive label{padding-right:5px;font-size:14px;}  
+.ui-grid-b.ui-responsive span{font-weight:800;font-size:14px}
