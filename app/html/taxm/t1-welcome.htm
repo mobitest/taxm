@@ -16,13 +16,12 @@
 	
 	<style>
 		/* Stack all blocks to start */
-.main .ui-block-a,
-.main .ui-block-b
+.main .ui-block-a
  {
     width: 100%;
     float: none;
 }
-.main .ui-block-b{display:none;}
+.main .ui-block-b{display:none;width: 100%;}
 
 @media all and (min-width: 448px){
 	.main .ui-block-b {display:block;}
@@ -33,18 +32,20 @@
     .main .ui-block-a,
     .main .ui-block-b {
       float: left;
-      width: 49.95%;      
+      width: 49.95%;
+      padding-top:50px;      
     }
+    .main .ui-block-b{padding-top:20px;}
 }
 
 
 .metrouicss .span8 {
 width: 99%;
-height:220px;
+height:280px;
 }
 @media all and (min-width: 1020px) {
 	.metrouicss .span8 {
-		height:340px;
+		height:360px;
 	}
 }
 .metrouicss .carousel {
@@ -250,7 +251,7 @@ margin-bottom: 20px;
 </div>
 <!--end main--> 
     <div data-role="footer" class="jqm-footer ui-footer ui-bar-a">
-        <h3>2013, Takeshower & Gobed &copy; by <a class="fg-color-white" href="mailto:nobody@163.com">nobody</a>| 版本:1.0.0（build no:1)</h3>
+        <h3>&copy; 2013, <a class="fg-color-white" href="mailto:mobitest@163.com">Takeshower</a>| 版本:1.0.0（build no:1)</h3>
     </div>
     <!-- /footer -->
 
