@@ -3,16 +3,16 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Grid Listview - jQuery Mobile Demos</title>
+	<title>列表</title>
 	<link rel="stylesheet"  href="../demos/css/themes/default/jquery.mobile-1.3.1.min.css">
 	<link rel="stylesheet" href="../demos/_assets/css/jqm-demos.css">
 	<link rel="shortcut icon" href="../demos/favicon.ico">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="t1-welcome.css">
 	<script src="../demos/js/jquery.js"></script>
 	<script src="../demos/_assets/js/index.js"></script>
 	<script src="../demos/js/jquery.mobile-1.3.1.min.js"></script>
 	<script src="../demos/js/jquery.prettydate.js"></script>	
+	<script src="dbutil.js"></script>	
 	<style>
 		.ui-listview li .dateinfo{margin-left:15px;font-size:12px;float:right}
 		.ui-listview li .dateinfo i{color:#999;}
@@ -56,15 +56,21 @@
 				rows++;
 			},
 			//隐藏模板、刷新列表（如果添加多项，只刷新一次）
-			done: function(){
+			done: function(rows, ts){
 				$('input[data-type="search"]').val("");
 				$('input[data-type="search"]').trigger("change");//todo: why can't trigger change??
 				c.listview("refresh");
 				c.find("#sum").html("共&nbsp;<b>"+rows+"</b>&nbsp;条记录");
 				//todo ...日期。。。
-				var d = new Date()
+				var d = ts;
 				//d.setYear(2012);
-				c.find("#timestamp").text( $.prettyDate.format(d.toISOString()) );
+				c.find("#timestamp").text( $.prettyDate.format(d) );
+			},
+			loadFormWebdb:function(tx, r){
+				for(var i=0; i< r.rows.length ; i++){
+					var en = r.rows.item(i);
+					this.addItem(JSON.parse(en.content).nsrbm, en.name);
+				};
 			}
 			
 			
@@ -72,14 +78,34 @@
 			
 		}
 		
+		
+		
+		var dbutil = dbutil.init();
 		$(document).ready(function(){
 			
 			builder = ItemBuilder.init(".tempItem","#corplist", DETAIL_PAGE + "?"+ PARAM_NAME +"=");
 			
+			//重建表，清除表中的数据
+			dbutil.createTable();
+			
+			//从缓存中加载数据
+			var MAX_CACHE = 30;
+			var cur_load = 0;
+			var ts =null;
+			dbutil.findByName("", function(tx, r){
+				for(var i=0; i< r.rows.length && i<MAX_CACHE ; i++){
+					var en = r.rows.item(i);
+					ts = en.update_time;
+					builder.addItem(JSON.parse(en.content).nsrbm, en.name);
+					cur_load = i;
+				};
+				//显示统计信息
+				builder.done(cur_load +1, ts);
+			});
 			for(var i=0; i<20; i++){
-				builder.addItem(i, "测试企业");
+				//builder.addItem(i, "测试企业");
 			}
-			builder.done();
+
 
 			$("#connect").click(function(){
 				var kw= $('input[data-type="search"]').val();				
@@ -91,8 +117,13 @@
 						builder.reset();
 						$.each(data,function(i, entry){
 							builder.addItem(entry.nsrbm,entry.nsrMc);
+						//write down to storage
+							var o = new Object();
+							o.name = entry.nsrMc; o.content = JSON.stringify(entry);
+							dbutil.writeRow(o, function(tx, r){console.log("write a row");} );
 						});
-						builder.done();
+						builder.done(data.length, new Date().toISOString());
+						
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown){ 
 	            alert('error:'+errorThrown); 
