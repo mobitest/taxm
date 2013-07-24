@@ -1,13 +1,13 @@
 ﻿/* A bit custom styling */
 .my-page {
-	background: #222;
+	background: #222 url(../images/tax-bk2.jpg);
 }
 /* Link to the Google webfont is in the head */
 .my-page .ui-title, .my-page .ui-li-aside {
 	font-weight: 400;
 }
 .my-page .ui-header {
-	color: #ccc;
+	color: #ccc ;
 }
 
 .my-page .ui-li-desc {
