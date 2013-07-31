@@ -61,20 +61,20 @@
      				"<thead><tr>"+
          		'<th data-priority="6">发票种类</th>'+
          		'<th data-priority="1">发票批次</th>'+
-         		'<th data-priority="1">计量单位</th>'+
+         		'<th data-priority="1" style="white-space:nowrap">计量单位</th>'+
          		'<th data-priority="2">发票号码起</th>'+
          		'<th data-priority="2">发票号码止</th>'+
          		'<th data-priority="1">数量</th>'+
-         		'<th data-priority="3">销售日期</th>'+
+         		'<th data-priority="3" width="120px">销售日期</th>'+
        			'</tr></thead><tbody>' ;
        			
-       			$('.ui-content').append(tb_1);	
-       			
+       			//$('.ui-content').append(tb_1);	
+       		var tb_2=	""	
 					//遍历该节点下的记录
 					$.each(d,function(i, entry){
 						 //处理单条发票购置记录的生成
 
-						var tb_2=	
+						tb_2=	tb_2 +
        		 	'<tr>'+
          		'<th>'+ entry.fpzl +'</th>'+
          		'<td>'+ entry.fppc +'</td>'+
@@ -85,15 +85,17 @@
          		'<td>'+ entry.xsRq +'</td>'+         		         		
        			'</tr>';
 
-						$('.ui-content').append(tb_2);    
+						//$('.ui-content').append(tb_2);    
 						//lv.append(tb_2);
 
 					});//-- each
 
 					var tb_3="</tbody></table>";
-					$('.ui-content').append(tb_3);	
+					//一次性添加内容（每添加一次都是对象，而非字符串，所以元素位置会错乱；同时注意性能
+					$('.ui-content').append(tb_1 + tb_2 + tb_3);	
+					//初始化表格，设按钮文字
+					$("#table-column-toggle").table({ columnBtnText: "显示列" });
 					
-					lv.listview({ theme: "c" });//.listview("refresh");	
 				},
 
 
