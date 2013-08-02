@@ -62,8 +62,8 @@
 				/*数据*/
 
 				d5pop:function(d){
-       	   var head= '<div id="d5" class="mytitle"> '+
-       	   '缴税情况'+
+       	   var head= '<div id="d5" class= "mytitle"> '+
+       	   '社保缴纳情况'+
        	   '</div>';
        	  
        	   $('.ui-content').append(head);
@@ -71,30 +71,32 @@
 						var tb_1=
 						'<table data-role="table" id="table-column-toggle" data-mode="columntoggle" class="ui-responsive table-stroke ui-body-d">'+
      				'<thead><tr class="ui-bar-b">'+
-         		'<th data-priority="6">缴款期限</th>'+
-         		'<th data-priority="1">纳税人编码</th>'+
-         		'<th data-priority="1" style="white-space:nowrap">纳税人内部码</th>'+
-         		'<th data-priority="2">税费所属期起</th>'+
-         		'<th data-priority="2">税费所属期止</th>'+
-         		'<th data-priority="1">征收项目</th>'+
-         		'<th data-priority="3" width="120px">应征税费金额</th>'+
+         		'<th data-priority="6">征收项目</th>'+
+         		'<th data-priority="1">征收品目</th>'+
+         		'<th data-priority="1" style="white-space:nowrap">申报方式</th>'+
+         		'<th data-priority="2">税款属性1</th>'+
+         		'<th data-priority="2">税款属性2</th>'+
+         		'<th data-priority="1">税费属性</th>'+
+         		'<th data-priority="3" width="120px">所属期</th>'+
+         		'<th data-priority="3">总金额</th>'+
        			'</tr></thead><tbody>' ;
        			
        			//$('.ui-content').append(tb_1);	
        		var tb_2=	""	
 					//遍历该节点下的记录
 					$.each(d,function(i, entry){
-						 //处理单条发票购置记录的生成
+						 //处理单条记录的生成
 
 						tb_2=	tb_2 +
        		 	'<tr>'+
-         		'<th>'+ entry.jkQx +'</th>'+
-         		'<td>'+ entry.nsrbm +'</td>'+
-         		'<td>'+ entry.nsrnbm +'</td>'+
-         		'<td>'+ entry.sfssqQsrq +'</td>'+
-         		'<td>'+ entry.sfssqZzrq +'</td>'+
-         		'<td>'+ entry.sz +'</td>' +
-         		'<td>'+ entry.yzsfJe +'</td>'+         		         		
+         		'<th>'+ entry.zsxm +'</th>'+
+         		'<td>'+ entry.zspm +'</td>'+
+         		'<td>'+ entry.sbfs +'</td>'+
+         		'<td>'+ entry.sksx1 +'</td>'+
+         		'<td>'+ entry.sksx2 +'</td>'+
+         		'<td>'+ entry.sfsx +'</td>' +
+         		'<td>'+ entry.ssq +'</td>'+         		         		
+         		'<td>'+ entry.sum +'</td>'+    
        			'</tr>';
 
 						//$('.ui-content').append(tb_2);    
@@ -117,7 +119,7 @@
 				do:function(data){
 							//获取值，调用子页生成函数
 
-							PageBuilder.d5pop(data.TNsrnsqk);
+							PageBuilder.d5pop(data.TSbfjfqk);
 
 
 				}
