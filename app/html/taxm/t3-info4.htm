@@ -81,18 +81,23 @@
        			'</tr></thead><tbody>' ;
        			
        			//$('.ui-content').append(tb_1);	
+       		var date1=new Date();
+       		var date2=new Date();
+
        		var tb_2=	""	
 					//遍历该节点下的记录
 					$.each(d,function(i, entry){
 						 //处理单条发票购置记录的生成
+						date1=new Date(entry.sfssqQsrq);
+						date2=new Date(entry.sfssqZzrq);	
 
 						tb_2=	tb_2 +
        		 	'<tr>'+
          		'<th>'+ entry.jkQx +'</th>'+
          		'<td>'+ entry.nsrbm +'</td>'+
          		'<td>'+ entry.nsrnbm +'</td>'+
-         		'<td>'+ entry.sfssqQsrq +'</td>'+
-         		'<td>'+ entry.sfssqZzrq +'</td>'+
+         		'<td>'+ date1.getFullYear()+'-'+(date1.getMonth()+1)+'-'+date1.getDate() +'</td>'+
+         		'<td>'+ date2.getFullYear()+'-'+(date2.getMonth()+1)+'-'+date2.getDate() +'</td>'+
          		'<td>'+ entry.sz +'</td>' +
          		'<td>'+ entry.yzsfJe +'</td>'+         		         		
        			'</tr>';
