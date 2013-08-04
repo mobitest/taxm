@@ -63,7 +63,7 @@
 
 				d5pop:function(d){
        	   var head= '<div id="d5" class="mytitle"> '+
-       	   '缴税情况'+
+       	   '申报情况'+
        	   '</div>';
        	  
        	   $('.ui-content').append(head);
@@ -71,13 +71,12 @@
 						var tb_1=
 						'<table data-role="table" id="table-column-toggle" data-mode="columntoggle" class="ui-responsive table-stroke ui-body-d">'+
      				'<thead><tr class="ui-bar-b">'+
-         		'<th data-priority="6">缴款期限</th>'+
-         		'<th data-priority="1">纳税人编码</th>'+
-         		'<th data-priority="1" style="white-space:nowrap">纳税人内部码</th>'+
-         		'<th data-priority="2">税费所属期起</th>'+
-         		'<th data-priority="2">税费所属期止</th>'+
-         		'<th data-priority="1">征收项目</th>'+
-         		'<th data-priority="3" width="120px">应征税费金额</th>'+
+         		'<th data-priority="6">申报项目</th>'+
+         		'<th data-priority="1">税费所属期起</th>'+
+         		'<th data-priority="1" style="white-space:nowrap">税费所属期止</th>'+
+         		'<th data-priority="2">申报情况</th>'+
+         		'<th data-priority="2">申报状态 </th>'+
+
        			'</tr></thead><tbody>' ;
        			
        			//$('.ui-content').append(tb_1);	
@@ -88,13 +87,12 @@
 
 						tb_2=	tb_2 +
        		 	'<tr>'+
-         		'<th>'+ entry.jkQx +'</th>'+
-         		'<td>'+ entry.nsrbm +'</td>'+
-         		'<td>'+ entry.nsrnbm +'</td>'+
+         		'<th>'+ entry.zsxm +'</th>'+
          		'<td>'+ entry.sfssqQsrq +'</td>'+
          		'<td>'+ entry.sfssqZzrq +'</td>'+
-         		'<td>'+ entry.sz +'</td>' +
-         		'<td>'+ entry.yzsfJe +'</td>'+         		         		
+         		'<td>'+ entry.sbqk +'</td>'+
+         		'<td>'+ entry.sbzt +'</td>'+
+     		         		
        			'</tr>';
 
 						//$('.ui-content').append(tb_2);    
@@ -117,7 +115,7 @@
 				do:function(data){
 							//获取值，调用子页生成函数
 
-							PageBuilder.d5pop(data.TNsrnsqk);
+							PageBuilder.d5pop(data.TNsrsbqk);
 
 
 				}

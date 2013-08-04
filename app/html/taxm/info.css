@@ -1,19 +1,21 @@
-/*ÏêÇéÒ³ÑùÊ½µÄĞŞÕı
+ï»¿/*è¯¦æƒ…é¡µæ ·å¼çš„ä¿®æ­£
 by takeashower
 2013/7/17 1:19:54
 */
 
-	/*Í·²¿·Å¹¤¾ßÌõ¼´¶à¸ö°´Å¥£¬Á¢¼´ÓĞÎÊÌâ£¬shit jqm*/
+	/*å¤´éƒ¨æ”¾å·¥å…·æ¡å³å¤šä¸ªæŒ‰é’®ï¼Œç«‹å³æœ‰é—®é¢˜ï¼Œshit jqm*/
 	.my-page2 #mytitle{margin-top:-30px;}
 	.my-page2 a.ui-btn-right{margin-top:0.5em;top:0px;}
 	#username{top:0;}
-	/*×ÖÉÙ£¬ËùÒÔËõĞ¡¿í¶È£»Í¬Ê±²»¼·¿ªµ¼º½Í·*/
-	.ui-panel{width:8em;top:15px;}
-	/*µ¼º½²¿·Ö²»ÓÒÒÆ*/
+	/*å­—å°‘ï¼Œæ‰€ä»¥ç¼©å°å®½åº¦ï¼›åŒæ—¶ä¸æŒ¤å¼€å¯¼èˆªå¤´*/
+	.ui-panel{top:35px;}
+	/*å¯¼èˆªéƒ¨åˆ†ä¸å³ç§»*/
+	#myhead{left:0px;}
 	.ui-panel-animate.ui-panel-content-fixed-toolbar-position-left.ui-panel-content-fixed-toolbar-open.ui-panel-content-fixed-toolbar-display-reveal{-webkit-transform: translate3d(0,0,0);
 		-moz-transform: translate3d(0,0,0);
 		transform: translate3d(0,0,0);}
-	/*ĞŞÕıÄÚÈİÓÒÒÆ¾àÀë*/
+		
+	/*ä¿®æ­£å†…å®¹å³ç§»è·ç¦»*/
 	.ui-panel-animate.ui-panel-content-wrap-position-left.ui-panel-content-wrap-open.ui-panel-content-wrap-display-reveal{
 		-webkit-transform: translate3d(8em,0,0);
 		-moz-transform: translate3d(8em,0,0);
@@ -27,7 +29,7 @@ by takeashower
 
 
 .ui-content{
-	width:80%;
+	width:65%;
 	margin:0em 2% 0em 2%;
 }
 .ui-content .option{	
