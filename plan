@@ -19,7 +19,7 @@ version:
 用户类型：一种，不分层
 权限：能访问、不能访问
 
-5）云端管理
+5）云端管理（可以提供用户、用户角色配置管理）
 仅提供基本的配置功能，不提供界面
 
 ---------------
@@ -52,8 +52,8 @@ asset\html
 
 2）开发（3~4周，需要提供样本数据库）
 协议设计----------almost done
-云端服务开发
-客户端缓存设计--------on the way
+云端服务开发-------will be done during next week
+客户端缓存设计--------the demo is ready, will done after service ready
 管理功能开发
 
 3）部署与试运行（1周）
