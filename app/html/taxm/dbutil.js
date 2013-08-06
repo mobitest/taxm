@@ -34,7 +34,7 @@
 		/*用名称关键字查询*/
 		findByName: function( keyword, callback) {
 			this.db.transaction(function (tx){
-				tx.executeSql("select id,name,content,update_time from corp_jbxx where name like "+"'%"+ keyword + "%'", [],
+				tx.executeSql("select id,name,content,update_time from corp_jbxx where name like "+"'%"+ keyword + "%' order by update_time desc", [],
 					callback,
 		      dbutil.onError);        
 			});
