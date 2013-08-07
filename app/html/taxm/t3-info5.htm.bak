@@ -45,7 +45,7 @@
 		
 		//入口：取数据，并调用页面生成器，生成页面
 		function dynamicLoad(id){
-				$.ajax({url: "sample-TNsrsbqk.json",					
+				$.ajax({url: "sample-TNsrfpgzqk.json",					
 						dataType:"json",
 						data:{"id":id},
 						success:PageBuilder.do,
@@ -63,7 +63,7 @@
 
 				d5pop:function(d){
        	   var head= '<div id="d5" class="mytitle"> '+
-       	   '申报情况'+
+       	   '发票购置情况'+
        	   '</div>';
        	  
        	   $('.ui-content').append(head);
@@ -71,31 +71,31 @@
 						var tb_1=
 						'<table data-role="table" id="table-column-toggle" data-mode="columntoggle" class="ui-responsive table-stroke ui-body-d">'+
      				'<thead><tr class="ui-bar-b">'+
-         		'<th data-priority="6">申报项目</th>'+
-         		'<th data-priority="1">税费所属期起</th>'+
-         		'<th data-priority="1" style="white-space:nowrap">税费所属期止</th>'+
-         		'<th data-priority="2">申报情况</th>'+
-         		'<th data-priority="2">申报状态 </th>'+
-
+         		'<th data-priority="6">发票种类</th>'+
+         		'<th data-priority="1">发票批次</th>'+
+         		'<th data-priority="1" style="white-space:nowrap">计量单位</th>'+
+         		'<th data-priority="2">发票号码起</th>'+
+         		'<th data-priority="2">发票号码止</th>'+
+         		'<th data-priority="1">数量</th>'+
+         		'<th data-priority="3" width="120px">销售日期</th>'+
        			'</tr></thead><tbody>' ;
        			
        			//$('.ui-content').append(tb_1);	
+       			var date1=new Date();
        		var tb_2=	""	
-       		var date1=new Date();
-       		var date2=new Date();
 					//遍历该节点下的记录
 					$.each(d,function(i, entry){
 						 //处理单条发票购置记录的生成
-						date1=new Date(entry.id.sfssqQsrq);
-						date2=new Date(entry.id.sfssqZzrq);	
+						date1=new Date(entry.xsRq);
 						tb_2=	tb_2 +
        		 	'<tr>'+
-         		'<th>'+ entry.id.zsxm +'</th>'+
-         		'<td>'+ date1.getFullYear()+'-'+(date1.getMonth()+1)+'-'+date1.getDate() +'</td>'+
-         		'<td>'+ date2.getFullYear()+'-'+(date2.getMonth()+1)+'-'+date2.getDate() +'</td>'+
-         		'<td>'+ entry.sbqk +'</td>'+
-         		'<td>'+ entry.sbzt +'</td>'+
-     		         		
+         		'<th>'+ entry.fpzl +'</th>'+
+         		'<td>'+ entry.fppc +'</td>'+
+         		'<td>'+ entry.jldw +'</td>'+
+         		'<td>'+ entry.id.fpQshm +'</td>'+
+         		'<td>'+ entry.fpZzhm +'</td>'+
+         		'<td>'+ entry.sl +'</td>' +
+         		'<td>'+ date1.getFullYear()+'-'+(date1.getMonth()+1)+'-'+date1.getDate() +'</td>'+    		
        			'</tr>';
 
 						//$('.ui-content').append(tb_2);    

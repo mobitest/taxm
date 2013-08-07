@@ -45,7 +45,7 @@
 		
 		//入口：取数据，并调用页面生成器，生成页面
 		function dynamicLoad(id){
-				$.ajax({url: "sample-TNsrsbqk.json",					
+				$.ajax({url: "sample-TNsrhdqk.json",					
 						dataType:"json",
 						data:{"id":id},
 						success:PageBuilder.do,
@@ -62,55 +62,39 @@
 				/*数据*/
 
 				d5pop:function(d){
-       	   var head= '<div id="d5" class="mytitle"> '+
-       	   '申报情况'+
-       	   '</div>';
-       	  
-       	   $('.ui-content').append(head);
-       	   var lv = $("#table_li");
-						var tb_1=
-						'<table data-role="table" id="table-column-toggle" data-mode="columntoggle" class="ui-responsive table-stroke ui-body-d">'+
-     				'<thead><tr class="ui-bar-b">'+
-         		'<th data-priority="6">申报项目</th>'+
-         		'<th data-priority="1">税费所属期起</th>'+
-         		'<th data-priority="1" style="white-space:nowrap">税费所属期止</th>'+
-         		'<th data-priority="2">申报情况</th>'+
-         		'<th data-priority="2">申报状态 </th>'+
-
-       			'</tr></thead><tbody>' ;
-       			
-       			//$('.ui-content').append(tb_1);	
-       		var tb_2=	""	
+	        var head= '<div id="d4" class="datanode gen"> <ul data-role="listview" data-inset="true">'+
+  	      '<li data-role="list-divider">核定信息</li>'+
+    	   
+      	  '</ul></div>'
+        	$('.ui-content').append(head);
+        	var lv = $("#d4.gen>ul");
        		var date1=new Date();
-       		var date2=new Date();
 					//遍历该节点下的记录
 					$.each(d,function(i, entry){
-						 //处理单条发票购置记录的生成
-						date1=new Date(entry.id.sfssqQsrq);
-						date2=new Date(entry.id.sfssqZzrq);	
-						tb_2=	tb_2 +
-       		 	'<tr>'+
-         		'<th>'+ entry.id.zsxm +'</th>'+
-         		'<td>'+ date1.getFullYear()+'-'+(date1.getMonth()+1)+'-'+date1.getDate() +'</td>'+
-         		'<td>'+ date2.getFullYear()+'-'+(date2.getMonth()+1)+'-'+date2.getDate() +'</td>'+
-         		'<td>'+ entry.sbqk +'</td>'+
-         		'<td>'+ entry.sbzt +'</td>'+
-     		         		
-       			'</tr>';
+					//处理单条纳税记录的生成
+						date1=new Date(entry.id.hdQsrq);
+						var t =
+						' <li> <fieldset class="ui-grid-b ui-responsive"> '+
+						"<li class='ui-block-a'><label>税    种：</label><span type='text'>"+ entry.id.sz	+"</span>"+
+						"<li class='ui-block-b'><label>品    目：</label><span type='text'>"+ entry.id.pm +"</span>"+
+						"<li class='ui-block-c'><label>申报期限：</label><span type='text'>"+ entry.sbqx +"</span>"+
+						"<li class='ui-block-a'><label>计税金额：</label><span type='text'>"+ entry.jsje +"</span><label>元</label>"+
+						"<li class='ui-block-b'><label>税    率：</label><span type='text'>"+ entry.sl +"</span><label>%</label>"+
+						"<li class='ui-block-c'><label>纳税期限：</label><span type='text'>"+ entry.nsqx +"</span>"+
+						"<li class='ui-block-a'><label>速算扣除数：</label><span type='text'>"+ entry.sskcs +"</span>"+
+						"<li class='ui-block-b'><label>应纳税额：</label><span type='text'>"+ entry.ynse +"</span>"+
+						"<li class='ui-block-c'><label>征收方式：</label><span type='text'>"+ entry.zsfs +"</span>"+
+						"<li class='ui-block-a'><label>计税依据：</label><span type='text'>"+ entry.jsyj +"</span>"+
+						"<li class='ui-block-b'><label>起始日期：</label><span type='text'>"+ date1.getFullYear()+'-'+(date1.getMonth()+1)+'-'+date1.getDate() + "</span>"+
+						"<li class='ui-block-c'><label>终止日期：</label><span type='text'>"+ entry.hdZzrq +"</span>"+
+						"<li class='ui-block-a'><label>缴款名称：</label><span type='text'>"+ entry.jkmc +"</span>"+
+						'</fieldset></li>';
 
-						//$('.ui-content').append(tb_2);    
-						//lv.append(tb_2);
-
+						lv.append(t)
 					});//-- each
 
-					var tb_3="</tbody></table>";
-					//一次性添加内容（每添加一次都是对象，而非字符串，所以元素位置会错乱；同时注意性能
-					$('.ui-content').append(tb_1 + tb_2 + tb_3);	
+					lv.listview({ theme: "c" });//.listview("refresh");
 
-					//初始化表格，设按钮文字
-					$("#table-column-toggle").table({ columnBtnText: "显示列" });
-					//$('#d5>ul').listview();
-					
 				},
 
 

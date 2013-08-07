@@ -45,7 +45,7 @@
 		
 		//入口：取数据，并调用页面生成器，生成页面
 		function dynamicLoad(id){
-				$.ajax({url: "sample-TNsrsbqk.json",					
+				$.ajax({url: "sample-TSbfjfqk.json",					
 						dataType:"json",
 						data:{"id":id},
 						success:PageBuilder.do,
@@ -62,8 +62,8 @@
 				/*数据*/
 
 				d5pop:function(d){
-       	   var head= '<div id="d5" class="mytitle"> '+
-       	   '申报情况'+
+       	   var head= '<div id="d5" class= "mytitle"> '+
+       	   '社保缴纳情况'+
        	   '</div>';
        	  
        	   $('.ui-content').append(head);
@@ -71,31 +71,32 @@
 						var tb_1=
 						'<table data-role="table" id="table-column-toggle" data-mode="columntoggle" class="ui-responsive table-stroke ui-body-d">'+
      				'<thead><tr class="ui-bar-b">'+
-         		'<th data-priority="6">申报项目</th>'+
-         		'<th data-priority="1">税费所属期起</th>'+
-         		'<th data-priority="1" style="white-space:nowrap">税费所属期止</th>'+
-         		'<th data-priority="2">申报情况</th>'+
-         		'<th data-priority="2">申报状态 </th>'+
-
+         		'<th data-priority="6">征收项目</th>'+
+         		'<th data-priority="1">征收品目</th>'+
+         		'<th data-priority="1" style="white-space:nowrap">申报方式</th>'+
+         		'<th data-priority="2">税款属性1</th>'+
+         		'<th data-priority="2">税款属性2</th>'+
+         		'<th data-priority="1">税费属性</th>'+
+         		'<th data-priority="3" width="120px">所属期</th>'+
+         		'<th data-priority="3">总金额</th>'+
        			'</tr></thead><tbody>' ;
        			
        			//$('.ui-content').append(tb_1);	
        		var tb_2=	""	
-       		var date1=new Date();
-       		var date2=new Date();
 					//遍历该节点下的记录
 					$.each(d,function(i, entry){
-						 //处理单条发票购置记录的生成
-						date1=new Date(entry.id.sfssqQsrq);
-						date2=new Date(entry.id.sfssqZzrq);	
+						 //处理单条记录的生成
+						entry=entry.id
 						tb_2=	tb_2 +
        		 	'<tr>'+
-         		'<th>'+ entry.id.zsxm +'</th>'+
-         		'<td>'+ date1.getFullYear()+'-'+(date1.getMonth()+1)+'-'+date1.getDate() +'</td>'+
-         		'<td>'+ date2.getFullYear()+'-'+(date2.getMonth()+1)+'-'+date2.getDate() +'</td>'+
-         		'<td>'+ entry.sbqk +'</td>'+
-         		'<td>'+ entry.sbzt +'</td>'+
-     		         		
+         		'<th>'+ entry.zsxm +'</th>'+
+         		'<td>'+ entry.zspm +'</td>'+
+         		'<td>'+ entry.sbfs +'</td>'+
+         		'<td>'+ entry.sksx1 +'</td>'+
+         		'<td>'+ entry.sksx2 +'</td>'+
+         		'<td>'+ entry.sfsx +'</td>' +
+         		'<td>'+ entry.ssq +'</td>'+         		         		
+         		'<td>'+ entry.sum +'</td>'+    
        			'</tr>';
 
 						//$('.ui-content').append(tb_2);    

@@ -45,7 +45,7 @@
 		
 		//入口：取数据，并调用页面生成器，生成页面
 		function dynamicLoad(id){
-				$.ajax({url: "sample-TNsrsbqk.json",					
+				$.ajax({url: "sample-all.json",					
 						dataType:"json",
 						data:{"id":id},
 						success:PageBuilder.do,
@@ -63,7 +63,7 @@
 
 				d5pop:function(d){
        	   var head= '<div id="d5" class="mytitle"> '+
-       	   '申报情况'+
+       	   '缴税情况'+
        	   '</div>';
        	  
        	   $('.ui-content').append(head);
@@ -71,31 +71,36 @@
 						var tb_1=
 						'<table data-role="table" id="table-column-toggle" data-mode="columntoggle" class="ui-responsive table-stroke ui-body-d">'+
      				'<thead><tr class="ui-bar-b">'+
-         		'<th data-priority="6">申报项目</th>'+
-         		'<th data-priority="1">税费所属期起</th>'+
-         		'<th data-priority="1" style="white-space:nowrap">税费所属期止</th>'+
-         		'<th data-priority="2">申报情况</th>'+
-         		'<th data-priority="2">申报状态 </th>'+
-
+         		'<th data-priority="6">缴款期限</th>'+
+         		'<th data-priority="1">纳税人编码</th>'+
+         		'<th data-priority="1" style="white-space:nowrap">纳税人内部码</th>'+
+         		'<th data-priority="2">税费所属期起</th>'+
+         		'<th data-priority="2">税费所属期止</th>'+
+         		'<th data-priority="1">征收项目</th>'+
+         		'<th data-priority="3" width="120px">应征税费金额</th>'+
        			'</tr></thead><tbody>' ;
        			
        			//$('.ui-content').append(tb_1);	
-       		var tb_2=	""	
        		var date1=new Date();
        		var date2=new Date();
+       		var date3=new Date();
+       		var tb_2=	""	
 					//遍历该节点下的记录
 					$.each(d,function(i, entry){
 						 //处理单条发票购置记录的生成
-						date1=new Date(entry.id.sfssqQsrq);
-						date2=new Date(entry.id.sfssqZzrq);	
+						date1=new Date(entry.sfssqQsrq);
+						date2=new Date(entry.sfssqZzrq);	
+						date3=new Date(entry.jkQx);
+
 						tb_2=	tb_2 +
        		 	'<tr>'+
-         		'<th>'+ entry.id.zsxm +'</th>'+
+         		'<th>'+ entry.jkQx +'</th>'+
+         		'<td>'+ entry.nsrbm +'</td>'+
+         		'<td>'+ entry.nsrnbm +'</td>'+
          		'<td>'+ date1.getFullYear()+'-'+(date1.getMonth()+1)+'-'+date1.getDate() +'</td>'+
          		'<td>'+ date2.getFullYear()+'-'+(date2.getMonth()+1)+'-'+date2.getDate() +'</td>'+
-         		'<td>'+ entry.sbqk +'</td>'+
-         		'<td>'+ entry.sbzt +'</td>'+
-     		         		
+         		'<td>'+ entry.sz +'</td>' +
+         		'<td>'+ entry.yzsfJe +'</td>'+         		         		
        			'</tr>';
 
 						//$('.ui-content').append(tb_2);    
@@ -118,7 +123,7 @@
 				do:function(data){
 							//获取值，调用子页生成函数
 
-							PageBuilder.d5pop(data);
+							PageBuilder.d5pop(data.TNsrnsqk);
 
 
 				}

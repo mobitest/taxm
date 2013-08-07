@@ -45,7 +45,7 @@
 		
 		//入口：取数据，并调用页面生成器，生成页面
 		function dynamicLoad(id){
-				$.ajax({url: "sample-all.json",					
+				$.ajax({url: "sample-TNsrfpgzqk.json",					
 						dataType:"json",
 						data:{"id":id},
 						success:PageBuilder.do,
@@ -89,10 +89,10 @@
 						date1=new Date(entry.xsRq);
 						tb_2=	tb_2 +
        		 	'<tr>'+
-         		'<th>'+ entry.fpzl +'</th>'+
+         		'<th>'+ entry.id.fpzl +'</th>'+
          		'<td>'+ entry.fppc +'</td>'+
          		'<td>'+ entry.jldw +'</td>'+
-         		'<td>'+ entry.fpQshm +'</td>'+
+         		'<td>'+ entry.id.fpQshm +'</td>'+
          		'<td>'+ entry.fpZzhm +'</td>'+
          		'<td>'+ entry.sl +'</td>' +
          		'<td>'+ date1.getFullYear()+'-'+(date1.getMonth()+1)+'-'+date1.getDate() +'</td>'+    		
@@ -118,7 +118,7 @@
 				do:function(data){
 							//获取值，调用子页生成函数
 
-							PageBuilder.d5pop(data.TNsrfpgzqk);
+							PageBuilder.d5pop(data);
 
 
 				}

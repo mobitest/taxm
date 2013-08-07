@@ -1,0 +1,170 @@
+
+
+    Explore
+    Features
+    Enterprise
+    Blog
+
+    0
+    0
+
+public mobitest/taxm
+
+taxm / app / html / taxm / t3-info4.htm
+mobitest 21 days ago
+add a sample, show how to load json data by ajax, and populate the page
+
+1 contributor
+file 136 lines (110 sloc) 4.579 kb
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 	
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>企业资料</title>
+<link rel="stylesheet" href="../demos/css/themes/default/jquery.mobile-1.3.1.min.css">
+<link rel="stylesheet" href="../demos/_assets/css/jqm-demos.css">
+<link rel="shortcut icon" href="../demos/favicon.ico">
+
+<link rel="stylesheet" href="t1-welcome.css">
+<link rel="stylesheet" href="info.css">
+<script src="../demos/js/jquery.js"></script>
+<script src="../demos/_assets/js/index.js"></script>
+<script src="../demos/js/jquery.mobile-1.3.1.min.js"></script>
+<!--
+["d1"/* 基本资料*/ :"TNsrjbxx" ,
+"d2"/* 核定信息*/ :"TNsrhdqk" ,
+"d3"/* 申报情况*/ :"TNsrsbqk" ,
+"d4"/* 缴税情况*/ :"TNsrnsqk" ,
+"d5"/* 发票购置*/ :"TNsrfpgzqk" ,
+"d6"/* 社保缴纳*/ :"TSbfjfqk" ],
+-->
+
+<script>
+
+$(document).ready(function(){
+
+//动态生成页面
+dynamicLoad(2390);
+});
+
+//入口：取数据，并调用页面生成器，生成页面
+function dynamicLoad(id){
+$.ajax({url: "sample-all.json",	
+dataType:"json",
+data:{"id":id},
+success:PageBuilder.do,
+error: function(XMLHttpRequest, textStatus, errorThrown){
+alert('error:'+errorThrown);
+}
+
+});
+}
+
+/*页面生成器 BY takeashower*/
+PageBuilder={
+_data:null,
+/*数据*/
+d1pop:function(d){
+return ;
+},
+d2pop:function(d){
+return;
+},
+d3pop:function(d){
+return;
+},
+d4pop:function(d){
+        var head= '<div id="d4" class="datanode gen"> <ul data-role="listview" data-inset="true">'+
+        '<li data-role="list-divider">缴税情况</li>'+
+       
+        '</ul></div>'
+        $('.ui-content').append(head);
+        var lv = $("#d4.gen>ul");
+       
+//遍历该节点下的记录
+$.each(d,function(i, entry){
+//处理单条纳税记录的生成
+var t =
+' <li> <fieldset class="ui-grid-b ui-responsive"> '+
+"<li class='ui-block-a'><label>缴款期限</label><span type='text'>"+ entry.jkQx	+"</span>"+
+"<li class='ui-block-b'><label>纳税人编码</label><span type='text'>"+ entry.nsrbm +"</span>"+
+"<li class='ui-block-c'><label>纳税人内部码</label><span type='text'>"+ entry.nsrnbm +"</span>"+
+"<li class='ui-block-a'><label>税费所属期起</label><span type='text'>"+ entry.sfssqQsrq +"</span>"+
+"<li class='ui-block-b'><label>税费所属期止</label><span type='text'>"+ entry.sfssqZzrq +"</span>"+
+"<li class='ui-block-a'><label>征收项目</label><span type='text'>"+ entry.sz +"</span>"+
+"<li class='ui-block-b'><label>应征税费金额</label><span type='text'>"+ entry.yzsfJe +"</span>"+
+'</fieldset></li>';
+
+lv.append(t)
+});//-- each
+
+lv.listview({ theme: "c" });//.listview("refresh");
+},
+d5pop:function(d){
+},
+d6pop:function(d){
+},
+do:function(data){
+//获取值，调用子页生成函数
+PageBuilder.d2pop(data.TNsrhdqk);
+PageBuilder.d3pop(data.TNsrsbqk);
+PageBuilder.d4pop(data.TNsrnsqk);
+PageBuilder.d5pop(data.TNsrfpgzqk);
+PageBuilder.d6pop(data.TSbfjfqk);
+
+}
+};
+
+
+</script>
+</head>
+<body>
+<div data-role="page" data-theme="c" id="demo-page" class="my-page2">
+
+<div data-role="header" data-position="fixed" data-tap-toggle="false">
+
+
+<div data-role="controlgroup" data-type="horizontal">
+<a href="t1-welcome.htm?user=someone" data-role="button" data-icon="logo-taxm" data-iconpos="notext" data-ajax="false">主屏</a>
+<a href="t2-search.htm" data-role="button" data-ajax="false">一户式查询a>
+        <a href="#left-panel" data-role="button" data-ajax="false" data-icon="bars" data-iconpos="notext">选项</a>
+
+</div>
+<h1 id="mytitle">演示页（必须发布到web服务器中才能正常浏览）</h1>
+<a href="javascript:alert('your device is offline...please check it out!')" rel="external" class="ui-btn-right" data-shadow="false" data-iconshadow="false" data-icon="grid" data-iconpos="right" data-ajax="false">联网更新</a>
+
+</div><!-- /header -->
+
+
+<div data-role="content">
+<p id="info">
+<a href="#" data-role="button" data-icon="info" data-iconpos="notext" data-theme="c" data-inline="true">Info</a>
+数据更新：
+<span>2012-01-01 14:00</span>
+</p>
+
+              
+</div><!-- /content -->
+    
+
+</div><!-- /page -->
+</body>
+</html>
+ 
+
+    Status
+    API
+    Training
+    Shop
+    Blog
+    About
+
+    ? 2013 GitHub, Inc.
+    Terms
+    Privacy
+    Security
+    Contact
+

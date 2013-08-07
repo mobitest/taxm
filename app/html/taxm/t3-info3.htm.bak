@@ -90,7 +90,7 @@
 						date2=new Date(entry.id.sfssqZzrq);	
 						tb_2=	tb_2 +
        		 	'<tr>'+
-         		'<th>'+ entry.id.zsxm +'</th>'+
+         		'<th>'+ entry.zsxm +'</th>'+
          		'<td>'+ date1.getFullYear()+'-'+(date1.getMonth()+1)+'-'+date1.getDate() +'</td>'+
          		'<td>'+ date2.getFullYear()+'-'+(date2.getMonth()+1)+'-'+date2.getDate() +'</td>'+
          		'<td>'+ entry.sbqk +'</td>'+
