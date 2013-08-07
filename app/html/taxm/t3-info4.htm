@@ -26,6 +26,8 @@
 	<script src="../demos/js/jquery.js"></script>
 	<script src="../demos/_assets/js/index.js"></script>
 	<script src="../demos/js/jquery.mobile-1.3.1.min.js"></script>
+	<script src="../demos/js/taxm.js"></script>	
+
 <!--
         		["d1"/*	基本资料*/	:"TNsrjbxx"   ,	
             "d2"/*	核定信息*/	:"TNsrhdqk"   ,
@@ -38,29 +40,75 @@
 	<script>
 
 		$(document).ready(function(){
-		
+			
 			//动态生成页面
-			dynamicLoad(2390);
+			PageBuilder.dynamicLoad("ns",qs("id"));
 		});
 		
+		var dbutil = dbutil.init();
+		dbutil.createTable();
+		function qs(key) {
+		    key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
+		    var match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"));
+		    return match && decodeURIComponent(match[1].replace(/\+/g, " "));
+		}	
 		//入口：取数据，并调用页面生成器，生成页面
-		function dynamicLoad(id){
-				$.ajax({url: "sample-all.json",					
-						dataType:"json",
-						data:{"id":id},
-						success:PageBuilder.do,
-						error: function(XMLHttpRequest, textStatus, errorThrown){ 
-	            alert('error:'+errorThrown); 
-	       		}
-
-					});
-				}
 
 				/*页面生成器 BY takeashower*/
 			PageBuilder={
-				_data:null,
-				/*数据*/
+				/*
+				dynamicLoad flow:
+			//1先从本地取，调页面生成4
+			//2本地没有，联网取getRemote;联网取到后，写本地，并调页面生成4
+			//3生成页面 do
+				
+				getLocal	从本地取数；
+				info_type:信息类型（ns纳税、hd核定、jbxx基本信息、sb申报、sbfjf社保、fpgz发票购置）
+				id:标识值
+				*/
+				dynamicLoad:function(info_type, id){
+					dbutil.findByName("corp_"+ info_type, id, function(tx, r){
+						//a 本地无数据
+						if(r.rows.length ==0 || r.rows.item(0).content.length <3){
+							PageBuilder.getRemote(info_type, id, SERVER +  SERVICE_PATH + info_type +"/" + id + ".json");
+							return;
+						}
+						//b 本地有数据
+						PageBuilder.do(info_type, JSON.parse(r.rows.item(0).content));
+					});
 
+				},
+				/*
+				getRemote联网取数
+				info_type:信息类型（ns纳税、hd核定、jbxx基本信息、sb申报、sbfjf社保、fpgz发票购置）
+				id: 标识值
+				path:路径 ，如/services/api/ns/
+				*/
+				getRemote:function(info_type, id, path){
+					$.ajax({url: path,					
+							dataType:"jsonp",
+							success:function(entry){
+								//缓存数据
+								var o = new Object();
+								o.name = id; o.content = JSON.stringify(entry);
+								dbutil.writeRow("corp_"+ info_type, o, function(tx, r){console.log("write a row, name=" + id);} );
+								PageBuilder.do(info_type, entry);
+							
+							},
+							error: function(XMLHttpRequest, textStatus, errorThrown){ 
+		            alert('error:'+errorThrown); 
+		       		}
+	
+						});
+					
+				},
+				do:function(info_type, data){
+							//获取值，调用子页生成函数
+							if(info_type == "ns") PageBuilder.d5pop(data);
+							
+							
+							
+				},
 				d5pop:function(d){
        	   var head= '<div id="d5" class="mytitle"> '+
        	   '缴税情况'+
@@ -85,6 +133,7 @@
 					//遍历该节点下的记录
 					$.each(d,function(i, entry){
 						 //处理单条发票购置记录的生成
+						 entry = entry.id;
 
 						tb_2=	tb_2 +
        		 	'<tr>'+
@@ -110,17 +159,8 @@
 					$("#table-column-toggle").table({ columnBtnText: "显示列" });
 					//$('#d5>ul').listview();
 					
-				},
-
-
-
-				do:function(data){
-							//获取值，调用子页生成函数
-
-							PageBuilder.d5pop(data.TNsrnsqk);
-
-
 				}
+				
 			};
 	
 		
