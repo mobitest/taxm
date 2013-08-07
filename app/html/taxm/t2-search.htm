@@ -51,7 +51,7 @@
 				var newItem = t.clone();
 				newItem.find("b").text(name);
 				newItem.find("code").text(id);
-				newItem.find("a").attr("href",b + id);
+				newItem.find("a").attr("href",b + id);//链接
 				newItem.addClass("gen").removeClass("tempItem").removeAttr("style");//important! or the [style=display:block] will be clone.
 				c.append(newItem);
 				rows++;
@@ -62,9 +62,9 @@
 				$('input[data-type="search"]').trigger("change");//todo: why can't trigger change??
 				c.listview("refresh");
 				c.find("#sum").html("共&nbsp;<b>"+rows+"</b>&nbsp;条记录");
-				//todo ...日期。。。
+				//日期。。。
 				var d = ts;
-				//d.setYear(2012);
+
 				c.find("#timestamp").text( $.prettyDate.format(d) );
 			},
 			loadFormWebdb:function(tx, r){
@@ -72,8 +72,7 @@
 					var en = r.rows.item(i);
 					this.addItem(JSON.parse(en.content).nsrbm, en.name);
 				};
-			}
-			
+			}		
 			
 			/**/
 			
@@ -103,17 +102,13 @@
 				//显示统计信息
 				builder.done(cur_load +1, ts);
 			});
-			for(var i=0; i<20; i++){
-				//builder.addItem(i, "测试企业");
-			}
 
-
+			//联网查
 			$("#connect").click(function(){
 				var kw= $('input[data-type="search"]').val();				
-				
-				$.ajax({url: "sample-queryRet.json",					
-					dataType:"json",
-					data:{"kw":kw},
+				var url_ = "http://localhost:8080/services/api/jbxx/" + kw +".json";
+				$.ajax({url: url_,					
+					dataType:"jsonp",
 					success:function(data){
 						builder.reset();
 						$.each(data,function(i, entry){
@@ -130,9 +125,8 @@
 	            alert('error:'+errorThrown); 
 	        }
 				}); 
-			//- ajax
+
 			
-			//$("#connect").click();
 			});					
 		});
 		
