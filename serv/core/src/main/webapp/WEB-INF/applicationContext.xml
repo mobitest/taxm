@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       default-lazy-init="true">
+
+    <!-- Activates scanning of @Autowired -->
+    <context:annotation-config/>
+
+    <!-- Activates scanning of @Repository and @Service -->
+    <context:component-scan base-package="mt.taxm"/>
+
+    <!-- Add new DAOs here -->
+    <bean id="tNsrfpgzqkDao" class="org.appfuse.dao.hibernate.GenericDaoHibernate"> <constructor-arg value="mt.taxm.webapp.model.TNsrfpgzqk"/><property name="sessionFactory" ref="sessionFactory"/></bean> 
+    <bean id="tNsrhdqkDao" class="org.appfuse.dao.hibernate.GenericDaoHibernate"> <constructor-arg value="mt.taxm.webapp.model.TNsrhdqk"/><property name="sessionFactory" ref="sessionFactory"/></bean> 
+    <bean id="tNsrjbxxDao" class="org.appfuse.dao.hibernate.GenericDaoHibernate"> <constructor-arg value="mt.taxm.webapp.model.TNsrjbxx"/><property name="sessionFactory" ref="sessionFactory"/></bean> 
+    <bean id="tNsrnsqkDao" class="org.appfuse.dao.hibernate.GenericDaoHibernate"> <constructor-arg value="mt.taxm.webapp.model.TNsrnsqk"/><property name="sessionFactory" ref="sessionFactory"/></bean> 
+    <bean id="tNsrsbqkDao" class="org.appfuse.dao.hibernate.GenericDaoHibernate"> <constructor-arg value="mt.taxm.webapp.model.TNsrsbqk"/><property name="sessionFactory" ref="sessionFactory"/></bean> 
+    <bean id="tSbfjfqkDao" class="org.appfuse.dao.hibernate.GenericDaoHibernate"> <constructor-arg value="mt.taxm.webapp.model.TSbfjfqk"/><property name="sessionFactory" ref="sessionFactory"/></bean> 
+                                                                                                                                                                                                            
+
+    <!-- Add new Managers here -->
+    <bean id="tNsrfpgzqkManager" class="mt.taxm.webapp.service.imp.TNsrfpgzqkManagerImp"><constructor-arg ref="tNsrfpgzqkDao"/></bean>
+    <bean id="tNsrhdqkManager" class="mt.taxm.webapp.service.imp.TNsrhdqkManagerImp"><constructor-arg ref="tNsrhdqkDao"/></bean>
+    <bean id="tNsrjbxxManager" class="mt.taxm.webapp.service.imp.TNsrjbxxManagerImp"><constructor-arg ref="tNsrjbxxDao"/></bean>
+    <bean id="tNsrnsqkManager" class="mt.taxm.webapp.service.imp.TNsrnsqkManagerImp"><constructor-arg ref="tNsrnsqkDao"/></bean>
+    <bean id="tNsrsbqkManager" class="mt.taxm.webapp.service.imp.TNsrsbqkManagerImp"><constructor-arg ref="tNsrsbqkDao"/></bean>
+    <bean id="tSbfjfqkManager" class="mt.taxm.webapp.service.imp.TSbfjfqkManagerImp"><constructor-arg ref="tSbfjfqkDao"/></bean>
+
+</beans>

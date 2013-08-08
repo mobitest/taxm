@@ -1,0 +1,19 @@
+<!-- NOTE: If you're working offline, you might have to change the DOCTYPE to the following:
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">-->
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <mapping class="org.appfuse.model.User"/>
+        <mapping class="org.appfuse.model.Role"/>
+        <mapping class="mt.taxm.webapp.model.TNsrfpgzqk"/>
+        <mapping class="mt.taxm.webapp.model.TNsrhdqk"/>
+        <mapping class="mt.taxm.webapp.model.TNsrjbxx"/>
+        <mapping class="mt.taxm.webapp.model.TNsrnsqk"/>
+        <mapping class="mt.taxm.webapp.model.TNsrsbqk"/>
+        <mapping class="mt.taxm.webapp.model.TSbfjfqk"/>
+
+    </session-factory>
+</hibernate-configuration>
