@@ -17,9 +17,9 @@ by takeashower
 		
 	/*修正内容右移距离*/
 	.ui-panel-animate.ui-panel-content-wrap-position-left.ui-panel-content-wrap-open.ui-panel-content-wrap-display-reveal{
-		-webkit-transform: translate3d(8em,0,0);
-		-moz-transform: translate3d(8em,0,0);
-		transform: translate3d(8em,0,0);}
+		-webkit-transform: translate3d(17em,0,0);
+		-moz-transform: translate3d(17em,0,0);
+		transform: translate3d(17em,0,0);}
 		
 
 
@@ -63,12 +63,12 @@ by takeashower
 	
 	.ui-page-panel-open .ui-panel-content-wrap-display-push.ui-panel-content-wrap-position-left,
 	.ui-page-panel-open .ui-panel-content-wrap-display-reveal.ui-panel-content-wrap-position-left {
-		margin-right: 180px;
+		margin-right: 21em;
 	}
 
 	.ui-page-panel-open .ui-panel-content-wrap-display-push.ui-panel-content-wrap-position-right,
 	.ui-page-panel-open .ui-panel-content-wrap-display-reveal.ui-panel-content-wrap-position-right {
-		margin-left: 180px;
+		margin-left: 21em;
 	}
 	.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-push,
 	.ui-page-panel-open .ui-panel-content-fixed-toolbar-display-reveal {
@@ -83,5 +83,7 @@ by takeashower
 	.ui-panel-dismiss-display-push {
 		display: none;
 	}
-
+	.ui-panel-content-wrap-closed{
+		margin-right:4em
+	}
 }
