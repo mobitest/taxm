@@ -1,7 +1,7 @@
 ﻿var SERVICE_PATH="http://192.168.137.1:8080/core/services/api/"
 var FILE_PATH = "../data/"
 var DROP_TABLE = false; //重建缓存表
-var DEBUG_LOCAL = false; //利用本地文件调试
+var DEBUG_LOCAL = true; //利用本地文件调试
 
 
 	dbutil={
@@ -118,7 +118,7 @@ var DEBUG_LOCAL = false; //利用本地文件调试
 				*/
 				getRemote:function(info_type, id, path){
 					$.ajax({url: path,					
-							dataType:"jsonp",
+							dataType:DEBUG_LOCAL? "json":"jsonp",
 							success:function(entity){
 								if(entity.length>0){
 									//缓存数据
