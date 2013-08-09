@@ -60,12 +60,11 @@ var DEBUG_LOCAL = true; //利用本地文件调试
 		
 		/*缺省的异常回调函数*/
 		onError: function(tx, e) {
-		  alert("There has been an error: " + e.message);
+		  alert("websql error: " + e.message);
 		},
 		/*缺省的回调函数*/
 		onSuccess: function(tx, r) {
-			console.log("success");
-			console.log("result count:"+r.rows.length);
+			console.log("success ;rowcount:"+r.rows.length);
 		},
 		/*用名称关键字查询*/
 		findByName: function( tablename, keyword, callback) {
@@ -134,7 +133,7 @@ var DEBUG_LOCAL = true; //利用本地文件调试
 							
 							},
 							error: function(XMLHttpRequest, textStatus, errorThrown){ 
-		            alert('error:'+errorThrown); 
+		            alert('ajax get error:\r\nerrorThrown='+errorThrown +" \r\nresponseText="+XMLHttpRequest.responseText +" \r\ntextStatus=" +textStatus); 
 		       		}
 	
 						});
@@ -142,7 +141,9 @@ var DEBUG_LOCAL = true; //利用本地文件调试
 				},
 				//3.调用子页生成函数
 				render:function(info_type, data){
+						
 							$("#"+info_type+" span").text(data.length);
+						
 							eval("PageBuilder.pop_"+ info_type +"(data)")
 							
 							/*生成函数：
@@ -214,6 +215,7 @@ var DEBUG_LOCAL = true; //利用本地文件调试
         	$('.ui-content').append(head);
         	var lv = $("#dn_hd.gen>ul");
 					//遍历该节点下的记录
+				
 					$.each(d,function(i, entity){
 					//处理单条纳税记录的生成
 						var date1=entity.id.hdQsrq;
