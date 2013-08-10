@@ -26,34 +26,15 @@
 	<script>
 		//切换显示
 		var _lastd;
-		
 		function tv(n){
 			$(n).toggle();
 			$(_lastd).toggle();
 			_lastd = n;
 		}
 		
-		$(document).ready(function(){
-			//取消链接（防止querystring多余的信息产生），绑定点击事件显示页面的不同部分
-			$(".datanode").hide().attr("href","javascript:void(0)");
-			//$("#d1").show();
-			_lastd = "#dn_jbxx";
-			$("#left-panel a").click(function(){
-				tv($(this).attr("dn"));
-					
-			});
-			$("#connect").click(function(){
-				popSubPages(true);
-			});
-			
-			//缺省打开左面板
-			$("#left-panel").panel("open");
-			popSubPages();
-		});
-
-		
 		var dbutil = dbutil.init();
 		dbutil.createTable();
+		//取页面参数
 		function qs(key) {
 		    key = key.replace(/[*+?^$.\[\]{}()|\\\/]/g, "\\$&"); // escape RegEx meta chars
 		    var match = location.search.match(new RegExp("[?&]"+key+"=([^&]+)(&|$)"));
@@ -70,9 +51,28 @@
 			}
 
 		}
-
-
 		
+		$(document).ready(function(){
+			//打开子页面
+			popSubPages();
+			//取消链接（防止querystring多余的信息产生）
+			$(".datanode").hide().attr("href","javascript:void(0)");
+			//$("#d1").show();
+			_lastd = "#dn_jbxx";
+			//绑定左面板导航的点击事件
+			$("#left-panel a").click(function(){
+				tv($(this).attr("dn"));
+					
+			});
+			//绑定联网查的点击
+			$("#connect").click(function(){
+				popSubPages(true);
+			});
+			
+			//缺省打开左面板
+			$("#left-panel").panel("open");
+		});
+
 	</script>
 </head>
 <body>
