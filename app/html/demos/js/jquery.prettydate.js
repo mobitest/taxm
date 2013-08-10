@@ -173,7 +173,7 @@
 	dayBeforeYesterday: '前天',
 	days: $.prettyDate.template('{0}天前'),
 	week: '上个星期',
-	weeks: $.prettyDate.template('{0}星期前'),
+	weeks: $.prettyDate.template('{0}个周前'),
 	month: '上个月',
 	months: $.prettyDate.template('{0}个月前'),
 	year: '去年',

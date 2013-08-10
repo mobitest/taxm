@@ -2,6 +2,7 @@
 var FILE_PATH = "../data/"
 var DROP_TABLE = false; //重建缓存表
 var DEBUG_LOCAL = true; //利用本地文件调试
+var update_time = new Date().toISOString();
 
 
 	dbutil={
@@ -95,7 +96,9 @@ var DEBUG_LOCAL = true; //利用本地文件调试
 				load:function(info_type, id, remoteNow){
 					var path = SERVICE_PATH + info_type +"/" + id + ".json";					
 					if(DEBUG_LOCAL) path = FILE_PATH + info_type + ".json";//用本地文件调试
-					 
+					
+					$.mobile.loadingMessage = "数据获取中"; 
+					$.mobile.showPageLoadingMsg();
 					if(remoteNow) return PageBuilder.getRemote(info_type, id, path);
 					
 					dbutil.findByName("corp_"+ info_type, id, function(tx, r){
@@ -105,6 +108,7 @@ var DEBUG_LOCAL = true; //利用本地文件调试
 							return;
 						}
 						//b 本地有数据
+						update_time = r.rows.item(0).update_time;
 						PageBuilder.render(info_type, JSON.parse(r.rows.item(0).content));
 					});
 
@@ -116,14 +120,21 @@ var DEBUG_LOCAL = true; //利用本地文件调试
 				path:路径 ，如/services/api/ns/
 				*/
 				getRemote:function(info_type, id, path){
+					$.mobile.loadingMessage =  info_type+ " 远程数据获取中"; 
+					$.mobile.showPageLoadingMsg();
+					$('.ui-loader h1').text('my custom loading msg..');
+					
 					$.ajax({url: path,					
 							dataType:DEBUG_LOCAL? "json":"jsonp",
 							success:function(entity){
 								if(entity.length>0){
-									//缓存数据
+									//写缓存数据
 									var o = new Object();
 									o.name = id; 
-									if(info_type=="jbxx") o.name = entity[0].nsrMc; //基本信息
+									if(info_type=="jbxx") {
+										o.name = entity[0].nsrMc; //注意基本信息表结构：name=企业名称，content=单个实体
+										entity = entity[0];
+									}
 									o.content = JSON.stringify(entity);
 									if(o.content.length >"[]".length){
 										dbutil.writeRow("corp_"+ info_type, o, function(tx, r){console.log("write a row, name=" + id);} );
@@ -133,6 +144,7 @@ var DEBUG_LOCAL = true; //利用本地文件调试
 							
 							},
 							error: function(XMLHttpRequest, textStatus, errorThrown){ 
+								$.mobile.hidePageLoadingMsg();
 		            alert('ajax get error:\r\nerrorThrown='+errorThrown +" \r\nresponseText="+XMLHttpRequest.responseText +" \r\ntextStatus=" +textStatus); 
 		       		}
 	
@@ -144,18 +156,12 @@ var DEBUG_LOCAL = true; //利用本地文件调试
 						
 							$("#"+info_type+" span").text(data.length);
 						
-							eval("PageBuilder.pop_"+ info_type +"(data)")
-							
-							/*生成函数：
-								pop_jbxx	基本信息
-								pop_hd	核定
-								pop_sb	申报
-								pop_ns	纳税
-								pop_fpgz发票购置
-								pop_sbfjf社保
-							*/
+							eval("PageBuilder.pop_"+ info_type +"(data)");
+							$.mobile.hidePageLoadingMsg();
+							$("#timestamp").text( $.prettyDate.format(update_time) );	
 				},
 				
+				/*生成函数：pop_jbxx	基本信息;pop_hd	核定;pop_sb	申报;pop_ns	纳税;pop_fpgz发票购置;pop_sbfjf社保*/
 				//3.---sub of render
 				pop_jbxx:function(d){
       	  $("#dn_jbxx").remove();
