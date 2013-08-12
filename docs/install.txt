@@ -10,6 +10,7 @@ jdk1.6+/tomcat6+/oracle9+
 1 解压到tomcat6/webapp中（或修改tomcat配置文件）
 2 设置数据库连接
 	web-inf/classes/jdbc.properties
+	web-inf/classes/application-resources.xml
 3 启动tomcat(tomcat\bin\start.bat，如果是linux,bin\start.sh）
 	如果报hibernate ... index...错，不理。
 4 尝试访问应用
