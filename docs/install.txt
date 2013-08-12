@@ -1,0 +1,47 @@
+***************环境要求***************
+jdk1.6+/tomcat6+/oracle9+
+
+
+***************数据库***************
+执行base.sql安装用户、角色表，并插入初始数据
+
+
+***************应用部署***************
+1 解压到tomcat6/webapp中（或修改tomcat配置文件）
+2 设置数据库连接
+	web-inf/classes/jdbc.properties
+3 启动tomcat(tomcat\bin\start.bat，如果是linux,bin\start.sh）
+	如果报hibernate ... index...错，不理。
+4 尝试访问应用
+	http://localhost:8080/core。帐号：admin/admin
+5 尝试访问服务
+	http://localhost:8080/core/services/
+6 尝试查询纳税信息，使用编号06011010680做参数
+	http://localhost:8080/core/services/api/ns/06011010680.json
+
+
+***************客户端***************
+1先测试html
+1.1可将整个html目录考贝到tomcat的webapp中。目录结构类似
+	webapp--
+		--html
+			--demo
+			--taxm
+			--data
+		--core
+			--web-inf
+1.2设置服务器地址
+打开demos/js/taxm.js，修改
+	var SERVICE_PATH="http://192.168.137.1:8080/core/services/api/"
+	var DEBUG_LOCAL = true; //利用本地文件调试
+	如：
+	var SERVICE_PATH="http://localhost:8080/core/services/api/";
+	var DEBUG_LOCAL =false;
+请注意引号不能少。
+
+1.3使用浏览器访问
+ 	http://localhost:8080/html/
+2 app测试，暂无
+
+last modified:
+9:10 2013/8/12
