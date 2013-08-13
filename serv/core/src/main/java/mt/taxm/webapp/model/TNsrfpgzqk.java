@@ -21,7 +21,6 @@ import org.hibernate.annotations.NamedQuery;
  */
 @Entity
 @Table(name="T_NSRFPGZQK"
-    ,schema="ZGPAD"
 )
 @NamedQueries({
 	@NamedQuery(
