@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>列表</title>
+	<link rel="stylesheet"  href="../demos/css/themes/default/jquery.mobile-1.3.1.min.css">
+	<link rel="stylesheet" href="../demos/_assets/css/jqm-demos.css">
+	<link rel="shortcut icon" href="../demos/favicon.ico">
+	<link rel="stylesheet" href="t1-welcome.css">
+	<script src="../demos/js/jquery.js"></script>
+	<script src="../demos/_assets/js/index.js"></script>
+	<script src="../demos/js/jquery.mobile-1.3.1.min.js"></script>
+	<script src="../demos/js/jquery.prettydate.js"></script>	
+	<script src="../demos/js/taxm.min.js"></script>	
+	<style>
+		.ui-listview li .dateinfo{margin-left:15px;font-size:12px;float:right}
+		.ui-listview li .dateinfo i{color:#999;}
+		.corpItem span{color:gray; float:right;font-size:14px;}
+		#sum b{color:#fff3a5;}
+		.ui-header.ui-bar-a{padding:5px;}
+	</style>
+	
+	<script>
+		var DETAIL_PAGE = "t3-info1.htm";//明细页
+		var PARAM_NAME = "id";//参数名
+		var builder;
+		/*
+		列表项生成器
+		By takeashower
+		*/
+		ItemBuilder = {
+			t :null,//模板项
+			c:null ,//容器
+			b:"" ,	//链接主干
+			rows:0,
+			//初始化生成器（模板、添加的容器、链接主干），清除已行
+			init: function(templateItem, container, baseTarget){
+				t = $(templateItem).hide();//模板项
+				c = $(container);	//容器
+				b = baseTarget;	//链接主干 
+				this.reset();
+				return this;
+			},
+			reset:function(){
+				$(".gen").remove();
+				rows =0;
+			},
+			//添加新项	
+			addItem: function (id, name){
+				var newItem = t.clone();
+				newItem.find("b").text(name);
+				newItem.find("code").text(id);
+				newItem.find("a").attr("href",b + id + "&name="+ name);//链接
+				newItem.addClass("gen").removeClass("tempItem").removeAttr("style");//important! or the [style=display:block] will be clone.
+				c.append(newItem);
+				rows++;
+			},
+			//隐藏模板、刷新列表（如果添加多项，只刷新一次）
+			done: function(rows, ts){
+				$('input[data-type="search"]').val("");
+				$('input[data-type="search"]').trigger("change");//todo: why can't trigger change??
+				c.listview("refresh");
+				c.find("#sum").html("共&nbsp;<b>"+rows+"</b>&nbsp;条记录");
+				//日期。。。
+				var d = ts;
+
+				c.find("#timestamp").text( $.prettyDate.format(d) );
+			},
+			loadFormWebdb:function(tx, r){
+				for(var i=0; i< r.rows.length ; i++){
+					var en = r.rows.item(i);
+					this.addItem(JSON.parse(en.content).nsrbm, en.name);
+				};
+			}		
+			
+			/**/
+			
+		}
+		
+		
+		
+		var dbutil = dbutil.init();
+		$(document).ready(function(){
+			
+			builder = ItemBuilder.init(".tempItem","#corplist", DETAIL_PAGE + "?"+ PARAM_NAME +"=");
+			
+			//重建表，清除表中的数据
+			dbutil.createTable();
+			
+			//从缓存中加载数据
+			var MAX_CACHE = 30;
+			var cur_load = 0;
+			var ts =null;
+			dbutil.findByName("corp_jbxx","", function(tx, r){
+				console.log(".......line 96");
+				for(var i=0; i< r.rows.length && i<MAX_CACHE ; i++){
+					var en = r.rows.item(i);
+					ts = en.update_time;
+					builder.addItem(JSON.parse(en.content).nsrbm, en.name);
+					cur_load = i;
+				};
+				//显示统计信息
+				builder.done(cur_load==0?0:(cur_load +1), ts);
+			});
+
+			//联网查
+			$("#connect").click(function(){
+				var kw= $('input[data-type="search"]').val();			
+				if(kw.length==0) return alert("您得先填个关键字再查...");	
+				
+				var url_ = SERVICE_PATH +"jbxx/" + kw +".json";
+				$.ajax({url: url_,					
+					dataType:"jsonp",
+					success:function(data){
+						builder.reset();
+						$.each(data,function(i, entry){
+							builder.addItem(entry.nsrbm,entry.nsrMc);
+							if(!entry.nsrbm) return alert("entry.nsrbm invalid!");
+						//write down to storage
+							var o = new Object();
+							o.name = entry.nsrMc; o.content = JSON.stringify(entry);
+							dbutil.writeRow("corp_jbxx",o, function(tx, r){;} );
+						});
+						builder.done(data.length, new Date().toISOString());
+						
+						if(data.length>2) dbutil.cleanCache();//清一下缓存
+						
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown){ 
+	            alert('error:'+errorThrown); 
+	        }
+				}); 
+
+			
+			});					
+		});
+		
+	</script>
+</head>
+<body>
+<div data-role="page" data-theme="c" id="demo-page" class="my-page2">
+
+	<div data-role="header">
+		<a href="t1-welcome.htm?user=someone" data-role="button" data-icon="logo-taxm"  data-ajax="false">一户式查询</a>
+		<h1>搜索</h1>
+
+	<a id="connect" href="#" class="ui-btn-right" data-shadow="false" data-iconshadow="false" data-icon="grid" data-iconpos="right" data-ajax="false">联网搜索</a>
+</div><!-- /header -->
+	
+	<div data-role="content">
+ <ul id="corplist" data-role="listview" data-filter="true" data-filter-placeholder="请输入企业名称，或编号进行搜索..." data-inset="true" >
+ 	<li data-role="list-divider" ><label id="sum">&nbsp;</label><span class="dateinfo">数据更新：<span id="timestamp">...</span></span></li>
+ 	<!--template item-->
+	<li class="corpItem tempItem">	<a	href="t3-info1.htm" rel="external">	<b>未找到任何企业</b>		<span>	<label>	纳税人编号：</label>	<code>?</code></span></a></li>	 
+	<!--/template item-->
+	<li class="gen">fasdfsdf</li>
+
+</ul>
+                
+    </div><!-- /content -->
+
+<style>
+
+   
+
+</div><!-- /page -->
+</body>
+</html>
+ 
