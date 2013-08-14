@@ -56,6 +56,7 @@ by takeashower
 	
 .ui-grid-b.ui-responsive label{padding-right:5px;font-size:14px;}  
 .ui-grid-b.ui-responsive span{font-weight:800;font-size:14px}
+.ui-listview .ui-li label{font-weight:400;color:gray;} 
 
 @media (min-width:35em){
 

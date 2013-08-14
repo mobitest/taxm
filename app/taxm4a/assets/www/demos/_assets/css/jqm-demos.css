@@ -1065,5 +1065,13 @@ h2.jqm-home-widget {
 }
 
 .ui-icon-logo-taxm {
-	background-image: url("ic_launcher_18.png");
+	background-image: url(ic_launcher_18.png);
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.2) {
+    .ui-icon-myicon {
+            /*this image should be sized at 36 x 36 */
+        background-image: url(ic_launcher_36.png);
+        background-size: 18px 18px;
+    }
 }

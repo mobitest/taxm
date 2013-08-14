@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, target-densitydpi=medium-dpi">
 	<title>列表</title>
 	<link rel="stylesheet"  href="../demos/css/themes/default/jquery.mobile-1.3.1.min.css">
 	<link rel="stylesheet" href="../demos/_assets/css/jqm-demos.css">
@@ -12,7 +12,8 @@
 	<script src="../demos/_assets/js/index.js"></script>
 	<script src="../demos/js/jquery.mobile-1.3.1.min.js"></script>
 	<script src="../demos/js/jquery.prettydate.js"></script>	
-	<script src="../demos/js/taxm.min.js"></script>	
+	<script src="../demos/js/taxm.js"></script>	
+
 	<style>
 		.ui-listview li .dateinfo{margin-left:15px;font-size:12px;float:right}
 		.ui-listview li .dateinfo i{color:#999;}
@@ -25,6 +26,7 @@
 		var DETAIL_PAGE = "t3-info1.htm";//明细页
 		var PARAM_NAME = "id";//参数名
 		var builder;
+		$.mobile.buttonMarkup.hoverDelay = "false";
 		/*
 		列表项生成器
 		By takeashower
@@ -47,9 +49,9 @@
 				rows =0;
 			},
 			//添加新项	
-			addItem: function (id, name){
+			addItem: function (id, name, fav){
 				var newItem = t.clone();
-				newItem.find("b").text(name);
+				newItem.find("b").text( (fav==1?"*":"") + name);
 				newItem.find("code").text(id);
 				newItem.find("a").attr("href",b + id + "&name="+ name);//链接
 				newItem.addClass("gen").removeClass("tempItem").removeAttr("style");//important! or the [style=display:block] will be clone.
@@ -97,7 +99,7 @@
 				for(var i=0; i< r.rows.length && i<MAX_CACHE ; i++){
 					var en = r.rows.item(i);
 					ts = en.update_time;
-					builder.addItem(JSON.parse(en.content).nsrbm, en.name);
+					builder.addItem(JSON.parse(en.content).nsrbm, en.name,en.fav);
 					cur_load = i;
 				};
 				//显示统计信息
@@ -105,14 +107,19 @@
 			});
 
 			//联网查
-			$("#connect").click(function(){
+			$("#connect").click (function(){
 				var kw= $('input[data-type="search"]').val();			
 				if(kw.length==0) return alert("您得先填个关键字再查...");	
 				
 				var url_ = SERVICE_PATH +"jbxx/" + kw +".json";
+				$.mobile.loadingMessage = "联网查询..."; 
+				$.mobile.showPageLoadingMsg();
+				console.log("start jsonp, url="+ url_);
 				$.ajax({url: url_,					
 					dataType:"jsonp",
+					timeout: TIMEOUT,
 					success:function(data){
+						$.mobile.hidePageLoadingMsg();
 						builder.reset();
 						$.each(data,function(i, entry){
 							builder.addItem(entry.nsrbm,entry.nsrMc);
@@ -128,8 +135,9 @@
 						
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown){ 
-	            alert('error:'+errorThrown); 
-	        }
+						$.mobile.hidePageLoadingMsg();
+			            alert('啊，没取到数据，'+errorThrown +"。\r\n可能服务器挂了:"+url_); 
+			        }
 				}); 
 
 			
