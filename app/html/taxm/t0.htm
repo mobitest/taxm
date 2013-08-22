@@ -6,7 +6,12 @@
 	margin:0;
 	padding:0;
   text-align: center;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }		
+h1, h2, h3, .masthead p, .subhead p, .marketing h2, .lead {
+font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei UI", "Microsoft YaHei", SimHei, "\5B8B\4F53", simsun, sans-serif;
+font-weight: normal;
+}
 .mybody{
 	margin:0;
 	padding:0;
@@ -35,17 +40,22 @@
   left: 0;
   background: url(../images/tax-bk-pattern.png) repeat center center;
   opacity: .8;
+  z-index:-1;
 }
 
 	.shortcut{
 		margin: 0 auto;
-		position: relative;
+		position: absolute;
 		clear: left;
 		padding:0;
-		height:150px; width:90%;
+		height:180px; width:90%;
 		max-width: 960px;
 		border:0px solid #666;
 		display:block;
+		top:240px;
+		left:5%;
+		overflow:hidden;
+		
 	}
 .roundIcon{
 	width: 120px;
@@ -61,6 +71,9 @@
 	float:left;
 	margin-left:15px;
 }
+.shortcut li{float:left;}
+.shortcut a{color:white;font-size:16px;text-decoration:none}
+.shortcut a:visited{color:white;;text-decoration:none}	
 .roundIcon.a1{	background-image:url(../images/metro/m1.png);}
 .roundIcon.a2{	background-image:url(../images/metro/m2.png);}
 .roundIcon.a3{	background-image:url(../images/metro/m3.png);}
@@ -77,32 +90,47 @@
 		display:block;
 		float:left;
 		width:100%;
-		margin:35px 0;
+		margin-top:140px;
+		text-align:center;
+		color:gray;
 	}
-	h1{padding:15px 0;border:0}
+	h1{padding:15px 0;border:0;color:white}
 	</style>
-<body>
-	<div class="mybody">
+		<script src="../demos/js/jquery.js"></script>
+
+		<script src="../demos/js/idangerous.swiper-2.0.min.js"></script>	
+  <script>
+  var mySwiper = new Swiper('.shortcut',{
+    pagination: '.pagination',
+    paginationClickable: true,
+    slidesPerView: 3,
+    loop: true
+  })
+  </script>
+<body  class="mybody">
+	<div>
 		<h1>移动征管</h1>
 	</div>
 	<div class="banner">
 		
 	</div>
-	<div class="shortcut">
-		<div class="roundIcon a1">23234
-		</div>	
-		<div class="roundIcon a2"> 214
-		</div>	
-		<div class="roundIcon a3">  24
-		</div>	
-		<div class="roundIcon a4"> 213424
-		</div>	
-		<div class="roundIcon a5">1234
-		</div>	
-		<div class="roundIcon a6">1234
-		</div>	
-</div>
-
+	<ul class="shortcut">
+		 <div class="swiper-wrapper">
+		<li ><a href="#" ><span class="roundIcon a1"></span><h2>一户式查询</h2></a>
+		</li>	
+		<li> <a href="#" ><span class="roundIcon a2"></span><h2>功能2</h2></a>
+		</li>	
+		<li>  <a href="#" ><span class="roundIcon a3"></span><h2>功能3</h2></a>
+		</li>	
+		<li> <a href="#" ><span class="roundIcon a4"></span><h2>功能4</h2></a>
+		</li>	
+		<li><a href="#" ><span class="roundIcon a5"></span><h2>功能5</h2></a>
+		</li>	
+		<li><a href="#" ><span class="roundIcon a6"></span><h2>系统设置</h2></a>
+		</li>	
+		</div>
+</ul>
+<div class="pagination"></div>
 <div class="copyright">
 	All rights reserved, 2013.
 </div>
