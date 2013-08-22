@@ -1,25 +1,19 @@
-body {
-	font-family: Helvetica, Arial, sans-serif;
-	font-size: 13px;
-	line-height: 1.5;
-	background: #eee;
-	color: #333;
-}
+
 .featured {
 	height: 160px;
 	padding: 20px 0 50px;
 	margin-bottom: -25px;
-	background-color: #aaa;
+/*	background-color: #aaa;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#eeeeee));
 	background-image: -webkit-linear-gradient(top, #aaa, #eeeeee);
 	background-image:    -moz-linear-gradient(top, #aaa, #eeeeee);
 	background-image:      -o-linear-gradient(top, #aaa, #eeeeee);
-    background-image:         linear-gradient(to bottom, #aaa, #eee);
+    background-image:         linear-gradient(to bottom, #aaa, #eee);*/
 }
 .featured .swiper-slide {
-	border-radius: 5px;
+	border-radius: 10px;
 	height: 160px;
-	width: 273px;
+	width: 160px;
 	-webkit-backface-visibility: hidden;
 	-moz-backface-visibility: hidden;
 	-ms-backface-visibility: hidden;

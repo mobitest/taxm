@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -17,10 +17,77 @@
 .mythumb.a4{	background-image:url(../images/metro/m4.png);}
 .mythumb.a5{	background-image:url(../images/metro/m5.png);}
 .mythumb.a6{	background-image:url(../images/metro/m6.png);}
-</style>
+body{
+	margin:0;
+	padding:0;
+  text-align: center;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}		
+h1, h2, h3, .masthead p, .subhead p, .marketing h2, .lead {
+font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei UI", "Microsoft YaHei", SimHei, "\5B8B\4F53", simsun, sans-serif;
+font-weight: normal;
+}
+.mybody{
+	margin:0;
+	padding:0;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
+  background: #020031; /* Old browsers */
+  background: -moz-linear-gradient(0deg,  #050f06 0%, #51a351 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#050f06), color-stop(100%,#51a351)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(0deg,  #050f06 0%,#51a351 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(0deg,  #050f06 0%,#51a351 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(0deg,  #050f06 0%,#51a351 100%); /* IE10+ */
+  background: linear-gradient(0deg,  #050f06 0%,#51a351 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#050f06', endColorstr='#51a351',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+/*  -webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+     -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+          box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2); 	
+*/}
+
+.mybody:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url(../images/tax-bk-pattern.png) repeat center center;
+  opacity: .8;
+  z-index:-1;
+}
+.banner{
+	width:100%;
+	height:240px;
+	background:url(../images/home_1.jpg) no-repeat;
+	
+	}
+	.copyright{
+		display:block;
+		float:left;
+		width:100%;
+		margin-top:190px;
+		text-align:center;
+		color:gray;
+	}
+	h1{padding:15px 0;border:0;color:white}
+	.banner h3{color:#4169e1;padding:40px 0 10px 45px;font-size:18px;text-align:left;}
+	.banner h3.r{padding:50px 40px 0 0;text-align:right;}
+	#swiper{position:absolute;top:300px;left:5%;max-width:900;width:90%;overflow:hidden;}
+	</style>
+
 </head>
-<body>
-	<div class="swiper-container featured">
+<body class="mybody">
+	<div>
+		<h1>移动征管</h1>
+	</div>
+	<div class="banner">
+		<h3 class="label l">用移动设备助力征管</h3>
+		<h3 class="label r">让征管移动起来!</h3>
+	</div>
+	
+	<div class="swiper-container featured" id="swiper">
 		<div class="swiper-wrapper">
 			<div class="swiper-slide mythumb a1">                                                    
 				<a href="#"></a>
@@ -49,15 +116,72 @@
 			<div class="swiper-slide mythumb a3">                                                    
 				<a href="#"></a>
 			</div>
+			<div class="swiper-slide mythumb a1">                                                    
+				<a href="#"></a>
+			</div>
+			<div class="swiper-slide mythumb a2">
+				<a href="#moover/"></a>
+			</div>
+			<div class="swiper-slide mythumb a3">                                                    
+				<a href="#"></a>
+			</div>
 
 
 		</div>
 	</div>
 
+<div class="copyright">
+	XX公司版权所有, 2013.
+</div>
 	<script src="js/jquery.min.js"></script>
 	<!-- Don't forget to get the latest Swiper and scrollbar version here-->
 	<script src="js/idangerous.swiper-2.0.min.js"></script>
 	<script src="js/idangerous.swiper.3dflow-2.0.js"></script>
 	<script src="js/appstore.js"></script>
+	<script>
+(function() {
+
+    var quotes = $(".label");
+    var quoteIndex = -1;
+    
+    function showNextQuote() {
+        ++quoteIndex;
+        quotes.eq(quoteIndex % quotes.length)
+            .fadeIn(2000)
+            .delay(2000)
+            .fadeOut(2000, showNextQuote);
+    }
+    
+    showNextQuote();
+    
+		var images = new Array ('url(../images/home_1.jpg)', 'url(../images/home_3.jpg)');
+		var index = 0;
+    function rotateImage()
+		{
+		  $('.banner').fadeOut('slow', function()
+		  {
+		    $(this).css('background-image', images[index]);
+		     
+		    $(this).fadeIn('slow', function()
+		    {
+		      if (index == images.length-1)
+		      {
+		        index = 0;
+		      }
+		      else
+		      {
+		        index++;
+		      }
+		    });
+		  });
+		}
+		//- rotateImage
+		//setInterval (rotateImage, 2500);
+
+
+})();		
+
+	</script>
+
 </body>
 </html>
