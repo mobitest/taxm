@@ -20,24 +20,23 @@
 .mythumb.a6{	background-image:url(../images/metro/m6.png);}
 body{
 	margin:0;
-	padding:0;
+	padding:85px 30px 120px;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  background:#f6f6f6;
 }		
 h1, h2, h3, .masthead p, .subhead p, .marketing h2, .lead {
 font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei UI", "Microsoft YaHei", SimHei, "\5B8B\4F53", simsun, sans-serif;
 font-weight: normal;
 }
 .mybody{
-	margin:0;
-	padding:0;
   text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
   background: #020031; /* Old browsers */
-  background: -moz-linear-gradient(0deg,  #050f06 0%, #51a351 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#050f06), color-stop(100%,#51a351)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(0deg,  #050f06 0%,#51a351 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(0deg,  #050f06 0%,#51a351 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(0deg,  #050f06 0%,#51a351 100%); /* IE10+ */
-  background: linear-gradient(0deg,  #050f06 0%,#51a351 100%); /* W3C */
+  background: -moz-linear-gradient(0deg,  #000000 0%, #0074FF 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#050f06), color-stop(100%,#0074FF)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(0deg,  #000000 0%,#0074FF 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(0deg,  #000000 0%,#0074FF 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(0deg,  #000000 0%,#0074FF 100%); /* IE10+ */
+  background: linear-gradient(15deg,  #000000 0%,#0074FF 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#050f06', endColorstr='#51a351',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 /*  -webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
      -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
@@ -54,39 +53,68 @@ font-weight: normal;
   left: 0;
   background: url(../images/tax-bk-pattern.png) repeat center center;
   opacity: .8;
-  z-index:-1;
+  z-index:1;
 }
+
+.navbar {
+	background-color: #fff;	
+	display:inline;
+	position:fixed;
+	left:0;right:0;top:0;
+	padding :10px 30px;
+	margin:0;
+	height:60px;
+	overflow: visible;
+-moz-box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+color: 0 2px 2px rgba(0,0,0,0.2);
+}
+
 .banner{
 	width:100%;
-	height:240px;
-	background:url(../images/home_1.jpg) no-repeat;
+	height:280px;
+	background:url(../images/home_6.jpg);
+	background-size:100%;
 	
 	}
 	.copyright{
+		position:fixed;
+		bottom:0;
 		display:block;
-		float:left;
+		left:0;
 		width:100%;
-		margin-top:190px;
 		text-align:center;
 		color:gray;
+		/*background:#2c3f4f;*/
+		padding: 5px;
 	}
-	h1{padding:15px 0;border:0;color:white}
+	h1{padding:0;border:0;color:black;}
 	.banner .mylabel{color:#4169e1;padding:40px 0 10px 45px;font-size:18px;text-align:left;}
 	.banner .r{padding:50px 40px 0 0;text-align:right;}
 	#swiper{position:absolute;top:300px;left:5%;max-width:900px;width:90%;overflow:hidden;}
-	.login-btn{float:right;margin-top:-50px;margin-right:20px;display:inline-block;}
+	#login-btn{float:right;margin-top:-50px;margin-right:20px;display:inline-block;}
+	#wrap{background:#F0F0F0;}
+	#msg a{color:#F6BA0E;}
+	#msg li{list-style: none;}
+	#msg{width:95%;height:100%;min-height:200px;overflow:hidden;}
 	</style>
 
 </head>
-<body class="mybody">
-	<div id="wrap">
-	<div>
+<body>
+	<div  class="navbar">
+
 		<h1>移动征管</h1>
 		<a id="login-btn" href="#myModal" class="login-btn btn btn-large btn-primary" role="button" data-toggle="modal">登录</a>
-	</div>
+
+	</div><!--/navbar-->
+	<div id="wrap">
 	<div class="banner">
-		<h3 class="mylabel l">用移动设备助力征管</h3>
-		<h3 class="mylabel r">让征管移动起来!</h3>
+		<ul id="msg">
+			<li><a href="#">移动设备促征管</a></li>
+	        <li><a href="#">征管工作动起来</a></li>
+
+		</ul>
+		
 	</div>
 	
 	<div class="swiper-container featured" id="swiper">
@@ -131,13 +159,12 @@ font-weight: normal;
 
 		</div>
 	</div>
+	<div id="footer" class="copyright mybody">
+	      <p class="muted credit">XX公司版权所有, 2013. | 版本 V1.0.201</p>
+
+  </div>
 </div>
 
-<div id="footer" class="copyright">
-
-        <p class="muted credit">XX公司版权所有, 2013.</p>
-
-    </div>
 
 <!-- Modal -->
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false" data-backdrop="static">
@@ -183,16 +210,6 @@ font-weight: normal;
 	 <script src="js/bootstrap.min.js"></script>
 	<script>
 
-    var quotes = $(".mylabel");
-    var quoteIndex = -1;
-    
-    function showNextQuote() {
-        ++quoteIndex;
-        quotes.eq(quoteIndex % quotes.length)
-            .fadeIn(2000)
-            .delay(2000)
-            .fadeOut(2000, showNextQuote);
-    }
 
 		function querystring(key) {
 		   var re=new RegExp('(?:\\?|&)'+key+'=(.*?)(?=&|$)','gi');
@@ -200,6 +217,60 @@ font-weight: normal;
 		   while ((m=re.exec(document.location.search)) != null) r.push(m[1]);
 		   return r;
 		}
+		
+		
+	//Setup Arrays that will hold the x,y,z of each element.
+	var x = new Array();
+	var y = new Array();
+	var z = new Array();
+	
+	//Get the list of items.
+	var items = $('#msg li');
+	
+	//Animate the items.
+	function animate()
+	{
+		
+		//Step through each item.
+		for(i = items.length - 1; i >= 0; i--){
+			
+			
+			//variables for movement.			
+			var xVar = 50 + x[i] 			// x value
+			var yVar = 70 + y[i] * z[i]++;	// y value, move towards bottom of screen
+			var zVar = 10 * z[i]++;			// z value, text get larger.
+			
+			
+			//Check to see if text position is still on the screen.
+			// the #'s are %.   100 is far right or bottom, 0 is top or left.
+			// for z value it's the font size in %.
+			if (!xVar | xVar < 0 | xVar > 70| 
+				yVar < 0 | yVar > 90 | 
+				zVar < 0 | zVar > 500)
+			{
+				//if it's off the screen randomly pick a starting place.
+				x[i]= Math.random() * 2 - 1;
+				y[i] = Math.random() * 2 - 1;
+				z[i] = 2; 
+				
+			}
+			else
+			{
+				//if it's still on the screen apply the appropiate styles.
+				
+				$(items[i]).css("position", "relative"); // make sure we can move the text around.
+				$(items[i]).css("top", xVar+"%");  // y value
+				$(items[i]).css("left", yVar+"%"); // x value
+				
+				$(items[i]).css("fontSize", zVar+"%"); // font size (illusion of perspective.)
+				$(items[i]).css("opacity",(zVar)/800); // fade in from the distance.
+			}
+		}
+	
+		setTimeout(animate, 500);
+	}
+
+
 
 $(document).ready(function(){
 	if(querystring("user")=="")	{
@@ -209,7 +280,13 @@ $(document).ready(function(){
 		$("#login-btn").text("小张");
 		$("#myModal").modal('hide');
 	});
-	showNextQuote();
+
+	animate();
+	
+	/*test....
+	$("h1").text("测试系统")
+	$("#myModal").modal('hide');
+	*/
 
 });
 	</script>
