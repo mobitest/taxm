@@ -1,4 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">移动征税</string>
+    <string name="app_name">移动征管</string>
+<string name="help_url">http://61.164.40.54/mobi/</string>
+	<!-- 10.80.22.88 -->
+	<string name="default_server_url">http://60.190.255.24/mserver</string>
+	<string name="default_server_name">数据应用门户</string>
+	<!-- kpiboard number -->
+	<string name="default_kpiborad_number">8</string>
+	<!-- app name -->
+	<string name="application_name">慧报表&lt;演示版&gt;</string>
+	<!-- 最后打开的目录 SharedPreferences Key -->
+	<string name="pkey_catalog_id">last_catalog_id</string>
+
+
+	<string name="login_bottom_version">版本:%1$s        (标识:%2$s)</string>
+	<string name="login_login">登   录</string>
+	<string name="login_get_account">获取账号</string>
+	<string name="login_server_conf">服务器配</string>
+	<string name="downline_login_yes">确   定</string>
+	<string name="downline_login_no">取   消</string>
+	<string name="version_name">版本名称</string>
+	<string name="version_overview">概要</string>
+	<string name="version_detail">详细信息</string>
+	<string name="version_release_date">发布时间</string>
+	<string name="progress_dialog_message">正在加载数据，请稍候...</string>
+
+	    <string name="toast_io_exc">服务器无响应，请稍后再试</string>
+    <string name="toast_network_exc">无法获取网络，请检查网络状态</string>
+    <string name="toast_session_exc">网络超时，请重新登录</string>
+    <string name="toast_server_exc">服务端发生内部错误，请报告管理员</string>
+    <string name="toast_server_status_exc">服务端响应状态不成功，请稍后再试</string>
+    <string name="toast_data_none">报表无数据，请尝试其他操作</string>
+    <string name="toast_data_exc">服务端数据异常，访问失败。请返回主界面访问其他报表，或向管理员报告此问题</string>
+    
+    <string name="toast_validate_user_exc">验证用户失败，请稍候重试</string>
+    <string name="toast_check_update_failed">版本检查失败，请稍候重试</string>
+    <string name="toast_download_file_failed">下载程序失败，请稍候重试</string>
+	
 </resources>

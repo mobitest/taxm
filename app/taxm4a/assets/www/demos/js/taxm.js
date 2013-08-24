@@ -1,8 +1,13 @@
-﻿var SERVICE_PATH="http://192.168.137.1:8080/core/services/api/" 
+﻿var SERVER_ROOT="http://192.168.137.1:8080/core/" 
 //jh
-var SERVICE_PATH="http://134.96.91.209:8080/core/services/api/" 
+var SERVER_ROOT="http://134.96.91.209:8080/core/" 
 //product
-//var  SERVICE_PATH="http://192.168.6.137/core/services/api/" 
+//var  SERVER_ROOT="http://192.168.6.137/core/" 
+//dev
+var SERVER_ROOT="http://localhost:8080/" 
+
+var SERVICE_PATH= SERVER_ROOT + "services/api/" 
+var JSP_PATH = SERVER_ROOT + "ajax/" 
 	
 var FILE_PATH = "../data/"
 var DROP_TABLE = false; //重建缓存表
@@ -10,8 +15,8 @@ var DEBUG_LOCAL = false; //利用本地文件调试
 var update_time = new Date().toISOString();
 var fav = 0;//收藏
 var TIMEOUT = 15000//超时上限
+var UNKNOW_SCRATCH = "EOU*&))(&^*&*&";
 
-$.mobile.loadingMessageTextVisible = true;
 
 	dbutil={
 		db:null,//数据库句柄
@@ -102,6 +107,7 @@ $.mobile.loadingMessageTextVisible = true;
 
 	}
 
+//$.mobile.loadingMessageTextVisible = true;
 		
 				/*页面生成器 BY takeashower*/
 			PageBuilder={
@@ -478,3 +484,55 @@ $.mobile.loadingMessageTextVisible = true;
 function print(m){
 	return m?m:"（空）";
 }		
+
+
+/*是否已经登录*/
+ function pingServer(){
+		var url_ = JSP_PATH +"ping.jsp";
+				$.ajax({url: url_,					
+					dataType:"jsonp",
+					success:pingPost,
+					timeout: TIMEOUT,
+					error:function(XMLHttpRequest, textStatus, errorThrown){ 
+	            alert('认证出错:'+errorThrown); 
+						
+					}
+				});
+ 	
+}
+function pingPost(d){
+	if(!d.username) return false
+	return d.username;
+}
+
+/*在线认证*/
+function authOnline(username,Password){
+			var url_ = SERVICE_PATH +"security/login/" + username + "/"+ Password +".json";
+				$.ajax({url: url_,					
+					dataType:"jsonp",
+					success:afterAuth,
+					timeout: TIMEOUT,
+					error:function(XMLHttpRequest, textStatus, errorThrown){ 
+	            alert('认证出错:'+errorThrown); 
+						
+					}
+				});
+}//-authOnline
+
+/*处理认证结果*/
+function afterAuth(data){
+	if(data.authorities==undefined || data.authorities.length==0){
+		alert("认证失败！如果遗忘帐号信息，请联系管理员。");
+	}else{
+		//写入cookie
+		//todo...擦除cookie
+		var p = $("#password").val()
+		$.cookie.json = false;
+		$.cookie("username",$("#username").val(),{expires: 30});
+		$.cookie(UNKNOW_SCRATCH,p,{expires: 30});
+		$.cookie(UNKNOW_SCRATCH + "1" ,1,{expires: 1});
+		$.cookie.json = true;
+		$.cookie('user', data,{ expires: 30 });
+		whoami();
+	}
+}

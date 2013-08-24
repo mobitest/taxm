@@ -19,18 +19,68 @@
 
 package mt.taxm.app;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.TextView;
+
 import org.apache.cordova.*;
 
 public class taxm extends DroidGap
 {
-    @Override
+    public static String serverUrl ="http://192.168.0.1";
+    private mt.taxm.app.DatabaseHelper mDbHelper;
+	private ProgressDialog mLoadingDialog;
+
+	@Override
     public void onCreate(Bundle savedInstanceState)
     {
+        mDbHelper = new DatabaseHelper( taxm.this );
+        serverUrl = ServerConfig.SelServer(mDbHelper);
         super.onCreate(savedInstanceState);
         // Set by <content src="index.html" /> in config.xml
         super.loadUrl(Config.getStartUrl());
         //super.loadUrl("file:///android_asset/www/index.html")
+        
+        try {
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(
+                    "mt.taxm.app", 0);
+            String vname =  packageInfo.versionName;
+            int vcode =  packageInfo.versionCode;
+            
+            Log.d(TAG, "versionName=" + vname+ ";versionCode="+ vcode);
+            
+            new GetNewVersion(taxm.this, mDbHelper, true, mLoadingDialog).execute();
+        } catch (NameNotFoundException e1) {
+            e1.printStackTrace();
+        }
+     }
+    
+    /**
+     * 该方法仅用于外部调用
+     * 用于启动在线登录子系统
+     */
+    public void onGetVersionEnd(){
     }
+    
+    private void showLoadingDailog(String msg) {
+        mLoadingDialog = new ProgressDialog(taxm.this);
+        mLoadingDialog.setCancelable(true);
+        mLoadingDialog.setMessage(msg);
+        mLoadingDialog.show();
+    }
+
+    private void dismissLoadingDialog() {
+        if (mLoadingDialog != null && mLoadingDialog.isShowing()) {
+            mLoadingDialog.dismiss();
+            mLoadingDialog = null;
+        }
+    }
+
 }
 

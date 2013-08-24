@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="initial-scale=1">
-	<title>Swiper Appstore</title>
+	<title>欢迎使用</title>
 
 	<link rel="stylesheet" href="css/idangerous.swiper.css">
 	<link rel="stylesheet" href="css/idangerous.swiper.3dflow.css">
@@ -74,7 +74,7 @@ color: 0 2px 2px rgba(0,0,0,0.2);
 	margin-top:15px;
 	width:100%;
 	height:280px;
-	background:url(../images/home_5.jpg);
+	background:url(../images/home_2.jpg) 0 70%;
 	background-size:100%;
 	
 	}
@@ -89,13 +89,13 @@ color: 0 2px 2px rgba(0,0,0,0.2);
 		/*background:#2c3f4f;*/
 		padding: 15px;
 	}
-	h1{padding:0;border:0;color:black;}
+	.navbar h1{padding:0;border:0;color:black;}
 	.banner .mylabel{color:#4169e1;padding:40px 0 10px 45px;font-size:18px;text-align:left;}
 	.banner .r{padding:50px 40px 0 0;text-align:right;}
-	#swiper{position:absolute;top:350px;left:5%;max-width:900px;width:90%;overflow:hidden;}
-	#login-btn{float:right;margin-top:-50px;margin-right:20px;display:inline-block;}
+	#swiper{position:absolute;top:55%;left:5%;max-width:900px;width:90%;overflow:hidden;}
+	#login-btn{float:right;margin-top:-80px;margin-right:20px;display:inline-block;}
 	#wrap{background:#F0F0F0;}
-	#msg a{color:#F6BA0E;}
+	#msg h3{color:#F0F0D8;}
 	#msg li{list-style: none;}
 	#msg{width:95%;height:100%;min-height:200px;overflow:hidden;}
 	</style>
@@ -104,15 +104,15 @@ color: 0 2px 2px rgba(0,0,0,0.2);
 <body>
 	<div  class="navbar">
 
-		<h1>移动征管</h1>
-		<a id="login-btn" href="#myModal" class="login-btn btn btn-large btn-primary" role="button" data-toggle="modal">登录</a>
+		<h2><img src="../images/coins-icon.png"/> 移动征管</h2>
+		<a id="login-btn" href="#myModal" class="login-btn btn btn-large btn-primary" role="button" data-toggle="modal"><i class="icon-user icon-white"></i> 登录</a>
 
 	</div><!--/navbar-->
 	<div id="wrap">
 	<div class="banner">
 		<ul id="msg">
-			<li><a href="#">移动设备促征管</a></li>
-	        <li><a href="#">征管工作动起来</a></li>
+			<li><h3 style="margin-left:30%;margin-top:50px">移动设备促征管</h3></li>
+	        <li><h3 style="margin-left:50%">征管工作动起来</h3></li>
 
 		</ul>
 		
@@ -142,19 +142,19 @@ color: 0 2px 2px rgba(0,0,0,0.2);
 				<a href="../taxm/t2-search.htm"></a>
 			</div>
 			<div class="swiper-slide mythumb a2">
-				<a href="#moover/"></a>
+				<a href="../taxm/t2-search.htm"></a>
 			</div>
 			<div class="swiper-slide mythumb a3">                                                    
-				<a href="#"></a>
+				<a href="../taxm/t2-search.htm"></a>
 			</div>
-			<div class="swiper-slide mythumb a1">                                                    
-				<a href="#"></a>
+			<div class="swiper-slide mythumb a4">
+				<a href="../taxm/t2-search.htm"></a>
 			</div>
-			<div class="swiper-slide mythumb a2">
-				<a href="#moover/"></a>
+			<div class="swiper-slide mythumb a5">                                                    
+				<a href="../taxm/t2-search.htm"></a>
 			</div>
-			<div class="swiper-slide mythumb a3">                                                    
-				<a href="#"></a>
+			<div class="swiper-slide mythumb a6">
+				<a href="../taxm/t2-search.htm"></a>
 			</div>
 
 
@@ -174,17 +174,17 @@ color: 0 2px 2px rgba(0,0,0,0.2);
     <h3 id="myModalLabel">欢迎使用[移动征管]</h3>
   </div>
   <div class="modal-body">
-    <form class="form-horizontal">
+    <form class="form-horizontal" id="flogin">
      <div class="control-group">
-		    <label class="control-label" for="inputEmail">用户名</label>
+		    <label class="control-label" for="username">用户名</label>
 		    <div class="controls">
-		      <input type="text" id="inputEmail" placeholder="请输入用户名…">
+		      <input type="text" id="username" placeholder="请输入用户名…">
 		    </div>
 		  </div>
 		  <div class="control-group">
-		    <label class="control-label" for="inputPassword">密码</label>
+		    <label class="control-label" for="password">密码</label>
 		    <div class="controls">
-		      <input type="password" id="inputPassword" placeholder="请输入密码…">
+		      <input type="password" id="password" placeholder="请输入密码…">
 		    </div>
 		  </div>
 		  <div class="control-group">
@@ -196,6 +196,14 @@ color: 0 2px 2px rgba(0,0,0,0.2);
 		  </div>
 		
 		</form>
+		<div class="alert alert-block alert-error fade in" id="unmatch">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <h4 class="alert-heading">有点小状况!</h4>
+            <p>输入的用户名或密码，跟往常输入的不一样！</p>
+            <p>
+              <a class="btn btn-danger" href="javascript:void(0)" id="auth_online">提交服务器</a> 
+            </p>
+          </div>
   </div>
   <div class="modal-footer">
   	<span class="muted">XX公司版权所有 2013</span>
@@ -209,80 +217,77 @@ color: 0 2px 2px rgba(0,0,0,0.2);
 	<script src="js/idangerous.swiper.3dflow-2.0.js"></script>
 	<script src="js/appstore.js"></script>
 	 <script src="js/bootstrap.min.js"></script>
+	<script src="../demos/js/taxm.js"></script>	
+	<script src="../demos/js/jquery.cookie.js"></script>	
 	<script>
 
 
-		function querystring(key) {
-		   var re=new RegExp('(?:\\?|&)'+key+'=(.*?)(?=&|$)','gi');
-		   var r=[], m;
-		   while ((m=re.exec(document.location.search)) != null) r.push(m[1]);
-		   return r;
-		}
-		
-		
-	//Setup Arrays that will hold the x,y,z of each element.
-	var x = new Array();
-	var y = new Array();
-	var z = new Array();
-	
-	//Get the list of items.
-	var items = $('#msg li');
-	
-	//Animate the items.
-	function animate()
-	{
-		
-		//Step through each item.
-		for(i = items.length - 1; i >= 0; i--){
-			
-			
-			//variables for movement.			
-			var xVar = 50 + x[i] 			// x value
-			var yVar = 70 + y[i] * z[i]++;	// y value, move towards bottom of screen
-			var zVar = 10 * z[i]++;			// z value, text get larger.
-			
-			
-			//Check to see if text position is still on the screen.
-			// the #'s are %.   100 is far right or bottom, 0 is top or left.
-			// for z value it's the font size in %.
-			if (!xVar | xVar < 0 | xVar > 70| 
-				yVar < 0 | yVar > 90 | 
-				zVar < 0 | zVar > 500)
-			{
-				//if it's off the screen randomly pick a starting place.
-				x[i]= Math.random() * 2 - 1;
-				y[i] = Math.random() * 2 - 1;
-				z[i] = 2; 
-				
-			}
-			else
-			{
-				//if it's still on the screen apply the appropiate styles.
-				
-				$(items[i]).css("position", "relative"); // make sure we can move the text around.
-				$(items[i]).css("top", xVar+"%");  // y value
-				$(items[i]).css("left", yVar+"%"); // x value
-				
-				$(items[i]).css("fontSize", zVar+"%"); // font size (illusion of perspective.)
-				$(items[i]).css("opacity",(zVar)/800); // fade in from the distance.
-			}
-		}
-	
-		setTimeout(animate, 500);
-	}
+/*显示用户信息*/
+function whoami(){
+	$.cookie.json=true;
+	var fullname = $.cookie('user').fullName;
+	$.cookie.json = false;
+	$("#login-btn").text(fullname);
+	$("#myModal").modal('hide');
+}
 
+/*本地认证*/	
+	function authLocal(user,pwd){
+		$.cookie.json=true;
+		var u = $.cookie("user");
+		$.cookie.json = false;
+		if(u!=undefined){
+			var p = $.cookie(UNKNOW_SCRATCH);
+			if(user== u.username && pwd == p){
+				$.cookie(UNKNOW_SCRATCH + "1",1,{expires: 1});
+				whoami();
+				return;
+			};
+			$("#unmatch").show();
+			return;
+		}else{
+			//本地从未认证过，直接转在线认证
+			authOnline(user,pwd);
+		}
+		
+	}//--authLocal
 
 
 $(document).ready(function(){
-	if(querystring("user")=="")	{
+	$("#unmatch").hide();
+	//是否已经登录
+	//查cookie
+	if($.cookie(UNKNOW_SCRATCH + "1")==undefined)	{
+		//未登录过，自动回忆
+		$.cookie.json = false;
+		var username = $.cookie("username");
+		if(username!=undefined){
+			$("#password").val($.cookie(UNKNOW_SCRATCH));
+			$("#username").val(username);
+		}
 		$("#myModal").modal('show');
+	}else{
+		//已经登录，显示登录信息
+		whoami()
 	}
+	
+	
+	/*
+		http://localhost:8080/services/api/security/login/admin/admin.json
+		http://localhost:8080/services/api/getversion/1.json
+	*/
 	$("#dologin").click(function(){
-		$("#login-btn").text("小张");
-		$("#myModal").modal('hide');
-	});
+		var username = $("#username").val();
+		var Password = $("#password").val();
+		authLocal(username,Password);
+		}
+		//TODO:访问本地库
 
-	animate();
+	);//-dologin
+
+	$("#auth_online").click(function(){
+		authOnline($("#username").val(), $("#password").val());
+	});//--auth_online
 	
 	/*test....
 	$("h1").text("测试系统")
