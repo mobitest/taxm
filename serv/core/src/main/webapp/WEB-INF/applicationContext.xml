@@ -18,7 +18,7 @@
     <bean id="tNsrnsqkDao" class="org.appfuse.dao.hibernate.GenericDaoHibernate"> <constructor-arg value="mt.taxm.webapp.model.TNsrnsqk"/><property name="sessionFactory" ref="sessionFactory"/></bean> 
     <bean id="tNsrsbqkDao" class="org.appfuse.dao.hibernate.GenericDaoHibernate"> <constructor-arg value="mt.taxm.webapp.model.TNsrsbqk"/><property name="sessionFactory" ref="sessionFactory"/></bean> 
     <bean id="tSbfjfqkDao" class="org.appfuse.dao.hibernate.GenericDaoHibernate"> <constructor-arg value="mt.taxm.webapp.model.TSbfjfqk"/><property name="sessionFactory" ref="sessionFactory"/></bean> 
-                                                                                                                                                                                                            
+    <bean id="userInfoDao" class="mt.taxm.webapp.dao.hibernate.UserInfoDaoHibernate"><property name="sessionFactory" ref="sessionFactory"/></bean>                                                                                                                                                                                                        
 
     <!-- Add new Managers here -->
     <bean id="tNsrfpgzqkManager" class="mt.taxm.webapp.service.imp.TNsrfpgzqkManagerImp"><constructor-arg ref="tNsrfpgzqkDao"/></bean>
@@ -27,5 +27,7 @@
     <bean id="tNsrnsqkManager" class="mt.taxm.webapp.service.imp.TNsrnsqkManagerImp"><constructor-arg ref="tNsrnsqkDao"/></bean>
     <bean id="tNsrsbqkManager" class="mt.taxm.webapp.service.imp.TNsrsbqkManagerImp"><constructor-arg ref="tNsrsbqkDao"/></bean>
     <bean id="tSbfjfqkManager" class="mt.taxm.webapp.service.imp.TSbfjfqkManagerImp"><constructor-arg ref="tSbfjfqkDao"/></bean>
+    <bean id="loginManager" class="mt.taxm.webapp.service.imp.LoginManagerImp"><constructor-arg ref="userInfoDao"/></bean>
+    <bean id="appVersionManager" class="mt.taxm.webapp.service.imp.AppVersionManagerImp"></bean>
 
 </beans>

@@ -57,6 +57,11 @@
         <from>/logout*</from>
         <to>/logout.jsp</to>
     </rule>
+    <!-- ajax logout -->
+    <rule>
+        <from>/ajax/**</from>
+        <to>/ajax/$1</to>
+    </rule>
 
     <!-- Struts -->
     <rule match-type="regex">

@@ -37,6 +37,9 @@
             <ref bean="tNsrnsqkManager"/>
             <ref bean="tNsrsbqkManager"/>
             <ref bean="tSbfjfqkManager"/>
+            <ref bean="loginManager"/>
+            <ref bean="appVersionManager"/>
+            
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean="jsonProvider"/>
