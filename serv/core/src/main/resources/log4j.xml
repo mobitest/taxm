@@ -68,6 +68,9 @@
     <logger name="org.appfuse.tool">
         <level value="INFO"/>
     </logger>
+    <logger name="mt">
+        <level value="DEBUG"/>
+    </logger>
 
     <root>
         <level value="WARN"/>
