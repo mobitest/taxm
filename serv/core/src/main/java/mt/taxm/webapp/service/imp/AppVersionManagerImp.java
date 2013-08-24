@@ -27,13 +27,13 @@ public class AppVersionManagerImp implements AppVersionManager {
 		// TODO Auto-generated method stub
 		log.debug("cur version:"+ curVersion + "; last version:"+ av.getNum());
 		
-		if(curVersion>=av.getNum()) {
-			log.debug("already last version!");
-			av = new AppVersion();
-			av.setNum(-1);
-			av.setReleaseNotes("new version is around the corner...");
-			return av;
-		}
+//		if(curVersion>=av.getNum()) {
+//			log.debug("already last version!");
+//			av = new AppVersion();
+//			av.setNum(-1);
+//			av.setReleaseNotes("new version is around the corner...");
+//			return av;
+//		}
 		return av;
 	}
 
