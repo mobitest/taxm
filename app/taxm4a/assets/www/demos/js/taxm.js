@@ -4,7 +4,7 @@ var SERVER_ROOT="http://134.96.91.209:8080/core/"
 //product
 //var  SERVER_ROOT="http://192.168.6.137/core/" 
 //dev
-var SERVER_ROOT="http://localhost:8080/" 
+//var SERVER_ROOT="http://localhost:8080/" 
 
 var SERVICE_PATH= SERVER_ROOT + "services/api/" 
 var JSP_PATH = SERVER_ROOT + "ajax/" 
