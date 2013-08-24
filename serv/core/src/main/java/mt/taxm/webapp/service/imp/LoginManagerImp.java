@@ -1,33 +1,75 @@
 package mt.taxm.webapp.service.imp;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.appfuse.dao.UserDao;
+import org.appfuse.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.SaltSource;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import mt.taxm.webapp.dao.UserInfoDao;
 import mt.taxm.webapp.service.LoginManager;
 
 public class LoginManagerImp implements LoginManager {
-	@Autowired
-	private UserDao userdao; 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-	@Autowired
-	private SaltSource saltSource;
+	private UserInfoDao userdao; 
+	
+	@Resource(name = "authenticationManager")
+	private AuthenticationManager authenticationManager; // specific for Spring Security
 	
 	public LoginManagerImp() {
 		super();
-		// TODO Auto-generated constructor stub
+	}
+
+	@Autowired
+	public LoginManagerImp(UserInfoDao userdao) {
+		super();
+		this.userdao = userdao;
 	}
 
 	@Override
-	public List<String> validate(String userid, String password) {
-		String pwd_db = userdao.getUserPassword(userid);
-		
+	public void logout() {
 		// TODO Auto-generated method stub
-		return null;
+		
+	}
+
+	@Override
+	public User auth(String username, String password) {
+		User user;
+		
+		if(login(username,password)) {
+			user = userdao.getUserByName(username);
+		}else{
+			user = new User(username);
+			user.setId(0L);
+		}
+		
+		return user;
+	}
+	
+	/*调用认证服务*/
+	private boolean login(String username, String password) {
+	    try {
+	        Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+	        if (authenticate.isAuthenticated()) {
+	            SecurityContextHolder.getContext().setAuthentication(authenticate);             
+	            return true;
+	        }
+	    }
+	    catch (AuthenticationException e) { 
+	    	e.printStackTrace();
+	    }
+	    return false;
 	}
 
 }

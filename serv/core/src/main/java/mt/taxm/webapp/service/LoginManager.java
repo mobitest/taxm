@@ -6,11 +6,28 @@ import javax.jws.WebService;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+
+import org.appfuse.model.User;
 
 @WebService
-@Path("login")
+@Path("security")
 public interface LoginManager {
-    @POST
-    @Path("{userid}/{password}")
-	public List<String> validate(String userid, String password);
+    @GET
+    @Path("login/{username}/{password}")
+    /**
+     * 登录认证
+     * @param username 
+     * @param password
+     * @return 用户信息对象User，若失败，则id为-1
+     */
+	public User auth(@PathParam("username") String username, @PathParam("password")String password);
+    
+    @GET
+    @Path("logout")
+    /**
+     * 注销
+     */
+    public void logout();
+   
 }
