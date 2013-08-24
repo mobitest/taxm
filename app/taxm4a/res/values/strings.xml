@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">移动征管</string>
-<string name="help_url">http://61.164.40.54/mobi/</string>
 	<!-- 10.80.22.88 -->
-	<string name="default_server_url">http://60.190.255.24/mserver</string>
-	<string name="default_server_name">数据应用门户</string>
+	<string name="default_server_url">http://192.168.1.8:8080/</string>
+	<string name="default_server_name">本地服务器</string>
 	<!-- kpiboard number -->
 	<string name="default_kpiborad_number">8</string>
 	<!-- app name -->
-	<string name="application_name">慧报表&lt;演示版&gt;</string>
+	<string name="application_name">XX&lt;演示版&gt;</string>
 	<!-- 最后打开的目录 SharedPreferences Key -->
 	<string name="pkey_catalog_id">last_catalog_id</string>
 

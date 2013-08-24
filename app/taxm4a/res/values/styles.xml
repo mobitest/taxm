@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="TextAppearanceTopBottom" parent="@android:style/TextAppearance">
+		<item name="android:textColor">#FFFFFF</item>
+		<item name="android:shadowColor">@color/text_shadow_color</item>
+		<item name="android:shadowDx">1</item>
+		<item name="android:shadowDy">1</item>
+		<item name="android:shadowRadius">1</item>
+		<item name="android:background">@null</item>
+	</style>
+
+	<style name="TextAppearanceTopBottom.Logo">
+		<item name="android:textSize">20sp</item>
+	</style>
+	
+	<style name="TextAppearanceTopBottom.Medium">
+		<item name="android:textSize">18sp</item>
+	</style>
+
+	<style name="TextAppearanceTopBottom.Normal">
+		<item name="android:textSize">16sp</item>
+	</style>
+
+	<style name="TextAppearanceTopBottom.Small">
+		<item name="android:textSize">14sp</item>
+	</style>
+	
+	<style name="TextAppearanceTopBottom.Bottom">
+		<item name="android:textSize">13sp</item>
+		<item name="android:background">@drawable/btn_bg_bottom</item>
+	    <item name="android:textColor">@color/text_light_disable_only</item>
+	</style>
+
+
+	<style name="TableHeaderTextAppearance" parent="@android:style/TextAppearance">
+		<item name="android:textStyle">bold</item>
+		<item name="android:textColor">#000000</item>
+	</style>
+	
+    <!-- 标题按钮字体样式 (返回，用户名)  start-->
+	<style name="TextAppearanceTopBtn" parent="@android:style/TextAppearance">
+        <item name="android:textColor">#646F7C</item>
+        <item name="android:shadowColor">#ffffff</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+        <item name="android:background">@null</item>
+    </style>
+    
+	<style name="TextAppearanceTopBtn.Large">
+        <item name="android:textSize">20sp</item>
+    </style>
+    
+    <style name="TextAppearanceTopBtn.Medium">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextAppearanceTopBtn.Normal">
+        <item name="android:textSize">16sp</item>
+    </style>
+    
+	<style name="TextAppearanceTopBtn.Small">
+        <item name="android:textSize">14sp</item>
+    </style>
+    <!-- 标题按钮字体样式 (返回，用户名)   end-->
+    
+    <!-- TabBar (目录，书签，快照...)  start-->
+    <style name="TextAppearanceTab" parent="@android:style/TextAppearance">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:shadowColor">#1c73bb</item>
+        <item name="android:shadowDx">1</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">1</item>
+        <item name="android:background">@null</item>
+    </style>
+    
+    <style name="TextAppearanceTab.Large">
+        <item name="android:textSize">20sp</item>
+    </style>
+    
+    <style name="TextAppearanceTab.Medium">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextAppearanceTab.Normal">
+        <item name="android:textSize">16sp</item>
+    </style>
+    
+    <style name="TextAppearanceTab.Small">
+        <item name="android:textSize">14sp</item>
+    </style>
+    <!-- TabBar (目录，书签，快照...)   end-->
+
+	<style name="TableBodyTextAppearance" parent="@android:style/TextAppearance">
+		<item name="android:textColor">#333333</item>
+	</style>
+
+	<style name="TableBodyTextAppearance.Big">
+		<item name="android:textSize">18sp</item>
+	</style>
+	<style name="TableBodyTextAppearance.Normal">
+		<item name="android:textSize">16sp</item>
+	</style>
+	<style name="TableBodyTextAppearance.Dyna">
+		<item name="android:textSize">14sp</item>
+	</style>
+	<style name="TableBodyTextAppearance.Small">
+		<item name="android:textSize">12sp</item>
+	</style>
+	<style name="DynaTextSize">
+	    <item name="android:textSize">18sp</item>
+	</style>
+	<style name="DefaultTextSize">
+	    <item name="android:textSize">14sp</item>
+	</style>
+
+	<style name="TableBodyTextAppearance.FirstLine">
+		<item name="android:textStyle">bold</item>
+		<item name="android:textSize">16sp</item>
+	</style>
+	<style name="TableBodyTextAppearance.SeconLine">
+		<item name="android:textStyle">normal</item>
+		<item name="android:textSize">14sp</item>
+	</style>
+	<style name="TableBodyTextAppearance.Date">
+		<item name="android:textStyle">italic</item>
+		<item name="android:textSize">12sp</item>
+	</style>
+	
+	<style name="CommentName" parent="@android:style/TextAppearance">
+		<item name="android:textColor">#000000</item>
+		<item name="android:textSize">14sp</item>
+	</style>
+	<style name="CommentContent" parent="@android:style/TextAppearance">
+		<item name="android:textColor">#666666</item>
+		<item name="android:textSize">15sp</item>
+	</style>
+	
+	<style name="CommentText.Date" parent="@android:style/TextAppearance">
+		<item name="android:textColor">#cccccc</item>
+		<item name="android:textSize">14sp</item>
+	</style>
+
+	<style name="ButtonCommentPublish" parent="@android:style/Widget.Button">
+		<item name="android:background">@color/button_bg_comment_ok</item>
+		<item name="android:textColor">#E0E1E6</item>
+	</style>
+	
+	<style name="Button" parent="@android:style/Widget.Button">
+	    <item name="android:textColor">#FFFFFF</item>
+		<item name="android:shadowColor">@color/text_shadow_color</item>
+		<item name="android:shadowDx">-1</item>
+		<item name="android:shadowDy">-1</item>
+		<item name="android:shadowRadius">1</item>
+	</style>
+	<style name="Button.PublishCmt">
+	    <item name="android:background">@drawable/btn_bg_publish_cmt</item>
+	    <item name="android:textColor">@color/text_light_disable_only</item>
+	</style>
+
+	<style name="TextAppearanceCommentCount" parent="@android:style/TextAppearance.Small">
+		<item name="android:textStyle">bold</item>
+	</style>
+	
+	<style name="TextAppearanceAlertDialog" parent="@android:style/TextAppearance.Medium">
+		<item name="android:textColor">@color/text_color_white</item>
+	</style>
+	
+   <style name="Animations" />
+
+
+</resources>
