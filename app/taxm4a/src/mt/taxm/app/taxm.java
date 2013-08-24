@@ -33,7 +33,7 @@ import org.apache.cordova.*;
 
 public class taxm extends DroidGap
 {
-    public static String serverUrl ="http://192.168.0.1";
+    public static String serverUrl ="http://192.168.1.8:8080/";
     private mt.taxm.app.DatabaseHelper mDbHelper;
 	private ProgressDialog mLoadingDialog;
 
