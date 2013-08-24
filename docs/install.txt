@@ -44,5 +44,11 @@ jdk1.6+/tomcat6+/oracle9+
  	http://localhost:8080/html/
 2 app测试，暂无
 
+###########
+string.xml
+<string name="default_server_url">http://192.168.1.8:8080/</string>
+apk上传位置（暂为根目录）
+
+
 last modified:
 9:10 2013/8/12
