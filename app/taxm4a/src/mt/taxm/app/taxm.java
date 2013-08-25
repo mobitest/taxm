@@ -27,6 +27,7 @@ import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.webkit.CookieManager;
 import android.widget.TextView;
 
 import org.apache.cordova.*;
@@ -42,6 +43,7 @@ public class taxm extends DroidGap
     {
         mDbHelper = new DatabaseHelper( taxm.this );
         serverUrl = ServerConfig.SelServer(mDbHelper);
+        CookieManager.setAcceptFileSchemeCookies(true);
         super.onCreate(savedInstanceState);
         // Set by <content src="index.html" /> in config.xml
         super.loadUrl(Config.getStartUrl());
