@@ -5,6 +5,8 @@ var SERVER_ROOT="http://134.96.91.209:8080/core/"
 //var  SERVER_ROOT="http://192.168.6.137/core/" 
 //dev
 //var SERVER_ROOT="http://localhost:8080/" 
+//test
+var SERVER_ROOT="http://192.168.1.8:8080/"
 
 var SERVICE_PATH= SERVER_ROOT + "services/api/" 
 var JSP_PATH = SERVER_ROOT + "ajax/" 
@@ -14,7 +16,7 @@ var DROP_TABLE = false; //重建缓存表
 var DEBUG_LOCAL = false; //利用本地文件调试
 var update_time = new Date().toISOString();
 var fav = 0;//收藏
-var TIMEOUT = 15000//超时上限
+var TIMEOUT = 5000//超时上限
 var UNKNOW_SCRATCH = "EOU*&))(&^*&*&";
 
 
@@ -513,7 +515,7 @@ function authOnline(username,Password){
 					success:afterAuth,
 					timeout: TIMEOUT,
 					error:function(XMLHttpRequest, textStatus, errorThrown){ 
-	            alert('认证出错:'+errorThrown); 
+	            alert('认证出错:'+errorThrown +":" + url_); 
 						
 					}
 				});

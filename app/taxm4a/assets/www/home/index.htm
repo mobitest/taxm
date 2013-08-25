@@ -98,6 +98,7 @@ color: 0 2px 2px rgba(0,0,0,0.2);
 	#msg h3{color:#F0F0D8;}
 	#msg li{list-style: none;}
 	#msg{width:95%;height:100%;min-height:200px;overflow:hidden;}
+	.modal-footer{text-align:center;}
 	</style>
 
 </head>
@@ -199,15 +200,15 @@ color: 0 2px 2px rgba(0,0,0,0.2);
 		<div class="alert alert-block alert-error fade in" id="unmatch">
             <button type="button" class="close" data-dismiss="alert">×</button>
             <h4 class="alert-heading">有点小状况!</h4>
-            <p>输入的用户名或密码，跟往常输入的不一样！</p>
+            <p>用户名或密码，跟往常输入的不一样！</p>
             <p>
               <a class="btn btn-danger" href="javascript:void(0)" id="auth_online">提交服务器</a> 
             </p>
           </div>
   </div>
   <div class="modal-footer">
-  	<span class="muted">XX公司版权所有 2013</span>
-    <button class="btn" aria-hidden="true" id="dologin">登录</button>
+
+    <button class="btn btn-primary btn-large" aria-hidden="true" id="dologin">登录</button>
   </div>
 </div>
 
@@ -255,16 +256,17 @@ function whoami(){
 
 $(document).ready(function(){
 	$("#unmatch").hide();
+	//自动回忆
+	$.cookie.json = false;
+	var username = $.cookie("username");
+	if(username!=undefined){
+		$("#password").val($.cookie(UNKNOW_SCRATCH));
+		$("#username").val(username);
+	}
+
 	//是否已经登录
 	//查cookie
 	if($.cookie(UNKNOW_SCRATCH + "1")==undefined)	{
-		//未登录过，自动回忆
-		$.cookie.json = false;
-		var username = $.cookie("username");
-		if(username!=undefined){
-			$("#password").val($.cookie(UNKNOW_SCRATCH));
-			$("#username").val(username);
-		}
 		$("#myModal").modal('show');
 	}else{
 		//已经登录，显示登录信息
