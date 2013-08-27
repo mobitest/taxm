@@ -138,6 +138,10 @@ margin-bottom: 20px;
 		   return r;
 		}
 		$(document).ready(function(){
+			$("#pop_login").click(function(){
+				login();
+			});
+			return;
 			var user = querystring("user");
 			if(user==""){
 					$("#pop_login").attr("href","#popupLogin");
@@ -146,7 +150,55 @@ margin-bottom: 20px;
 					$("#pop_login").attr("href","javascript:{alert('bye');document.location='t1-welcome.htm'}");
 					$("#pop_login .ui-btn-text").text(user);
 				}
+				
 		});
+		var url_ = "http://localhost:8080/rest/security/login-processing";
+		var u="http://localhost:8080/rest/security/login-processing?j_username=admin&j_password=admin";
+		function login(){
+							$.ajax({url: url_,
+								data:	{"j_username":"admin","j_password":"admin"},				
+					dataType:"jsonp",
+    type: "POST",
+					success:function(data){
+	alert(data);
+						},
+					error: function(XMLHttpRequest, textStatus, errorThrown){ 
+	            alert('error:'+errorThrown); 
+	        }
+				}); 
+	}
+	
+	function login2(){
+		$.ajax({
+    url: "http://localhost:8080/" + "/j_security_check",
+					dataType:"jsonp",
+    type: "POST",
+    data:{"j_username":"admin","j_password":"admin"},		
+    beforeSend: function (xhr) {
+        xhr.setRequestHeader("X-Ajax-call", "true");
+    },
+    success: function(result) {
+        alert(result);
+    },
+					error: function(XMLHttpRequest, textStatus, errorThrown){ 
+	            alert('error:'+errorThrown); 
+	        }
+});
+}
+	function login3(){
+		$.ajax({
+    url: "http://localhost:8080/j_security_check",
+    type: "POST",
+					dataType:"jsonp",
+    data:{"j_username":"admin","j_password":"admin"},		
+    success: function(result) {
+        alert(result);
+    },
+					error: function(XMLHttpRequest, textStatus, errorThrown){ 
+	            alert('error:'+errorThrown); 
+	        }
+});
+}
 	</script>
 	</head>
 <body>

@@ -126,6 +126,7 @@ var update_time = new Date().toISOString();
 					
 					$.ajax({url: path,					
 							dataType:DEBUG_LOCAL? "json":"jsonp",
+							
 							success:function(entity){
 								if(entity.length>0){
 									//写缓存数据
@@ -142,11 +143,12 @@ var update_time = new Date().toISOString();
 								}
 								PageBuilder.render(info_type, entity);
 							
-							},
+							},//-success
+							
 							error: function(XMLHttpRequest, textStatus, errorThrown){ 
 								$.mobile.hidePageLoadingMsg();
 		            alert('ajax get error:\r\nerrorThrown='+errorThrown +" \r\nresponseText="+XMLHttpRequest.responseText +" \r\ntextStatus=" +textStatus); 
-		       		}
+		       		}//-error
 	
 						});
 					

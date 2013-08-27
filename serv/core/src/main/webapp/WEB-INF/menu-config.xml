@@ -13,5 +13,11 @@
             <Item name="FileUpload" title="menu.selectFile" page="/uploadFile"/>
         </Menu>
         <Menu name="Logout" title="user.logout" page="/logout" roles="ROLE_ADMIN,ROLE_USER"/>
+        
+        <!--AppVersion-START-->
+        <Menu name="AppVersionMenu" title="appVersionList.title" page="/appVersions"/>
+        <!--AppVersion-END-->
     </Menus>
+
+
 </MenuConfig>

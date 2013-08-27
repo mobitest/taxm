@@ -7,5 +7,5 @@
 <hibernate-reverse-engineering>
 
     <schema-selection match-schema="ZGPAD"/>
-    <table-filter  match-name=".*"  package="mt.taxm.webapp.model" exclude="false"/>
+    <table-filter match-schema="ZGPAD"  match-name=".*"  package="mt.taxm.webapp.model" exclude="false"/>
 </hibernate-reverse-engineering>

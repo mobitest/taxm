@@ -112,6 +112,26 @@
             <result name="success">/</result>
         </action>
 
+        
+
+        <!--AppVersionAction-START-->
+        <action name="appVersions" class="mt.taxm.webapp.action.AppVersionAction" method="list">
+            <result>/WEB-INF/pages/appVersionList.jsp</result>
+        </action>
+
+        <action name="editAppVersion" class="mt.taxm.webapp.action.AppVersionAction" method="edit">
+            <result>/WEB-INF/pages/appVersionForm.jsp</result>
+            <result name="error">/WEB-INF/pages/appVersionList.jsp</result>
+        </action>
+
+        <action name="saveAppVersion" class="mt.taxm.webapp.action.AppVersionAction" method="save">
+            <result name="input">/WEB-INF/pages/appVersionForm.jsp</result>
+            <result name="cancel" type="redirectAction">appVersions</result>
+            <result name="delete" type="redirectAction">appVersions</result>
+            <result name="success" type="redirectAction">appVersions</result>
+        </action>
+        <!--AppVersionAction-END-->
+
         <!-- Add additional actions here -->
     </package>
 

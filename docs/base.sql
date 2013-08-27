@@ -97,7 +97,29 @@ values (1, -2);
 insert into USER_ROLE (USER_ID, ROLE_ID)
 values (26, -2);
 commit;
-prompt 4 records loaded
+prompt 1 records loaded
+
+
+create table app_version
+(id int not null,
+num int not null,
+title varchar2(100),
+release_notes varchar2(800),
+remark varchar2(400),
+release_date date,
+url varchar2(200),
+must_update int,
+primary key(id)
+);
+
+comment on column app_vesrion.must_update
+  is '1-must update /0-may update';
+
+insert into app_version(id,num,title,release_notes, remark, release_date, url, must_update)
+values(1, 3, 'beta版','包括认证、自动更新、一户式查询、本地缓存等完整功能',null,sysdate,'taxm4a.apk',1);
+
+commit; 
+prompt 1 records loaded
 set feedback on
 set define on
 prompt Done.

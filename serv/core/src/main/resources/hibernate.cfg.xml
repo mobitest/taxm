@@ -15,5 +15,6 @@
         <mapping class="mt.taxm.webapp.model.TNsrsbqk"/>
         <mapping class="mt.taxm.webapp.model.TSbfjfqk"/>
 
+        <mapping class="mt.taxm.model.AppVersion"/>
     </session-factory>
 </hibernate-configuration>

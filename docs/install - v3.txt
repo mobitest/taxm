@@ -1,0 +1,33 @@
+
+*************应用升级到v3***************
+0 确保数据库已经执行过安装脚本（有app_user/role/tnsr...等表）
+1 core.war解压，被覆盖到原tomcat的应用部署目录（如tomcat6/webapp中）
+2 设置数据库连接
+	web-inf/classes/jdbc.properties
+	web-inf/classes/application-resources.xml
+3 启动tomcat
+4 尝试访问应用
+	http://localhost:8080/core。帐号：admin/admin
+5 尝试访问服务
+	http://localhost:8080/core/services/
+6 尝试查询纳税信息，使用编号06011010680做参数
+	http://localhost:8080/core/services/api/ns/06011010680.json
+7 尝试访问版本服务
+	http://localhost:8080/services/api/appversion/anymore/1.json
+6 尝试登录服务
+	http://localhost:8080/services/api/security/login/admin/admin.json
+
+***************客户端***************
+1 解压apk-product-v3.zip.
+2 将taxm4a.apk覆盖到tomcat/webapp/core/taxm4a.apk
+3 将taxm4a-v2.apk安装到设备中。
+4 打开应用，应能检查到新版本并安装
+   即tomcat/webapp/core/taxm4a.apk
+5 出现登录界面，输入帐号admin/admin
+   也可在云端（core）的管理页面添加其他帐号来访问
+6 联网查询、详情应正常工作
+
+
+
+last modified:
+22:03 2013/8/27

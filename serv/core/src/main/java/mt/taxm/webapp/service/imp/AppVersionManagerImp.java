@@ -1,25 +1,40 @@
 package mt.taxm.webapp.service.imp;
 
 import java.util.Date;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.appfuse.dao.GenericDao;
+import org.appfuse.service.GenericManager;
+import org.appfuse.service.impl.GenericManagerImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import mt.taxm.webapp.model.AppVersion;
+import mt.taxm.model.AppVersion;
+import mt.taxm.webapp.model.TNsrfpgzqk;
+import mt.taxm.webapp.model.TNsrfpgzqkId;
 import mt.taxm.webapp.service.AppVersionManager;
 
-public class AppVersionManagerImp implements AppVersionManager {
+public class AppVersionManagerImp extends GenericManagerImpl<AppVersion,Long> implements AppVersionManager {
 	private static final Log log = LogFactory.getLog(AppVersionManagerImp.class);
 	String TAG = this.getClass().getName();
+	
+	  private GenericDao<AppVersion,Long> dao;
+
+		@Autowired
+	    public AppVersionManagerImp(GenericDao<AppVersion,Long> dao) {
+	        super(dao);
+	        this.dao = dao;
+	    }
 
 	@Override
 	public AppVersion anymore(int curVersion) {
 		
 		AppVersion av = new AppVersion();
-		av.setId(3);
-		av.setNum(3);
+		av.setId(3L);
+		av.setNum(3L);
 		av.setReleaseDate(new Date());
 		av.setTitle("Greate version");
-		av.setMustUpdate(1);
+		av.setMustUpdate(1L);
 		String releaseNotes = "神晚上制作的版本";
 		av.setReleaseNotes(releaseNotes );
 		String url ="taxm4a.apk";

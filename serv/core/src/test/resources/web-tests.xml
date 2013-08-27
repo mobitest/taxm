@@ -13,7 +13,7 @@
 
     <!-- runs all targets -->
     <target name="run-all-tests" 
-        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload"
+        depends="Login,Logout,PasswordHint,Signup,UserTests,StaticPages,WebServices,DWR,FileUpload,AppVersionTests,AppVersionTests"
         description="Call and executes all test cases (targets)"/>
     
     <!-- runs user-related tests -->
@@ -247,4 +247,102 @@
             </steps>
         </webtest>
     </target>
+    
+    <!--AppVersion-START-->
+    <!-- runs appVersion-related tests -->
+    <target name="AppVersionTests" depends="SearchAppVersions,EditAppVersion,SaveAppVersion,AddAppVersion,DeleteAppVersion"
+            description="Call and executes all appVersion test cases (targets)">
+        <echo>Successfully ran all AppVersion UI tests!</echo>
+    </target>
+
+    <!-- Verify the appVersions list screen displays without errors -->
+    <target name="SearchAppVersions" description="Tests search for and displaying all appVersions">
+        <webtest name="searchAppVersions">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click View AppVersion link" url="/appVersions"/>
+                <verifytitle description="we should see the appVersionList title"
+                             text=".*${appVersionList.title}.*" regex="true"/>
+                <setinputfield description="set search term" name="q" value="*"/>
+                <clickbutton label="${button.search}" description="Click Search"/>
+                <verifytitle description="we should see the appVersionList title"
+                             text=".*${appVersionList.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Verify the edit appVersion screen displays without errors -->
+    <target name="EditAppVersion" description="Tests editing an existing AppVersion's information">
+        <webtest name="editAppVersion">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit AppVersion link" url="/editAppVersion?id=-1"/>
+                <verifytitle description="we should see the appVersionDetail title"
+                             text=".*${appVersionDetail.title}.*" regex="true"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Edit a appVersion and then save -->
+    <target name="SaveAppVersion" description="Tests editing and saving a appVersion">
+        <webtest name="saveAppVersion">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit AppVersion link" url="/editAppVersion?id=-1"/>
+                <verifytitle description="we should see the appVersionDetail title"
+                             text=".*${appVersionDetail.title}.*" regex="true"/>
+
+                <!-- update some of the required fields -->
+                <setInputField description="set num" name="appVersion.num" value="7441749917885252608"/>
+
+                <clickbutton label="${button.save}" description="Click Save"/>
+                <verifytitle description="Page re-appears if save successful"
+                             text=".*${appVersionDetail.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${appVersion.updated}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Add a new AppVersion -->
+    <target name="AddAppVersion" description="Adds a new AppVersion">
+        <webtest name="addAppVersion">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Add Button" url="/editAppVersion"/>
+                <verifytitle description="we should see the appVersionDetail title"
+                             text=".*${appVersionDetail.title}.*" regex="true"/>
+
+                <!-- enter required fields -->
+                <setInputField description="set num" name="appVersion.num" value="3305641111422458880"/>
+
+                <clickbutton label="${button.save}" description="Click button 'Save'"/>
+                <verifytitle description="AppVersion List appears if save successful"
+                             text=".*${appVersionList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${appVersion.added}"/>
+            </steps>
+        </webtest>
+    </target>
+
+    <!-- Delete existing appVersion -->
+    <target name="DeleteAppVersion" description="Deletes existing AppVersion">
+        <webtest name="deleteAppVersion">
+            &config;
+            <steps>
+                &login;
+                <invoke description="click Edit AppVersion link" url="/editAppVersion?id=-1"/>
+                <prepareDialogResponse description="Confirm delete" dialogType="confirm" response="true"/>
+                <clickbutton label="${button.delete}" description="Click button 'Delete'"/>
+                <verifyNoDialogResponses/>
+                <verifytitle description="display AppVersion List" text=".*${appVersionList.title}.*" regex="true"/>
+                <verifytext description="verify success message" text="${appVersion.deleted}"/>
+            </steps>
+        </webtest>
+    </target>
+    <!--AppVersion-END-->
 </project>
+
+

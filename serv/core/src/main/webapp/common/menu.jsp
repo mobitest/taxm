@@ -12,6 +12,10 @@
     <menu:displayMenu name="UserMenu"/>
     <menu:displayMenu name="AdminMenu"/>
     <menu:displayMenu name="Logout"/>
+    
+    <!--AppVersion-START-->
+    <menu:displayMenu name="AppVersionMenu"/>
+    <!--AppVersion-END-->
 </ul>
 </div>
 </menu:useMenuDisplayer>

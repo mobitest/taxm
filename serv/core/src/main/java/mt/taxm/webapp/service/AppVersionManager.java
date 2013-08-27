@@ -5,7 +5,9 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
-import mt.taxm.webapp.model.AppVersion;
+import org.appfuse.service.GenericManager;
+
+import mt.taxm.model.AppVersion;
 
 @WebService
 @Path("appversion")
@@ -14,7 +16,7 @@ import mt.taxm.webapp.model.AppVersion;
  * @author Administrator
  *
  */
-public interface AppVersionManager {
+public interface AppVersionManager extends GenericManager<AppVersion,Long> {
     @GET
     @Path("/anymore/{cur_version}")
     /**
