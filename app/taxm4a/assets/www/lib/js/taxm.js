@@ -190,10 +190,14 @@ var UNKNOW_SCRATCH = "EOU*&))(&^*&*&";
 				render:function(info_type, data){
 						
 							$("#"+info_type+" span").text(data.length);
-						
+							//屏蔽时间线，数据很乱，则效果很差
+							//addSeries(data, info_type);
+
 							eval("PageBuilder.pop_"+ info_type +"(data)");
 							$.mobile.hidePageLoadingMsg();
 							$("#timestamp").text( $.prettyDate.format(update_time) );	
+							//加过滤
+							addFilter(data, info_type)
 				},
 				
 				/*生成函数：pop_jbxx	基本信息;pop_hd	核定;pop_sb	申报;pop_ns	纳税;pop_fpgz发票购置;pop_sbfjf社保*/
@@ -289,8 +293,8 @@ var UNKNOW_SCRATCH = "EOU*&))(&^*&*&";
 				//3.---sub of render
 				pop_sb:function(d){
 					$("#dn_sb").remove();	
-       	   var head= '<div id="dn_sb" class="mytitle datanode gen" style="display:none"> '+
-       	   '申报情况'+
+       	   var head= '<div id="dn_sb" class="datanode gen" style="display:none"> '+
+       	   '<div class="mytitle">申报情况</div>'+
        	   '</div>';
        	  
        	   $('.ui-content').append(head);
@@ -337,8 +341,8 @@ var UNKNOW_SCRATCH = "EOU*&))(&^*&*&";
 				//3.---sub of render
 				pop_ns:function(d){
 					$("#dn_ns").remove();	
-       	   var head= '<div id="dn_ns" class="mytitle datanode gen" style="display:none"> '+
-       	   '缴税情况'+
+       	   var head= '<div id="dn_ns" class="datanode gen" style="display:none"> '+
+       	   '<div class="mytitle">缴税情况</div>'+
        	   '</div>';
        	  
        	   $('.ui-content').append(head);
@@ -386,8 +390,8 @@ var UNKNOW_SCRATCH = "EOU*&))(&^*&*&";
 				//3.---sub of render
 				pop_fpgz:function(d){
 					$("#dn_fpgz").remove();	
-       	   var head= '<div id="dn_fpgz" class="mytitle datanode gen" style="display:none"> '+
-       	   '发票购置情况'+
+       	   var head= '<div id="dn_fpgz" class="datanode gen" style="display:none"> '+
+       	   '<div class="mytitle">发票购置情况<div>'+
        	   '</div>';
        	  
        	   $('.ui-content').append(head);
@@ -436,7 +440,7 @@ var UNKNOW_SCRATCH = "EOU*&))(&^*&*&";
 				pop_sbfjf:function(d){
 					$("#dn_sbfjf").remove();	
        	   var head= '<div id="dn_sbfjf" class= "mytitle datanode gen" style="display:none"> '+
-       	   '社保缴纳情况'+
+       	   '<div class="mytitle">社保缴纳情况</div>'+
        	   '</div>';
        	  
        	   $('.ui-content').append(head);

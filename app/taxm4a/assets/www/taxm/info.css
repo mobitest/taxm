@@ -53,10 +53,17 @@ by takeashower
 	.datanode fieldset div span{
 		font-weight:800;
 	}
-	
+.ui-table-columntoggle-btn{margin-top:-48px;}
+.datanode{ margin-top:23px;}	
 .ui-grid-b.ui-responsive label{padding-right:5px;font-size:14px;}  
 .ui-grid-b.ui-responsive span{font-weight:800;font-size:14px}
 .ui-listview .ui-li label{font-weight:400;color:gray;} 
+.myfilter .btntip{font-size: 9px;color: gray;padding-left:3px;position: absolute; top:5px;
+	/*-webkit-border-radius: .5em;
+border-radius: .5em;-webkit-background-clip: padding;
+background-clip: padding-box;border: 1px solid #ccc;padding: .2em .5em;right:0*/}
+.myfilter{margin-top: 20px; position: relative;}
+.datanode .mytitle{margin-top: -23px; position: relative; width: 100%;}
 
 @media (min-width:35em){
 
