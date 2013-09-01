@@ -9,14 +9,14 @@
         <Menu name="AdminMenu" title="menu.admin" description="Admin Menu" roles="ROLE_ADMIN" page="/admin/users">
             <Item name="ViewUsers" title="menu.admin.users" page="/admin/users"/>
             <Item name="ActiveUsers" title="mainMenu.activeUsers" page="/admin/activeUsers"/>
-            <Item name="ReloadContext" title="menu.admin.reload" page="/admin/reload"/>
+            <!-- Item name="ReloadContext" title="menu.admin.reload" page="/admin/reload"/ -->
             <Item name="FileUpload" title="menu.selectFile" page="/uploadFile"/>
+	        <!--AppVersion-START-->
+	        <Item name="AppVersionMenu" title="appVersionList.title" page="/appVersions"/>
+	        <!--AppVersion-END-->
         </Menu>
         <Menu name="Logout" title="user.logout" page="/logout" roles="ROLE_ADMIN,ROLE_USER"/>
         
-        <!--AppVersion-START-->
-        <Menu name="AppVersionMenu" title="appVersionList.title" page="/appVersions"/>
-        <!--AppVersion-END-->
     </Menus>
 
 

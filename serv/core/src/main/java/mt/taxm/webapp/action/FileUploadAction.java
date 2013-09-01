@@ -118,7 +118,7 @@ public class FileUploadAction extends BaseAction {
             getFieldErrors().clear();
             if ("".equals(fileFileName) || file == null) {
                 super.addFieldError("file", getText("errors.requiredField", new String[] {getText("uploadForm.file")}));
-            } else if (file.length() > 2097152) {
+            } else if (file.length() > 20971520) {
                 addActionError(getText("maxLengthExceeded"));
             }
         }

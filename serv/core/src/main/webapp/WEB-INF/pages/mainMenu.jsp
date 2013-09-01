@@ -16,5 +16,8 @@
     <li>
         <a href="<c:url value='/uploadFile'/>"><fmt:message key="menu.selectFile"/></a>
     </li>
+    <li>
+        <a href="<c:url value='/appVersions'/>"><fmt:message key="appVersionList.title"/></a>
+    </li>
 </ul>
 </body>
