@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">移动征管</string>
-	<!-- jh-->
-	<!-- string name="default_server_url">http://192.168.0.102:8080/core/</string-->
-	<!-- product -->
-	<string name="default_server_url">http://192.168.6.137/core/</string>
-		
+	<string name="default_server_url">http://192.168.1.5:8080/</string>
 	
-	<!--string name="default_server_url">http://192.168.1.8:8080/</string-->
 	<string name="default_server_name">本地服务器</string>
 	<!-- kpiboard number -->
 	<string name="default_kpiborad_number">8</string>
