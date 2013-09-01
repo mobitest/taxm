@@ -44,6 +44,8 @@ by takeashower
 	margin:-10px 0;
 	color:gray;
 	text-align:right;
+	display:inline;
+	float:right;
 	}
 #info span{color:black}
 
@@ -58,12 +60,17 @@ by takeashower
 .ui-grid-b.ui-responsive label{padding-right:5px;font-size:14px;}  
 .ui-grid-b.ui-responsive span{font-weight:800;font-size:14px}
 .ui-listview .ui-li label{font-weight:400;color:gray;} 
-.myfilter .btntip{font-size: 9px;color: gray;padding-left:3px;position: absolute; top:5px;
+.myfilter .btntip{font-size: 9px;color: #5e87b0;padding-left:3px;position: absolute; top:5px;
 	/*-webkit-border-radius: .5em;
 border-radius: .5em;-webkit-background-clip: padding;
 background-clip: padding-box;border: 1px solid #ccc;padding: .2em .5em;right:0*/}
 .myfilter{margin-top: 20px; position: relative;}
-.datanode .mytitle{margin-top: -23px; position: relative; width: 100%;}
+.datanode .mytitle{margin-top: -23px; position: relative; width: 100%;font-weight:800;text-shadow:2px 2px 6px #ccc;}
+.datanode .mytitle hr{background-color: #d4d4d4;
+	color: #d4d4d4;
+	height: 1px;
+	border: 0px;
+	clear: both;margin-top:25px}
 
 @media (min-width:35em){
 

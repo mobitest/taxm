@@ -92,7 +92,7 @@ FilterUtil={
 		
 		//缺省按第一个按钮
 		for(var i=0 ;i<data.length; i++){
-			$("#t_" + info_type + " tr").hide();
+			$("#t_" + info_type + " tr:gt(0)").hide();
 		}
 		$("#"+info_type + "_a_0" ).click();
 		/*

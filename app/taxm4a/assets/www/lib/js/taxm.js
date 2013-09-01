@@ -22,11 +22,40 @@ var UNKNOW_SCRATCH = "EOU*&))(&^*&*&";
 
 	dbutil={
 		db:null,//数据库句柄
+		instance__:null,
   	dbSize: 5 * 1024 * 1024, // 5MB
+  	tables:["corp_jbxx","corp_hd","corp_ns","corp_sb","corp_fpgz","corp_sbfjf"],
 		init:function(){
-			this.db = openDatabase("taxm", "1.0", "taxm manager", this.dbSize);
+			this.db = openDatabase("taxm", "", "taxm manager", this.dbSize);
+			instance__=this;
+			console.log("current db version = " + this.db.version	);
+			if(this.db.version=="1.0"){
+				/*
+				//unkown error, can't update...
+					 this.db.changeVersion("1.0","2.0",this.migrate1_0__2_0,
+						 function(){console.log("succeed update to 2.0");},
+						 function(tx,e){console.log("failed update to 2.0");}
+						 );
+				*/
+			}
 			return this;
 		},
+		migrate1_0__2_0:function(tx){
+				
+					for(var i=0; i<instance__.tables.length; i++){
+						tx.executeSql("alter table " + instance__.tables[i] + " add column fav int default 0",
+							function(){
+								console.log("-----------alter table ");
+								},
+							function(tx, e) {
+							  alert("update websql error: " + e.message);
+							}
+
+						);
+					}//--for
+					
+			
+		},//--migrate
 		/*建表*/
 		createTable:function(){
 			this.db.transaction(function(tx) {
@@ -205,10 +234,10 @@ var UNKNOW_SCRATCH = "EOU*&))(&^*&*&";
 				pop_jbxx:function(d){
       	  $("#dn_jbxx").remove();
       	  if(d.nsrMc) d = [d];
-	        var head= '<div id="dn_jbxx" class="datanode gen"> <ul data-role="listview" data-inset="true">'+
-  	      '<li data-role="list-divider">基本信息</li>'+
+	        var head= '<div id="dn_jbxx" class="datanode gen"> '+
+  	      '<div class="mytitle">基本信息<hr></div>'+
     	   
-      	  '</ul></div>';
+      	  '<ul data-role="listview" data-inset="true"></ul></div>';
         	$('.ui-content').append(head);
         	var lv = $("#dn_jbxx.gen>ul");
    
@@ -220,28 +249,28 @@ var UNKNOW_SCRATCH = "EOU*&))(&^*&*&";
 						var t =
 						"<li data-role='fieldcontain'><label for='name2'>纳税人名称：</label><span type='text'>"+ entity.nsrMc	+"</span></li>"+
 						"<li data-role='fieldcontain'><label for='name2'>纳税人编码：</label><span type='text'>"+ entity.nsrbm	+"</span></li>"+
-						"<li data-role='fieldcontain'><label for='name2'>注册地址：</label><span type='text'>"+ print(entity.zcDz	)+"</span></li>"+
-						"<li data-role='fieldcontain'><label for='name2'>生产经营地址：</label><span type='text'>"+ print( entity.sjjyDz)	+"</span></li>"+
-						"<li data-role='fieldcontain'><label for='name2'>注册类型：</label><span type='text'>"+print(  entity.zclx)	+"</span></li>"+
-						"<li data-role='fieldcontain'><label for='name2'>所处街道：</label><span type='text'>"+ print( entity.xzjd)	+"</span></li>"+
+						"<li data-role='fieldcontain'><label for='name2'>注册地址：</label><span type='text'>"+ prettyText(entity.zcDz	)+"</span></li>"+
+						"<li data-role='fieldcontain'><label for='name2'>生产经营地址：</label><span type='text'>"+ prettyText( entity.sjjyDz)	+"</span></li>"+
+						"<li data-role='fieldcontain'><label for='name2'>注册类型：</label><span type='text'>"+prettyText(  entity.zclx)	+"</span></li>"+
+						"<li data-role='fieldcontain'><label for='name2'>所处街道：</label><span type='text'>"+ prettyText( entity.xzjd)	+"</span></li>"+
 						"<li data-role='fieldcontain'><label for='name2'>信誉等级：</label><span type='text'>"+ (entity.xydjjb? entity.xydjjb: "（未定义）")	+"</span></li>"+
-						"<li data-role='fieldcontain'><label for='name2'>法定代表人：</label><span type='text'>"+ print(entity.fddbrMc)	+"</span></li>"+
-						"<li data-role='fieldcontain'><label for='name2'>联系电话：</label><span type='text'>"+print(  entity.lxdhDh	)+"</span></li>"+
-						"<li data-role='fieldcontain'><label for='name2'>法人手机号码：</label><span type='text'>"+ print( entity.frsjhm)	+"</span></li>"+
-						"<li data-role='fieldcontain'><label for='name2'>财务负责人：</label><span type='text'>"+print( entity.cwfzrMc)	+"</span></li>"+
-						"<li data-role='fieldcontain'><label for='name2'>办税员姓名：</label><span type='text'>"+ print( entity.bsyMc)	+"</span></li>"+
-						"<li data-role='fieldcontain'><label for='name2'>控股类型：</label><span type='text'>"+ print( entity.kglx	)+"</span></li>"+
-						"<li data-role='fieldcontain'><label for='name2'>税务登记：</label><span type='text'>"+ print( entity.swdjlb)	+"</span></li>"+
-						"<li data-role='fieldcontain'><label for='name2'>税务登记证号：</label><span type='text'>"+print(  entity.swdjzh)	+"</span></li>"+
-						"<li data-role='fieldcontain'><label for='name2'>登记状态：</label><span type='text'>"+ print( entity.djzt)	+"</span></li>"+
-						"<li data-role='fieldcontain'><label for='name2'>隶属关系：</label><span type='text'>"+ print( entity.lsgx)	+"</span></li>"+
-						"<li data-role='fieldcontain'><label for='name2'>行业：</label><span type='text'>"+ print( entity.hy)	+"</span></li>"+
-						"<li data-role='fieldcontain'><label for='name2'>管理机关：</label><span type='text'>"+ print( entity.gljg)	+"</span></li>"+
-						"<li data-role='fieldcontain'><label for='name2'>登记机关：</label><span type='text'>"+ print(entity.djjg)	+"</span></li>"+
-						"<li data-role='fieldcontain'><label for='name2'>专管员：</label><span type='text'>"+ print( entity.zgy)	+"</span></li>"+
-						"<li data-role='fieldcontain'><label for='name2'>税务登记日期：</label><span type='text'>"+ print( entity.djRq)	+"</span></li>"+
-						"<li data-role='fieldcontain'><label for='name2'>工商开业时间：</label><span type='text'>"+print( entity.yxQsrq)	+"</span></li>"+
-						"<li data-role='fieldcontain'><label for='name2'>经营范围：</label><span type='text'>"+ print( entity.jyfwzy)+"</span></li>"+
+						"<li data-role='fieldcontain'><label for='name2'>法定代表人：</label><span type='text'>"+ prettyText(entity.fddbrMc)	+"</span></li>"+
+						"<li data-role='fieldcontain'><label for='name2'>联系电话：</label><span type='text'>"+prettyText(  entity.lxdhDh	)+"</span></li>"+
+						"<li data-role='fieldcontain'><label for='name2'>法人手机号码：</label><span type='text'>"+ prettyText( entity.frsjhm)	+"</span></li>"+
+						"<li data-role='fieldcontain'><label for='name2'>财务负责人：</label><span type='text'>"+prettyText( entity.cwfzrMc)	+"</span></li>"+
+						"<li data-role='fieldcontain'><label for='name2'>办税员姓名：</label><span type='text'>"+ prettyText( entity.bsyMc)	+"</span></li>"+
+						"<li data-role='fieldcontain'><label for='name2'>控股类型：</label><span type='text'>"+ prettyText( entity.kglx	)+"</span></li>"+
+						"<li data-role='fieldcontain'><label for='name2'>税务登记：</label><span type='text'>"+ prettyText( entity.swdjlb)	+"</span></li>"+
+						"<li data-role='fieldcontain'><label for='name2'>税务登记证号：</label><span type='text'>"+prettyText(  entity.swdjzh)	+"</span></li>"+
+						"<li data-role='fieldcontain'><label for='name2'>登记状态：</label><span type='text'>"+ prettyText( entity.djzt)	+"</span></li>"+
+						"<li data-role='fieldcontain'><label for='name2'>隶属关系：</label><span type='text'>"+ prettyText( entity.lsgx)	+"</span></li>"+
+						"<li data-role='fieldcontain'><label for='name2'>行业：</label><span type='text'>"+ prettyText( entity.hy)	+"</span></li>"+
+						"<li data-role='fieldcontain'><label for='name2'>管理机关：</label><span type='text'>"+ prettyText( entity.gljg)	+"</span></li>"+
+						"<li data-role='fieldcontain'><label for='name2'>登记机关：</label><span type='text'>"+ prettyText(entity.djjg)	+"</span></li>"+
+						"<li data-role='fieldcontain'><label for='name2'>专管员：</label><span type='text'>"+ prettyText( entity.zgy)	+"</span></li>"+
+						"<li data-role='fieldcontain'><label for='name2'>税务登记日期：</label><span type='text'>"+ prettyText( entity.djRq)	+"</span></li>"+
+						"<li data-role='fieldcontain'><label for='name2'>工商开业时间：</label><span type='text'>"+prettyText( entity.yxQsrq)	+"</span></li>"+
+						"<li data-role='fieldcontain'><label for='name2'>经营范围：</label><span type='text'>"+ prettyText( entity.jyfwzy)+"</span></li>"+
 
 						'</fieldset></li>';
 
@@ -249,16 +278,16 @@ var UNKNOW_SCRATCH = "EOU*&))(&^*&*&";
 						$("#mytitle").text(entity.nsrMc + "("+entity.nsrbm+")");
 					});//-- each
 
-					lv.listview({ theme: "c" });//.listview("refresh");
+					lv.listview({ theme: "d" });//.listview("refresh");
 
 				},// -jbxx
 				//3.---sub of render
 				pop_hd:function(d){
 					$("#dn_hd").remove();	
-	        var head= '<div id="dn_hd" class="datanode gen" style="display:none"> <ul data-role="listview" data-inset="true">'+
-  	      '<li data-role="list-divider">核定信息</li>'+
+	        var head= '<div id="dn_hd" class="datanode gen" style="display:none"> '+
+  	      '<div class="mytitle">核定信息<hr></div>'+
     	   
-      	  '</ul></div>'
+      	  '<ul data-role="listview" data-inset="true"></ul></div>'
         	$('.ui-content').append(head);
         	var lv = $("#dn_hd.gen>ul");
 					//遍历该节点下的记录
@@ -274,8 +303,8 @@ var UNKNOW_SCRATCH = "EOU*&))(&^*&*&";
 						"<li class='ui-block-a'><label>计税金额：</label><span type='text'>"+ entity.jsje +"</span><label>元</label>"+
 						"<li class='ui-block-b'><label>税    率：</label><span type='text'>"+ entity.sl +"</span><label>%</label>"+
 						"<li class='ui-block-c'><label>纳税期限：</label><span type='text'>"+ entity.nsqx +"</span>"+
-						"<li class='ui-block-a'><label>速算扣除数：</label><span type='text'>"+ entity.sskcs +"</span>"+
-						"<li class='ui-block-b'><label>应纳税额：</label><span type='text'>"+ entity.ynse +"</span>"+
+						"<li class='ui-block-a'><label>速算扣除数：</label><span type='text'>"+ prettyText(entity.sskcs) +"</span>"+
+						"<li class='ui-block-b'><label>应纳税额：</label><span type='text'>"+ prettyText(entity.ynse) +"</span>"+
 						"<li class='ui-block-c'><label>征收方式：</label><span type='text'>"+ entity.zsfs +"</span>"+
 						"<li class='ui-block-a'><label>计税依据：</label><span type='text'>"+ entity.jsyj +"</span>"+
 						"<li class='ui-block-b'><label>起始日期：</label><span type='text'>"+ date1 + "</span>"+
@@ -286,7 +315,7 @@ var UNKNOW_SCRATCH = "EOU*&))(&^*&*&";
 						lv.append(t)
 					});//-- each
 
-					lv.listview({ theme: "c" });//.listview("refresh");
+					lv.listview({ theme: "d" });//.listview("refresh");
 
 				},//-- hd
 
@@ -294,7 +323,7 @@ var UNKNOW_SCRATCH = "EOU*&))(&^*&*&";
 				pop_sb:function(d){
 					$("#dn_sb").remove();	
        	   var head= '<div id="dn_sb" class="datanode gen" style="display:none"> '+
-       	   '<div class="mytitle">申报情况</div>'+
+       	   '<div class="mytitle">申报情况<hr></div>'+
        	   '</div>';
        	  
        	   $('.ui-content').append(head);
@@ -342,7 +371,7 @@ var UNKNOW_SCRATCH = "EOU*&))(&^*&*&";
 				pop_ns:function(d){
 					$("#dn_ns").remove();	
        	   var head= '<div id="dn_ns" class="datanode gen" style="display:none"> '+
-       	   '<div class="mytitle">缴税情况</div>'+
+       	   '<div class="mytitle">缴税情况<hr></div>'+
        	   '</div>';
        	  
        	   $('.ui-content').append(head);
@@ -391,7 +420,7 @@ var UNKNOW_SCRATCH = "EOU*&))(&^*&*&";
 				pop_fpgz:function(d){
 					$("#dn_fpgz").remove();	
        	   var head= '<div id="dn_fpgz" class="datanode gen" style="display:none"> '+
-       	   '<div class="mytitle">发票购置情况<div>'+
+       	   '<div class="mytitle">发票购置情况<hr><div>'+
        	   '</div>';
        	  
        	   $('.ui-content').append(head);
@@ -440,7 +469,7 @@ var UNKNOW_SCRATCH = "EOU*&))(&^*&*&";
 				pop_sbfjf:function(d){
 					$("#dn_sbfjf").remove();	
        	   var head= '<div id="dn_sbfjf" class= "mytitle datanode gen" style="display:none"> '+
-       	   '<div class="mytitle">社保缴纳情况</div>'+
+       	   '<div class="mytitle">社保缴纳情况<hr></div>'+
        	   '</div>';
        	  
        	   $('.ui-content').append(head);
@@ -487,8 +516,8 @@ var UNKNOW_SCRATCH = "EOU*&))(&^*&*&";
 				
 			};
 /*打印内容*/
-function print(m){
-	return m?m:"（空）";
+function prettyText(m){
+	return m?m:"-";
 }		
 
 
