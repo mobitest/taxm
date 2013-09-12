@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">移动征管</string>
-	<string name="default_server_url">http://192.168.1.5:8080/</string>
-	
+	<string name="default_server_url">http://192.168.6.137/core/</string>
 	<string name="default_server_name">本地服务器</string>
 	<!-- kpiboard number -->
 	<string name="default_kpiborad_number">8</string>
@@ -24,7 +23,7 @@
 	<string name="version_release_date">发布时间</string>
 	<string name="progress_dialog_message">正在加载数据，请稍候...</string>
 
-	    <string name="toast_io_exc">服务器无响应，请稍后再试</string>
+	    <string name="toast_io_exc">服务器未能连接，您可以离线使用</string>
     <string name="toast_network_exc">无法获取网络，请检查网络状态</string>
     <string name="toast_session_exc">网络超时，请重新登录</string>
     <string name="toast_server_exc">服务端发生内部错误，请报告管理员</string>

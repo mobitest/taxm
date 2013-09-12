@@ -11,7 +11,10 @@
 	<link rel="stylesheet" href="css/appstore.css">
 	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<style>
-		.mythumb{background-size: 100%;}
+		.mythumb{background-size: 100%; border-radius: 50%;
+		box-shadow: 0px 0px 10px 4px rgba(119, 119, 119, 0.75);
+		}
+		.featured .swiper-slide{border-radius:50%;}
 .mythumb.a1{	background-image:url(../images/metro/m1.png);}
 .mythumb.a2{	background-image:url(../images/metro/m2.png);}
 .mythumb.a3{	background-image:url(../images/metro/m3.png);}
@@ -75,7 +78,6 @@ color: 0 2px 2px rgba(0,0,0,0.2);
 	width:100%;
 	height:280px;
 	background:url(../images/home_2.jpg) 0 70%;
-	background-size:100%;
 	
 	}
 	.copyright{
@@ -93,21 +95,21 @@ color: 0 2px 2px rgba(0,0,0,0.2);
 	.banner .mylabel{color:#4169e1;padding:40px 0 10px 45px;font-size:18px;text-align:left;}
 	.banner .r{padding:50px 40px 0 0;text-align:right;}
 	#swiper{position:absolute;top:55%;left:5%;max-width:900px;width:90%;overflow:hidden;}
-	#login-btn{float:right;margin-top:-80px;margin-right:20px;display:inline-block;}
+	#login-btn, #exit-btn{float:right;margin-top:-80px;margin-right:20px;display:inline-block;}
 	#wrap{background:#F0F0F0;}
 	#msg h3{color:#F0F0D8;}
 	#msg li{list-style: none;}
 	#msg{width:95%;height:100%;min-height:200px;overflow:hidden;}
 	.modal-footer{text-align:center;}
 	</style>
-
+	<link rel="stylesheet" href="css/lulu_set.css">
 </head>
 <body>
 	<div  class="navbar">
 
 		<h2><img src="../images/coins-icon.png"/> 移动征管</h2>
 		<a id="login-btn" href="#myModal" class="login-btn btn btn-large btn-primary" role="button" data-toggle="modal"><i class="icon-user icon-white"></i> 登录</a>
-
+		<a id="exit-btn" href="#myModal" class="login-btn btn btn-large " role="button" > 退出系统<i class="icon-off"></i></a>
 	</div><!--/navbar-->
 	<div id="wrap">
 	<div class="banner">
@@ -162,7 +164,7 @@ color: 0 2px 2px rgba(0,0,0,0.2);
 		</div>
 	</div>
 	<div id="footer" class="copyright mybody">
-	      <p class="muted credit">XX公司版权所有, 2013. | 版本 V1.0.201</p>
+	      <p class="muted credit">广东奥博信息产业有限公司版权所有, 2013. | 版本 V1.0.0</p>
 
   </div>
 </div>
@@ -209,17 +211,19 @@ color: 0 2px 2px rgba(0,0,0,0.2);
   <div class="modal-footer">
 
     <button class="btn btn-primary btn-large" aria-hidden="true" id="dologin">登录</button>
+    <button class="btn btn-large" aria-hidden="true" id="dotest">测试</button>
   </div>
 </div>
 
 	<script src="../lib/js/jquery.js"></script>
 	<!-- Don't forget to get the latest Swiper and scrollbar version here-->
-	<script src="js/idangerous.swiper-2.0.min.js"></script>
+	<script src="js/idangerous.swiper-2.1.js"></script>
 	<script src="js/idangerous.swiper.3dflow-2.0.js"></script>
 	<script src="js/appstore.js"></script>
 	 <script src="js/bootstrap.min.js"></script>
 	<script src="../lib/js/taxm.js"></script>	
 	<script src="../lib/js/jquery.cookie.js"></script>	
+	<script src="../cordova.js"></script>		
 	<script>
 
 
@@ -272,7 +276,14 @@ $(document).ready(function(){
 		//已经登录，显示登录信息
 		whoami()
 	}
-	
+
+ 
+    $("#exit-btn").click(function(){
+    	$.removeCookie(UNKNOW_SCRATCH + "1");
+    	navigator.app.exitApp();
+    });//exit-btn
+
+
 	
 	/*
 		http://localhost:8080/services/api/security/login/admin/admin.json
@@ -287,16 +298,22 @@ $(document).ready(function(){
 
 	);//-dologin
 
+	$("#dotest").click(function(){
+		$("#myModal").modal('hide');
+	})
 	$("#auth_online").click(function(){
 		authOnline($("#username").val(), $("#password").val());
 	});//--auth_online
 	
+	
 	/*test....
 	$("h1").text("测试系统")
-	$("#myModal").modal('hide');
-	*/
+	$("#myModal").modal('hide');*/
+	
 
 });
+	
+//document.addEventListener("deviceready", function(){alert('1');}, true);
 	</script>
 
 </body>

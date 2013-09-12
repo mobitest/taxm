@@ -3,12 +3,12 @@ $(function(){
 	var featuredSwiper = $('.featured').swiper({
 		slidesPerView:'auto',
 		centeredSlides: true,
-		initialSlide:7,
+		initialSlide:6/*,
 		tdFlow: {
 			rotate : 30,
 			stretch :10,
-			depth: 150
-		}
+			depth: 120
+		}*/
 	})
 	
 	//Thumbs

@@ -1,0 +1,20 @@
+
+body{background:url(../../images/bg.jpg);background-size:100%;}
+
+.navbar{box-shadow: 0 0 rgba(0,0,0,0.2);color:#fff;background:url(../../images/top_bg.png) center 0;}
+
+#login-btn{margin-right:150px;}
+#login-btn1{float:right;margin-top:-80px;margin-right:20px;display:inline-block;}
+.login-btn{font-family:"Helvetica Neue", Helvetica, Arial, "Microsoft Yahei UI", "Microsoft YaHei", SimHei, "\5B8B\4F53", simsun, sans-serif;}
+
+
+#wrap{background:none;}
+.banner{box-shadow: 0 0 rgba(0,0,0,0.2);background:url(../../images/banner.png)  center ;}
+.banner #msg{display:none;}
+
+
+.mybody:after{background:none;}
+.mybody{background:url(../../images/footer_bg.png) center 0;}
+
+
+

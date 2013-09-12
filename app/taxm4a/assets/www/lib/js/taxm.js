@@ -101,7 +101,7 @@ var UNKNOW_SCRATCH = "EOU*&))(&^*&*&";
 			var base_rows_sql  = "select name as nsrbm from corp_jbxx b order by  fav desc ,update_time desc limit 50";
 			this.db.transaction(function (tx){
 				console.log("clear jbxx");
-	    	tx.executeSql('delete from corp_jbxx where id not in(select id from corp_jbxx b order by update_time desc limit 50) ',[],	dbutil.onSuccess,dbutil.onError);
+	    	tx.executeSql('delete from corp_jbxx where id not in(select id from corp_jbxx b order by fav desc,update_time desc limit 50) ',[],	dbutil.onSuccess,dbutil.onError);
 				console.log("clear corp_hd");
 	    	tx.executeSql('delete from corp_hd where name not in(' + base_rows_sql + ') ',[],	dbutil.onSuccess,dbutil.onError);
 				console.log("clear corp_ns");

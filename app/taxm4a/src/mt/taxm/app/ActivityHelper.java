@@ -84,6 +84,8 @@ private static ConnectivityManager connectivityManager;
                 simpleToast(context, R.string.toast_io_exc);
             }
 
+            //TODO:网络检测似有问题，暂不提示
+            /*
             if(!isNetAvailable()){
                 //add by xiacp 2011.10.28
                 //增加网络设置跳转
@@ -99,6 +101,7 @@ private static ConnectivityManager connectivityManager;
                 builder.create().show();
                 return ;
             }
+            */
             
         }else if(e instanceof DisconnectException){
             simpleToast(context, R.string.toast_network_exc);

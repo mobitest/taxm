@@ -119,10 +119,10 @@ public class GetNewVersion extends AsyncTask<Void, Void, Object> {
     @Override
     protected void onPreExecute() {
         if(mLoadingDialog == null){
-            showLoadingDailog("检查版本中,取消请按退回键...");
+//            showLoadingDailog("检查版本中,取消请按退回键...");
         }else{
 //            mLoadingDialog.setMessage("检查版本中,请稍后...");
-            mLoadingDialog.setMessage("正在联网，请稍候...");
+//            mLoadingDialog.setMessage("正在联网，请稍候...");
         }
         
         try {
@@ -169,6 +169,7 @@ public class GetNewVersion extends AsyncTask<Void, Void, Object> {
     	}
 
     	String url = taxm.serverUrl + VERSION_URL + currentCode + ".json";
+    	Log.d(TAG, "getversion:"+url);
     	JSONObject json = HttpHelper. formatJSON(connect.doGet(url,true));
     	//   	JSONObject json = HttpHelper.packHttpEntity(connect.doPost(VERSION_URL + currentCode + ".json", post,null));
     	Log.d(TAG, json == null ? " null " : json.toString());

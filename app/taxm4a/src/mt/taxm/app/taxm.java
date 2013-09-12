@@ -34,7 +34,7 @@ import org.apache.cordova.*;
 
 public class taxm extends DroidGap
 {
-    public static String serverUrl ="http://192.168.1.8:8080/";
+    public static String serverUrl =null;
     private mt.taxm.app.DatabaseHelper mDbHelper;
 	private ProgressDialog mLoadingDialog;
 
@@ -42,7 +42,9 @@ public class taxm extends DroidGap
     public void onCreate(Bundle savedInstanceState)
     {
         mDbHelper = new DatabaseHelper( taxm.this );
-        serverUrl = ServerConfig.SelServer(mDbHelper);
+        //TODO:没处理由配置取服务器地址，改为直接读配置文件中的缺省地址
+        serverUrl = this.getString(R.string.default_server_url).toString();
+//        serverUrl = ServerConfig.SelServer(mDbHelper);
         CookieManager.setAcceptFileSchemeCookies(true);
         super.onCreate(savedInstanceState);
         // Set by <content src="index.html" /> in config.xml
@@ -71,10 +73,14 @@ public class taxm extends DroidGap
     }
     
     private void showLoadingDailog(String msg) {
-        mLoadingDialog = new ProgressDialog(taxm.this);
-        mLoadingDialog.setCancelable(true);
-        mLoadingDialog.setMessage(msg);
-        mLoadingDialog.show();
+    	if(mLoadingDialog==null){
+    		mLoadingDialog = new ProgressDialog(taxm.this);
+    		mLoadingDialog.setCancelable(true);
+    		mLoadingDialog.setMessage(msg);
+    		mLoadingDialog.show();
+    	}else{
+    		mLoadingDialog.setMessage(msg);
+    	}
     }
 
     private void dismissLoadingDialog() {
