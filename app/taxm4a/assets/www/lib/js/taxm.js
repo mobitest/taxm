@@ -226,7 +226,8 @@ var UNKNOW_SCRATCH = "EOU*&))(&^*&*&";
 							$.mobile.hidePageLoadingMsg();
 							$("#timestamp").text( $.prettyDate.format(update_time) );	
 							//加过滤
-							addFilter(data, info_type)
+							//addFilter(data, info_type)
+							addFilter2(data, info_type)
 				},
 				
 				/*生成函数：pop_jbxx	基本信息;pop_hd	核定;pop_sb	申报;pop_ns	纳税;pop_fpgz发票购置;pop_sbfjf社保*/

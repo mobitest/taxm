@@ -111,11 +111,12 @@
 				if(kw.length==0) return alert("您得先填个关键字再查...");	
 				
 				var url_ = SERVICE_PATH +"jbxx/" + kw +".json";
+				if(DEBUG_LOCAL) url_ = FILE_PATH + "jbxx" + ".json";//用本地文件调试
 				$.mobile.loadingMessage = "联网查询..."; 
 				$.mobile.showPageLoadingMsg();
 				console.log("start jsonp, url="+ url_);
 				$.ajax({url: url_,					
-					dataType:"jsonp",
+					dataType:DEBUG_LOCAL? "json":"jsonp",
 					timeout: TIMEOUT,
 					success:function(data){
 						$.mobile.hidePageLoadingMsg();
@@ -135,7 +136,7 @@
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown){ 
 						$.mobile.hidePageLoadingMsg();
-			            alert('啊，没取到数据，'+errorThrown +"。\r\n可能服务器挂了:"+url_); 
+			            alert('啊，没取到数据('+errorThrown +")\r\n可能服务器挂了:"+url_); 
 			        }
 				}); 
 
