@@ -16,5 +16,9 @@ body{background:url(../../images/bg.jpg);background-size:100%;}
 .mybody:after{background:none;}
 .mybody{background:url(../../images/footer_bg.png) center 0;}
 
+@media (max-width:35em){
+.banner{box-shadow: 0 0 rgba(0,0,0,0.2);background:url(../../images/banner-small.png)  center ;}
+}
+
 
 
