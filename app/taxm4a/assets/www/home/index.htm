@@ -94,7 +94,7 @@ color: 0 2px 2px rgba(0,0,0,0.2);
 	.navbar h1{padding:0;border:0;color:black;}
 	.banner .mylabel{color:#4169e1;padding:40px 0 10px 45px;font-size:18px;text-align:left;}
 	.banner .r{padding:50px 40px 0 0;text-align:right;}
-	#swiper{position:absolute;top:55%;left:5%;max-width:900px;width:90%;overflow:hidden;}
+	#swiper{position:absolute;top:55%;left:5%;width:90%;overflow:hidden;}
 	#login-btn, #exit-btn{float:right;margin-top:-80px;margin-right:20px;display:inline-block;}
 	#wrap{background:#F0F0F0;}
 	#msg h3{color:#F0F0D8;}
@@ -141,24 +141,7 @@ color: 0 2px 2px rgba(0,0,0,0.2);
 			<div class="swiper-slide mythumb a6">
 				<a href="../taxm/t2-search.htm"></a>
 			</div>
-			<div class="swiper-slide mythumb a1">                                                    
-				<a href="../taxm/t2-search.htm"></a>
-			</div>
-			<div class="swiper-slide mythumb a2">
-				<a href="../taxm/t2-search.htm"></a>
-			</div>
-			<div class="swiper-slide mythumb a3">                                                    
-				<a href="../taxm/t2-search.htm"></a>
-			</div>
-			<div class="swiper-slide mythumb a4">
-				<a href="../taxm/t2-search.htm"></a>
-			</div>
-			<div class="swiper-slide mythumb a5">                                                    
-				<a href="../taxm/t2-search.htm"></a>
-			</div>
-			<div class="swiper-slide mythumb a6">
-				<a href="../taxm/t2-search.htm"></a>
-			</div>
+
 
 
 		</div>
@@ -189,6 +172,8 @@ color: 0 2px 2px rgba(0,0,0,0.2);
 		    <div class="controls">
 		      <input type="password" id="password" placeholder="请输入密码…">
 		    </div>
+		   
+		   
 		  </div>
 		  <div class="control-group">
 		    <div class="controls">
@@ -304,7 +289,6 @@ $(document).ready(function(){
 	$("#auth_online").click(function(){
 		authOnline($("#username").val(), $("#password").val());
 	});//--auth_online
-	
 	
 	/*test....
 	$("h1").text("测试系统")
