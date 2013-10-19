@@ -13,7 +13,9 @@
 
 	<script src="../lib/js/jquery.mobile-1.3.1.min.js"></script>
 	<script src="../lib/js/jquery.prettydate.js"></script>	
-	<script src="../lib/hs/highstock.src.js"></script>	
+	<script src="../cordova.js"></script>		
+	<script src="../lib/js/datePickerPlugin.js"></script>	
+
 	<script src="../lib/js/filter.js"></script>	
 	
 	<link href="../lib/css/mobiscroll.custom-2.6.2.min.css" rel="stylesheet" type="text/css" />
@@ -70,7 +72,7 @@
 		}
 		
 		$(document).ready(function(){
-			/*屏蔽时间线
+			/*时间线,屏蔽先
 			chartutil = chartUtil.init("#chart");
 			*/
 			//打开子页面
@@ -106,8 +108,8 @@
 	<div data-role="header" data-position="fixed" data-tap-toggle="false" id="myhead"> 
 
 		<div data-role="controlgroup" data-type="horizontal">
-			<a href="../home/index.htm?user=someone" data-role="button" data-icon="logo-taxm" data-iconpos="notext" data-ajax="false">主屏</a>
-				<a href="t2-search.htm" data-role="button"  data-ajax="false">一户式查询</a>
+		<a href="../home/index.htm?user=someone" data-role="button" data-icon="logo-taxm" data-iconpos="notext" data-ajax="false">主屏</a>
+		<a href="t2-search.htm" data-role="button"  data-ajax="false">一户式查询</a>
         <a href="#left-panel" data-role="button" data-ajax="false" data-icon="bars" data-iconpos="notext">选项</a>
 
 		</div>
