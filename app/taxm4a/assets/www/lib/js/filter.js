@@ -4,6 +4,7 @@
 
 }
 
+//-----------------------已经废弃--begin
 /*seriesExtra 从数据中抽取时间序列
 	data 数据
 	exp_entity 	取单个元素的表达式，eg: "data[i].id" || "data[i]" 
@@ -118,6 +119,9 @@ FilterUtil={
 }//-FilterUtil
 
 
+//-----------------------已经废弃--end
+
+
 function addFilter2(data, info_type){
 	FilterUtil2.add(info_type, data) ;
 }
@@ -138,8 +142,8 @@ FilterUtil2 ={
 		;
 		//"<input id='jbxx' value='2013-01-01'/>
 		var d0= ops.default_date_from,d1=ops.date_max;
-		s = s + "<label>" + label0 + "</label>" + "<span class='holo'><input id='"+ a_id0 + "' name='"+ a_id0 +"' type=text style='width:80px' value='" + d0 + "' class='" + info_type + "_filter ui-body-c'/></span>";
-		s = s + "<label>" + label1 + "</label>" + "<span class='holo'><input id='"+ a_id1 + "' name='"+ a_id1 +"' type=text style='width:80px' value='" + d1 + "' class='" + info_type + "_filter  ui-body-c'/></span>";
+		s = s + "<label>" + label0 + "</label>" + "<span class='holo'><input id='"+ a_id0 + "' name='"+ a_id0 +"' type=text style='width:90px' value='" + d0 + "' class='" + info_type + "_filter ui-body-c' readonly /></span>";
+		s = s + "<label>" + label1 + "</label>" + "<span class='holo'><input id='"+ a_id1 + "' name='"+ a_id1 +"' type=text style='width:90px' value='" + d1 + "' class='" + info_type + "_filter  ui-body-c' readonly /></span>";
 			
 		s = s + "<label class='pal'>（已显示<span id='" + info_type + "_total_rows' class='rowscount'></span>中的<span id='" + info_type + "_filter_rows' class='rowscount'></span>条）</label></div>";
 		$(s).appendTo("#dn_"+info_type +" .mytitle");//.trigger("create");
@@ -147,9 +151,27 @@ FilterUtil2 ={
 		
 		//处理输入交互
 		var options = { theme: 'android-ics', mode: 'mixed', display: 'bubble', lang: 'zh',headerText: '{value}'};
-      $("#"+a_id0).scroller($.extend({preset : 'date'}, options ));		
-      $("#"+a_id1).scroller($.extend({preset : 'date'}, options ));		
-		
+      //$("#"+a_id0).scroller($.extend({preset : 'date'}, options ));		
+      //$("#"+a_id1).scroller($.extend({preset : 'date'}, options ));		
+      $("."+ info_type + "_filter").click(function(event) {
+          var currentField = $(this);
+          var myNewDate = Date.parse(currentField.val()) || new Date();
+          if(typeof myNewDate === "number"){ myNewDate = new Date (myNewDate); }
+
+          // Same handling for iPhone and Android
+          window.plugins.datePicker.show({
+              date : myNewDate,
+              mode : 'date', // date or time or blank for both
+              allowOldDates : true
+          }, function(returnDate) {
+              var newDate = new Date(returnDate);
+              currentField.val(returnDate).trigger('change');
+
+              // This fixes the problem you mention at the bottom of this script with it not working a second/third time around, because it is in focus.
+              currentField.blur();
+          });
+      });	
+      
 		//输入改变值后
 		$("."+ info_type + "_filter").change(function(){
 			var min_dt = $("#"+a_id0).val(),
@@ -179,7 +201,7 @@ FilterUtil2 ={
 		$("."+ info_type + "_filter").trigger("change");
 		
 		
-	},//- and
+	},//- add
 	/*根据信息类型与实际数据，取得过滤的设置*/
 	getFilterOptions:function(info_type, data){
 		/*
