@@ -4156,7 +4156,8 @@ define("cordova/plugin/android/promptbasednativeapi", function(require, exports,
 
 module.exports = {
     exec: function(service, action, callbackId, argsJson) {
-        return prompt(argsJson, 'gap:'+JSON.stringify([service, action, callbackId]));
+    	return;
+//        return prompt(argsJson, 'gap:'+JSON.stringify([service, action, callbackId]));
     },
     setNativeToJsBridgeMode: function(value) {
         prompt(value, 'gap_bridge_mode:');
