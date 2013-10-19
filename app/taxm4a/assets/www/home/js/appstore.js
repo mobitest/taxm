@@ -3,7 +3,7 @@ $(function(){
 	var featuredSwiper = $('.featured').swiper({
 		slidesPerView:'auto',
 		centeredSlides: true,
-		initialSlide:6/*,
+		initialSlide:2/*,
 		tdFlow: {
 			rotate : 30,
 			stretch :10,
