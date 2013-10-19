@@ -20,8 +20,8 @@ by takeashower
 		-webkit-transform: translate3d(17em,0,0);
 		-moz-transform: translate3d(17em,0,0);
 		transform: translate3d(17em,0,0);}
-		
-
+	/*没图标的按钮，有点低*/	
+	a span.ui-btn-inner{height:16px;} 
 
 .ui-content{
 	width:100%;
