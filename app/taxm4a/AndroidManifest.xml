@@ -37,7 +37,7 @@
         android:hardwareAccelerated="true"
         android:debuggable="true">
         <activity android:name="taxm" android:label="@string/app_name"
-                android:theme="@android:style/Theme.Black.NoTitleBar"
+                android:theme="@android:style/Theme.Holo.NoActionBar"
                 android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
